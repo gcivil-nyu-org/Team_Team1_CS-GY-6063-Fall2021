@@ -8,6 +8,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('username', 'email')
 
+
 class SignupSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length=20, min_length=6)
     password = serializers.CharField(max_length=20, min_length=6)
@@ -39,3 +40,8 @@ class SignupSerializer(serializers.ModelSerializer):
             password=password,
         )
         return user
+
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
