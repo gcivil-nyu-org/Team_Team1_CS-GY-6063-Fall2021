@@ -48,6 +48,9 @@ class AccountView(viewsets.ViewSet):
         })
 
     def login(self, request):
+        """
+        Login using the password
+        """
         serializer = LoginSerializer(data=request.data)
         if not serializer.is_valid():
             return Response({
@@ -68,3 +71,18 @@ class AccountView(viewsets.ViewSet):
             'success': True,
             'user': UserSerializer(instance=user).data
         })
+
+    @action(methods='GET', detail=False)
+    def login_status(self, request):
+        """
+        Check the current status of account: logged in or not
+        """
+        data = {'has_logged_in': request.user.is_authenticated}
+        if request.user.is_authenticated:
+            data['user'] = UserSerializer(request.user).data
+        return Response(data)
+
+    @action(methods='POST', detail=False)
+    def logout(self, request):
+        django_logout(request)
+        return Response({'success': True})
