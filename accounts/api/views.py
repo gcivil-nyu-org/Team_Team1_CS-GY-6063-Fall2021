@@ -1,5 +1,9 @@
 from accounts.api import serializers
-from accounts.api.serializers import UserSerializer
+from accounts.api.serializers import (
+    LoginSerializer, 
+    SignupSerializer, 
+    UserSerializer,
+)
 from django.contrib.auth.models import User
 from rest_framework import permissions
 from rest_framework import viewsets
@@ -11,7 +15,7 @@ from django.contrib.auth import (
     login as django_login,
     logout as django_logout,
 )
-from accounts.api.serializers import SignupSerializer, LoginSerializer
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -23,7 +27,7 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
 
 
-class AccountView(viewsets.ViewSet):
+class AccountViewSet(viewsets.ViewSet):
     permission_classes = (AllowAny,)
     serializer_class = SignupSerializer
 
