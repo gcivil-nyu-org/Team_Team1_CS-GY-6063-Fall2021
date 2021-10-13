@@ -1,2 +1,4 @@
 gunicorn
+djangorestframework
+psycopg2
 django-heroku

@@ -1,1 +1,1 @@
-web: gunicorn vmentalhealth.wsgi
+web: gunicorn VMentalHealth.wsgi
