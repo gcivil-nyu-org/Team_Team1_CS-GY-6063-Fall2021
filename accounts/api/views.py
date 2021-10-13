@@ -76,7 +76,7 @@ class AccountViewSet(viewsets.ViewSet):
             'user': UserSerializer(instance=user).data
         })
 
-    @action(methods='GET', detail=False)
+    @action(methods=['GET'], detail=False)
     def login_status(self, request):
         """
         Check the current status of account: logged in or not
@@ -86,7 +86,7 @@ class AccountViewSet(viewsets.ViewSet):
             data['user'] = UserSerializer(request.user).data
         return Response(data)
 
-    @action(methods='POST', detail=False)
+    @action(methods=['POST'], detail=False)
     def logout(self, request):
         django_logout(request)
         return Response({'success': True})
