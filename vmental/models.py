@@ -11,3 +11,12 @@ class PatientUser(AbstractUser):
         blank=True,
         null=True
     )
+
+class ProviderUser(AbstractUser):
+    profile_img = ProcessedImageField(
+        upload_to='static/images/provider/profile_img',
+        format='JPEG',
+        options={'quality':100},
+        blank=True,
+        null=True
+    )    
