@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party
     'rest_framework',
+    'imagekit',
 
     # project app
     'accounts',
+    'vmental',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +62,7 @@ ROOT_URLCONF = 'VMentalHealth.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,3 +131,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'posts'
+
+LOGOUT_REDIRECT_URL = 'posts'
+
+AUTH_USER_MODEL = 'vmental.PatientUser'
