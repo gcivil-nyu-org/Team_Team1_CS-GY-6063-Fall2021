@@ -132,8 +132,8 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'posts'
+LOGIN_REDIRECT_URL = 'index'
 
-LOGOUT_REDIRECT_URL = 'posts'
+LOGOUT_REDIRECT_URL = 'login'
 
 AUTH_USER_MODEL = 'vmental.PatientUser'
