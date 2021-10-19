@@ -134,6 +134,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'index'
 
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'index'
 
 AUTH_USER_MODEL = 'vmental.PatientUser'
