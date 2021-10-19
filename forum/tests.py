@@ -5,7 +5,7 @@ from datetime import timedelta
 from utils.time_helpers import utc_now
 
 
-class TweetTests(TestCase):
+class PostTests(TestCase):
 
     def test_hours_to_now(self):
         test_user = User.objects.create_user(username='test_user')
