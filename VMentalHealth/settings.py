@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "imagekit",
     # project app
-    "vmental",
+    'vmental',
+    'forum',
 ]
 
 MIDDLEWARE = [

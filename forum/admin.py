@@ -1,3 +1,13 @@
 from django.contrib import admin
+from forum.models import Post
 
-# Register your models here.
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    date_hierarchy = 'created_at'
+    list_display = (
+        'created_at',
+        'user',
+        'title',
+        'content',
+    )
