@@ -8,6 +8,7 @@ class PatientCreationForm(UserCreationForm):
         model = PatientUser
         fields = ('username', 'email', 'profile_img')
 
+
 class ProviderCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = ProviderUser

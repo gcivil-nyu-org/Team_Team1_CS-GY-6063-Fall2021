@@ -4,4 +4,4 @@ from vmental.models import ProviderUser
 
 # Register your models here.
 admin.site.register(PatientUser)
-admin.site.register(ProviderUser) 
+admin.site.register(ProviderUser)
