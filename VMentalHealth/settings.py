@@ -136,4 +136,4 @@ LOGIN_REDIRECT_URL = 'index'
 
 LOGOUT_REDIRECT_URL = 'index'
 
-AUTH_USER_MODEL = 'vmental.PatientUser'
+AUTH_USER_MODEL = 'vmental.BaseUser'
