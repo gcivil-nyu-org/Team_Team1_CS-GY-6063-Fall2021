@@ -1,23 +1,33 @@
 {% load static %}
 
-<ul>
-    {% if request.user.is_authenticated %}
-        <li>
-            Hi, {{request.user.username}}
-        </li>
-        <li>
-            <a href="{% url 'logout' %}"> Logout</a>
-        </li>
-    {% else %}
-        <li>
-            <a href="{% url 'login' %}"> Login</a>
-        </li>
-        <li>
-            <a href="{% url 'signup' %}"> Signup</a>
-        </li>
-    {% endif %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles/registration.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
-</ul>
-
+<div class="logo">
+  <h1>VMentalHealth</h1>
+</div>
 
 <div>
+    {% if request.user.is_authenticated %}
+        <div>
+            Hi, {{request.user.username}}
+        </div>
+        <div class = "">
+            <a href="{% url 'logout' %}"> Logout</a>
+        </div>
+    {% else %}
+        <div class="button_container">
+          <button type="button" name="login">
+            <a href="{% url 'login' %}"> Login</a>
+          </button>
+        </div>
+        <div class="button_container">
+          <button type="button" name="signup">
+            <a href="{% url 'signup' %}"> Signup</a>
+          </button>
+        </div>
+    {% endif %}
+
+</div>
