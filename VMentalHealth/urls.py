@@ -30,6 +30,6 @@ urlpatterns = [
     #    'rest_framework.urls',
     #    namespace='rest_framework')),
     path('vmental/', include('vmental.urls')),
-    path('auth/', include('django.contrib.auth.urls')),
-    path('auth/signup/', SignUpView.as_view(), name='signup'),
+    # path('auth/', include('django.contrib.auth.urls')),
+    # path('auth/signup/', SignUpView.as_view(), name='signup'),
 ]

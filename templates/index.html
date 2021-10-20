@@ -15,8 +15,10 @@
         <div>
             Hi, {{request.user.username}}
         </div>
-        <div>
+        <div class="button_container">
+          <button type="button" name="logout">
             <a href="{% url 'logout' %}"> Logout</a>
+          </button>
         </div>
       </div>
       <div class="profile">
