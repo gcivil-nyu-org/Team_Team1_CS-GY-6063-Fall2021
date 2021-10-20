@@ -2,7 +2,37 @@
   width: 100vw;
   height: 50vh;
 }
+.header{
+  font-style: normal;
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  color: white;
+  float: right;
+  margin-left: 30px;
+}
+.profile{
+  font-style: normal;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: white;
+  width: 100vw;
+  height: 50vh;
+}
+.profle_pic{
+  width: 30vw;
+  margin: 40px;
+  position: absolute;
+}
+.appointment{
+  width: 70vw;
+  margin-left: 20vw;
+  float: right;
+}
 
+img {
+  width: 200px;
+  height: 200px;
+}
 h1 {
   position: relative;
   padding-top: 150px;

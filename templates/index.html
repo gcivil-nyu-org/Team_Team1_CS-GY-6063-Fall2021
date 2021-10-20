@@ -11,12 +11,25 @@
 
 <div>
     {% if request.user.is_authenticated %}
+      <div class = "header">
         <div>
             Hi, {{request.user.username}}
         </div>
-        <div class = "">
+        <div>
             <a href="{% url 'logout' %}"> Logout</a>
         </div>
+      </div>
+      <div class="profile">
+        <div class = "profle_pic">
+          <img src="{% static 'images/profile_img.png' %}" alt="">
+        </div>
+        <div class="appointment">
+          <div>Appointments</div>
+          <li>10/21/2021      15:00</li>
+          <li>10/22/2021      11:00</li>
+          <li>10/24/2021      15:00</li>
+        </div>
+      </div>
     {% else %}
         <div class="button_container">
           <button type="button" name="login">
