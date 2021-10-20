@@ -1,7 +1,6 @@
-from accounts.api import serializers
 from accounts.api.serializers import (
-    LoginSerializer, 
-    SignupSerializer, 
+    LoginSerializer,
+    SignupSerializer,
     UserSerializer,
 )
 from django.contrib.auth.models import User
