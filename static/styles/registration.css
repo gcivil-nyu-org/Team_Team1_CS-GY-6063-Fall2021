@@ -32,6 +32,31 @@ button {
   position: relative;
   margin: auto;
 }
+.form_container{
+  width: 60%;
+  position: relative;
+  margin: auto;
+  font-style: normal;
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  color: white;
+  display:flex;
+	justify-content: center;
+}
+.submit_button {
+  height: 10vh;
+  margin: auto;
+}
+
+.helptext{
+  font-size: 12px;
+  position: absolute;
+  margin-left: 20px;
+  width: auto;
+}
+ul {
+  font-size: 12px;
+}
 
 a {
   text-decoration: none;
