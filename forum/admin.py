@@ -7,7 +7,7 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'created_at'
     list_display = (
         'created_at',
-        'user',
+        'author',
         'title',
         'content',
     )

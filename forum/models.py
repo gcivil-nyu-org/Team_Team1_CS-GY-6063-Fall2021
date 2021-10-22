@@ -1,10 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
+from vmental.models import CustomizedUser
 from utils.time_helpers import utc_now
 
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(CustomizedUser,
+        on_delete=models.SET_NULL,
+        null=True
+    )
     title = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
