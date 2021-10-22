@@ -1,12 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
 
+<<<<<<< HEAD
 {% block content %}
   <main role="main" class="container">
       <div class="row">
           <div class="col-md-8">
               <h1>HAHAHAHAHAHAHAHAHAHAHAHAH</h1>
           </div>
+=======
+<link rel="stylesheet" type="text/css" href="{% static 'styles/registration.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+<div class="logo">
+  <h1>VMentalHealth</h1>
+</div>
+
+<div>
+    {% if request.user.is_authenticated %}
+      <div class = "header">
+        <div>
+            Hi, {{request.user.username}}
+        </div>
+        <div class="button_container">
+          <button type="button" name="logout" id="logout">
+            <a href="{% url 'logout' %}"> Logout</a>
+          </button>
+        </div>
+>>>>>>> develop
       </div>
   </main>
 {% endblock %}
