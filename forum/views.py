@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from forum.models import Post
 
 
-class ForumView(ListView, LoginRequiredMixin):
+class PostListView(ListView, LoginRequiredMixin):
     model = Post
     login_url = 'login'
 
