@@ -8,11 +8,11 @@ class UserCreationForm(UserCreationForm):
         fields = (
             'email',
             'username',
-            'password',
             'profile_img',
             'first_name',
             'last_name',
             'gender',
+            'is_provider',
             'date_of_birth',
             'phone_number',
         )
