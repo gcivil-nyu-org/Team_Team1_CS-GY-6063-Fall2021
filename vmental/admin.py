@@ -1,7 +1,5 @@
 from django.contrib import admin
-from vmental.models import PatientUser
-from vmental.models import ProviderUser
+from vmental.models import CustomizedUser
 
 # Register your models here.
-admin.site.register(PatientUser)
-admin.site.register(ProviderUser)
+admin.site.register(CustomizedUser)

@@ -1,15 +1,18 @@
 from django.contrib.auth.forms import UserCreationForm
-from vmental.models import PatientUser
-from vmental.models import ProviderUser
+from vmental.models import CustomizedUser
 
 
-class PatientCreationForm(UserCreationForm):
+class UserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
-        model = PatientUser
-        fields = ('username', 'email', 'profile_img')
-
-
-class ProviderCreationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = ProviderUser
-        fields = ('username', 'email', 'profile_img')
+        model = CustomizedUser
+        fields = (
+            'email',
+            'username',
+            'password',
+            'profile_img',
+            'first_name',
+            'last_name',
+            'gender',
+            'date_of_birth',
+            'phone_number',
+        )

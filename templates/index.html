@@ -1,5 +1,14 @@
+{% extends "base.html" %}
 {% load static %}
 
+<<<<<<< HEAD
+{% block content %}
+  <main role="main" class="container">
+      <div class="row">
+          <div class="col-md-8">
+              <h1>HAHAHAHAHAHAHAHAHAHAHAHAH</h1>
+          </div>
+=======
 <link rel="stylesheet" type="text/css" href="{% static 'styles/registration.css' %}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,29 +29,7 @@
             <a href="{% url 'logout' %}"> Logout</a>
           </button>
         </div>
+>>>>>>> develop
       </div>
-      <div class="profile">
-        <div class = "profle_pic">
-          <img src="{% static 'images/profile_img.png' %}" alt="">
-        </div>
-        <div class="appointment">
-          <div>Appointments</div>
-          <li>10/21/2021      15:00</li>
-          <li>10/22/2021      11:00</li>
-          <li>10/24/2021      15:00</li>
-        </div>
-      </div>
-    {% else %}
-        <div class="button_container">
-          <button type="button" name="login">
-            <a href="{% url 'login' %}"> Login</a>
-          </button>
-        </div>
-        <div class="button_container">
-          <button type="button" name="signup">
-            <a href="{% url 'signup' %}"> Signup</a>
-          </button>
-        </div>
-    {% endif %}
-
-</div>
+  </main>
+{% endblock %}

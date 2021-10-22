@@ -139,6 +139,10 @@ LOGIN_REDIRECT_URL = 'index'
 
 LOGOUT_REDIRECT_URL = 'index'
 
+<<<<<<< HEAD
+AUTH_USER_MODEL = 'vmental.CustomizedUser'
+=======
 AUTH_USER_MODEL = 'vmental.BaseUser'
 
 django_heroku.settings(locals())
+>>>>>>> develop
