@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from forum.models import Post
 
-# Create your views here.
+
+class ForumView(ListView, LoginRequiredMixin):
+    model = Post
+    template_name = 'forum.html'
+    login_url = 'login'
+
+    def get_queryset(self):
+        return Post.objects.all().order_by('-created_at')

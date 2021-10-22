@@ -1,0 +1,15 @@
+<h1>Discussion Forum</h1>
+
+{% for post in object_list %}
+    <div class="row">
+        <div class="card view-update {{ post.pk }}">
+        
+            <div class="card__panel-head">
+                <div class="post__info">
+                    {{ post.title }}
+                    {{ post.author}}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
