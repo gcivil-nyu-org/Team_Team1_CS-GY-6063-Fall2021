@@ -6,6 +6,7 @@
       <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
+          <a class="nav-item nav-link" href="{% url 'password_reset' %}">Reset Password</a>
           <button type="submit" class="submit_button">Login</button>
       </form>
     </div>
