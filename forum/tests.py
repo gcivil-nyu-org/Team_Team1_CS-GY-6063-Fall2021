@@ -17,4 +17,3 @@ class PostTests(TestCase):
         post.created_at = utc_now() - timedelta(hours=10)
         post.save()
         self.assertEqual(post.hours_to_now, 10)
-    
