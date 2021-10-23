@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from forum.models import Post
 
@@ -13,3 +13,8 @@ class PostListView(ListView, LoginRequiredMixin):
 
 class PostDetailView(DetailView):
     model = Post
+
+
+class PostUpdateView(UpdateView):
+    model = Post
+    fields = ['title', 'content']
