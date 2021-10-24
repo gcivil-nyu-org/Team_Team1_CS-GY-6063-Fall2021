@@ -2,18 +2,24 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container ">
   <div class="row align-items-center">
     <div class = "col-9 post_detail_title">
         {{ post.title }}
     </div>
-    <div class="col-3">
+    <div class="col-3 ">
       <a href="{% url 'post_list' %}">Back to forum</a>
     </div>
   </div>
-  <p class="lead">
-    Created by <small class="text-muted">{{ post.author }}</small> at <small class="text-muted">{{ post.created_at }}</small>
-  </p>
+  <div class="row align-items-center">
+    <p class="col-8 lead">
+      Created by <small class="text-muted">{{ post.author }}</small> at <small class="text-muted">{{ post.created_at }}</small>
+    </p>
+    {% if request.user.is_authenticated %}
+      <a class = "col-2"href="{% url 'post_update' post.id %}">Edit post</a>
+      <a class = "col-2"href="{% url 'post_delete' post.id %}">Delete post</a>
+    {% endif %}
+  </div>
   <p class="post_content">
       {{ post.content }}
   </p>
