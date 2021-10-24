@@ -4,10 +4,11 @@ from forum.models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    date_hierarchy = 'created_at'
+    date_hierarchy = "created_at"
     list_display = (
-        'created_at',
-        'author',
-        'title',
-        'content',
+        "id",
+        "created_at",
+        "author",
+        "title",
+        "content",
     )
