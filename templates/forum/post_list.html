@@ -1,21 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>Discussion Forum</h1>
-
-{% for post in object_list %}
-    <div class="row">
-        <div class="card__panel-head">
-            <div class="post__info">
-                <tab>
-                    {{ post.title }} 
-                    {{ post.author}}
-                    {{ post.created_at}}
-                </tab>
-            </div>
-        </div>
+<div class="container">
+  <div class="row align-items-center">
+    <div class = "col-9">
+      <h1>Discussion Forum</h1>
     </div>
-{% endfor %}
+    <div class = "col-3">
+      <a class="btn btn-primary" href="{% url 'post_create' %}" role="button">Create New Post</a>
+    </div>
+  </div>
+  <div class="row align-items-center form_attribute">
+      <div class="col-4">Title</div>
+      <div class="col-4">Author</div>
+      <div class="col-4">Created_at</div>
+  </div>
+
+  <div class="row align-items-center form_entities">
+    {% for post in object_list %}
+      <div class="col-4">
+        <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+      </div>
+      <div class="col-4">
+        {{ post.author}}
+      </div>
+      <div class="col-4">
+        {{ post.created_at}}
+      </div>
+      {% endfor %}
+  </div>
+</div>
+
 
 {% endblock content %}
