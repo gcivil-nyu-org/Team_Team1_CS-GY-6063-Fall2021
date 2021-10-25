@@ -138,4 +138,4 @@ LOGOUT_REDIRECT_URL = "index"
 
 AUTH_USER_MODEL = "vmental.CustomizedUser"
 
-django_heroku.settings(locals())
+django_heroku.settings(locals(), test_runner=False)
