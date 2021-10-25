@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'imagekit',
 
     # project app
-    'accounts',
     'vmental',
 ]
 
