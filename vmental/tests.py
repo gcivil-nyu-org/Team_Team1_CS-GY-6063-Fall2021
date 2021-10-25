@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from vmental.models import CustomizedUser
+
 # from vmental.views import *
 
 
