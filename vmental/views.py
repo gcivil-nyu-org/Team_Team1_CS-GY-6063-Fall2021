@@ -16,11 +16,6 @@ class SignUpView(CreateView):
     template_name = 'signup.html'
     success_url = reverse_lazy("login")
 
-class ProfileView(DetailView, LoginRequiredMixin):
+class ProfileView(TemplateView, LoginRequiredMixin):
     template_name = 'profile.html'
     model = CustomizedUser
-    login_url = 'login'
-    # def get_success_url(self):
-    #     return reverse('profile', args=[self.request.user.username])
-    def get_queryset(self):
-        return CustomizedUser.objects.filter(username = 'hahaha')
