@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from forum.models import Post
 
 
-class PostListView(ListView, LoginRequiredMixin):
+class PostListView(LoginRequiredMixin, ListView):
     model = Post
     login_url = "login"
 
@@ -13,24 +13,24 @@ class PostListView(ListView, LoginRequiredMixin):
         return Post.objects.all().order_by("-created_at")
 
 
-class PostDetailView(DetailView, LoginRequiredMixin):
+class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
     login_url = "login"
 
 
-class PostUpdateView(UpdateView, LoginRequiredMixin):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     fields = ["title", "content"]
     template_name_suffix = "_update"
 
 
-class PostDeleteView(DeleteView, LoginRequiredMixin):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy("post_list")
     login_url = "login"
 
 
-class PostCreateView(CreateView, LoginRequiredMixin):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ["title", "content"]
     login_url = "login"
