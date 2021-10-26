@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-import django_heroku
+
+# import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -138,8 +139,8 @@ LOGOUT_REDIRECT_URL = "index"
 
 AUTH_USER_MODEL = "vmental.CustomizedUser"
 
-#django_heroku.settings(locals(), test_runner=False)'
+# django_heroku.settings(locals(), test_runner=False)
 
-#for password reset function
+# for password reset function
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+EMAIL_FILE_PATH = str(BASE_DIR.joinpath("sent_emails"))
