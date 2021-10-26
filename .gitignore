@@ -2,6 +2,8 @@
 
 */__pycache_git _/*
 
+*/__pycache__/*
+
 Pipfile
 
 Pipfile.lock
@@ -145,4 +147,8 @@ dmypy.json
 .pytype/
 
 # Cython debug symbols
+<<<<<<< HEAD
 cython_debug/
+=======
+cython_debug/
+>>>>>>> fa1e838 (fix login required mixin and add more pattterns to gitignore)
