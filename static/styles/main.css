@@ -82,3 +82,12 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+  .home_img{
+    background-color: black;
+  }
+
+  img{
+    width: 100vw;
+    height: auto;
+  }
