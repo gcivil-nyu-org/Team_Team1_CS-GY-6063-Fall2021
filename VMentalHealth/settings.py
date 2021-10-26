@@ -138,4 +138,8 @@ LOGOUT_REDIRECT_URL = "index"
 
 AUTH_USER_MODEL = "vmental.CustomizedUser"
 
-django_heroku.settings(locals(), test_runner=False)
+#django_heroku.settings(locals(), test_runner=False)'
+
+#for password reset function
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
