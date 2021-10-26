@@ -4,18 +4,24 @@
 {% block content %}
 <div>
   <div class="profile_head">Welcome back, {{user.username}}!</div>
-  <div class="container">
-    <div class="row" id="upcoming">Upcoming appointments...</div>
-    <div class="row align-items-center form_entities profile_form">
-        <div class="col-3">Time</div>
-        <div class="col-3">Provider</div>
-        <div class="col-3">Meeting Link</div>
-    </div>
-    <div class="row align-items-center form_entities profile_form">
-        <div class="col-3">11/12/2021 15:00 EST</div>
-        <div class="col-3">Dr. Tandon</div>
-        <a class="col-3">https://nyu.zoom.us/z/1234567890 </a>
-    </div>
+  <div class="container-fluid">
+    <div class="row-fluid" >
+      <div class = "span9">
+        <div class = "row" id="upcoming">Upcoming appointments...</div>
+        <div class="row align-items-center form_entities profile_form">
+            <div class="col-3">Time</div>
+            <div class="col-3">Provider</div>
+            <div class="col-3">Meeting Link</div>
+        </div>
+        <div class="row align-items-center form_entities profile_form">
+            <div class="col-3">11/12/2021 15:00 EST</div>
+            <div class="col-3">Dr. Tandon</div>
+            <a class="col-3">https://nyu.zoom.us/z/1234567890 </a>
+        </div>
+      </div>
+      <div class = "span3">
+        <div>profile</div>
+      </div>
   </div>
 </div>
 {% endblock %}
