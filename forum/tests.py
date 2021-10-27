@@ -102,13 +102,15 @@ class CommentListViewTests(TestCase):
             post=post1, author=test_user, content="Test comment by test_user"
         )
         comment_1.save()
-        request = RequestFactory().get("/forum/comment/?post_id="+str(post1.id))
+        request = RequestFactory().get("/forum/comment/?post_id=" + str(post1.id))
         request.user = test_user
         view = CommentCreateView()
         view.request = request
         qs = view.get_success_url()
-        self.assertEqual(qs, '/forum/'+str(post1.id))
-        form_data = {"content": "test_content", }
+        self.assertEqual(qs, "/forum/" + str(post1.id))
+        form_data = {
+            "content": "test_content",
+        }
         form = CommentForm(form_data)
         returns = view.form_valid(form)
         self.assertEqual(returns.status_code, 302)
