@@ -43,10 +43,14 @@ INSTALLED_APPS = [
     # third party
     "imagekit",
     # project app
+<<<<<<< HEAD
     "vmental",
     "forum",
     # for email verification
     "verify_email.apps.VerifyEmailConfig",
+=======
+    'vmental',
+>>>>>>> 0d28f78... booking_frontend
     'booking',
 ]
 
