@@ -8,7 +8,7 @@ class Post(models.Model):
         CustomizedUser,
         on_delete=models.CASCADE,
         null=True,
-        related_name='posts',
+        related_name="posts",
     )
     title = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -27,7 +27,7 @@ class Comment(models.Model):
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
-        related_name='comments',
+        related_name="comments",
     )
     author = models.ForeignKey(
         CustomizedUser,
