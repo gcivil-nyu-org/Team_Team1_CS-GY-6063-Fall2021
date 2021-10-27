@@ -133,14 +133,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "profile"
 
 LOGOUT_REDIRECT_URL = "index"
 
 AUTH_USER_MODEL = "vmental.CustomizedUser"
-
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # for password reset function
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"

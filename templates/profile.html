@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div>
+  <div class="profile_head">Welcome back, {{user.username}}!</div>
+  <div class="container">
+    <div class="row" >
+      <div class = "col-3">
+        <div class="profile_detail">
+          <img src="static/images/profile_img.png" alt="avatar" id="profile_avatar">
+          <div>Joined since 2021</div>
+          <a class="btn btn-primary" href="{% url 'profile_edit' user.id %}" role="button">Edit profile</a>
+        </div>
+      </div>
+      <div class = "col-9">
+        <div class = "row" id="upcoming">Upcoming appointments...</div>
+        <div class="row align-items-center form_entities profile_form">
+            <div class="col-3">Time</div>
+            <div class="col-3">Provider</div>
+            <div class="col-3">Meeting Link</div>
+        </div>
+        <div class="row align-items-center form_entities profile_form">
+            <div class="col-3">11/12/2021 15:00 EST</div>
+            <div class="col-3">Dr. Tandon</div>
+            <a class="col-3">https://nyu.zoom.us/z/1234567890 </a>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
