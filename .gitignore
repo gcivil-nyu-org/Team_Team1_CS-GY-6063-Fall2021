@@ -148,7 +148,11 @@ dmypy.json
 
 # Cython debug symbols
 <<<<<<< HEAD
+<<<<<<< HEAD
 cython_debug/
 =======
 cython_debug/
 >>>>>>> fa1e838 (fix login required mixin and add more pattterns to gitignore)
+=======
+cython_debug/
+>>>>>>> 53c57d99000f54280e44e6d7edb229837ace9159
