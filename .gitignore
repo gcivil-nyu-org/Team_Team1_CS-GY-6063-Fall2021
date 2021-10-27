@@ -1,7 +1,9 @@
 .DS_Store
 
 */__pycache__/*
-
+staticfiles
+*/.idea/*
+db.sqlite3*
 Pipfile
 
 Pipfile.lock
