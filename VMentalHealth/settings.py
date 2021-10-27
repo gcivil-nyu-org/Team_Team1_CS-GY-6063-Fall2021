@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "vmental",
     "forum",
     # email verify
-    "verify_email.apps.VerifyEmailConfig",
+    #"verify_email.apps.VerifyEmailConfig",
 ]
 
 
@@ -158,27 +158,6 @@ EMAIL_HOST_PASSWORD = "meng1112"  # your password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-
-# for email verify
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'mengznyc@gmail.com'
-# EMAIL_HOST_PASSWORD = 'meng1112'
-# EMAIL_PORT = 587
-
-
-# for email verify
-EMAIL_USE_TLS = True
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "mengznyc@gmail.com"
-EMAIL_HOST_PASSWORD = "meng1112"
-EMAIL_PORT = 587
-
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'mengznyc@gmail.com'
-# EMAIL_HOST_PASSWORD = 'meng1112'
-# EMAIL_PORT = 587
 
 # must place in the last line
 #django_heroku.settings(locals(), test_runner=False)
