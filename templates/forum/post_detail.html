@@ -2,47 +2,42 @@
 
 {% block content %}
 
-<div class="container ">
+<div class="container post_detail">
   <div class="row align-items-center">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class = "col-9 post_detail_title">
+    <div class = "col-12 post_detail_title">
         {{ post.title }}
     </div>
-  <div class="row align-items-center">
-    <p class="col-8 lead">
-      Created by <small class="text-muted">{{ post.author }}</small> at <small class="text-muted">{{ post.created_at }}</small>
-    </p>
-      <a class = "col-2"href="{% url 'comment_create' %}?post_id={{ post.id }}">Create comment</a>
-      {% if request.user.is_authenticated and request.user.id == post.author.id %}
-      <a class = "col-2"href="{% url 'post_update' post.id %}">Edit post</a>
-      <a class = "col-2"href="{% url 'post_delete' post.id %}">Delete post</a>
-    {% endif %}
-    </div>
   </div>
-  
-  <p class="post_content">
+  <div class="row align-items-center">
+      <p class="col-6 lead">
+        Created by <small class="text-muted">{{ post.author }}</small> at <small class="text-muted">{{ post.created_at }}</small>
+      </p>
+      {% if request.user.is_authenticated and request.user.id == post.author.id %}
+      <a class = "col-2 btn btn-sm"href="{% url 'post_update' post.id %}">Edit post</a>
+      <a class = "col-2 btn btn-sm"href="{% url 'post_delete' post.id %}">Delete post</a>
+      <a class = "col-2 btn btn-sm"href="{% url 'post_list' %}">Back to Forum</a>
+      {% endif %}
+  </div>
+  <div class="post_content">
       {{ post.content }}
-  </p>
-
-  <div class="comments-list">
+  </div>
+  <div class="row comments-title">
+    <div class="col-6">Comments</div>
+    <a class = "col-2 btn btn-sm"href="{% url 'comment_create' %}?post_id={{ post.id }}">Create comment</a>
+  </div>
+  <div class="row comments-list">
     {% for comment in object.comments.all %}
-        <div class="comment">
-            <div class="info">
-                <p>{{ comment.author }}<span> . {{ comment.created_at }}</span></p>
-                <p>{{ comment.content }}</p>
-            </div>   
+    <div class="comment">
+        <div class="info">
+            <p>{{ comment.author }}<span> . {{ comment.created_at }}</span></p>
+            <p>{{ comment.content }}</p>
         </div>
+    </div>
     {% empty %}
-        <div class="no-comment">
-            <h5>There are no comments yet.</h5>
-        </div>
+    <p class="no-comment">
+        <small class="text-muted">There are no comments yet.</small>
+    </p>
     {% endfor %}
-    
   </div>
 </div>
 {% endblock content %}
