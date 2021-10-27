@@ -143,13 +143,13 @@ AUTH_USER_MODEL = "vmental.CustomizedUser"
 # for password reset function
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = str(BASE_DIR.joinpath("sent_emails"))
-EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mengznyc@gmail.com' #your email-id
-EMAIL_HOST_PASSWORD = 'meng1112' #your password
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "mengznyc@gmail.com"  # your email-id
+EMAIL_HOST_PASSWORD = "meng1112"  # your password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 # must place in the last line
-#django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals(), test_runner=False)
