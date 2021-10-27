@@ -22,6 +22,7 @@ from django.contrib.auth.models import User
 class IndexView(TemplateView):
     template_name = "index.html"
 
+
 # class SignUpView(CreateView):
 #     form_class = UserCreationForm
 #     template_name = 'signup.html'
