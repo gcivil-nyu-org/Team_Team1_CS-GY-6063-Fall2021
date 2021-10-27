@@ -19,13 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-<<<<<<< HEAD
     path("", include("vmental.urls")),
     path("", include("user_profile.urls")),
     path("forum/", include("forum.urls")),
-||||||| parent of 760a1ef (have issue)
     path("", include("vmental.urls")),
-=======
-    path("", include("vmental.urls")),	
->>>>>>> 760a1ef (have issue)
 ]
