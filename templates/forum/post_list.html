@@ -1,15 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <h1>Discussion Forum</h1>
 
 {% for post in object_list %}
     <div class="row">
-        <div class="card view-update {{ post.pk }}">
-        
-            <div class="card__panel-head">
-                <div class="post__info">
-                    {{ post.title }}
+        <div class="card__panel-head">
+            <div class="post__info">
+                <tab>
+                    {{ post.title }} 
                     {{ post.author}}
-                </div>
+                    {{ post.created_at}}
+                </tab>
             </div>
         </div>
     </div>
 {% endfor %}
+
+{% endblock content %}

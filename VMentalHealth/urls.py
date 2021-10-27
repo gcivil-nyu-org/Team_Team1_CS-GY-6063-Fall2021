@@ -15,17 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-<<<<<<< HEAD
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("vmental.urls")),
-=======
-
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('vmental.urls')),
-    path('forum/', include('forum.urls')),
->>>>>>> 9fd1f2c (add created post list view)
+    path("", include("user_profile.urls")),
+    path("forum/", include("forum.urls")),
 ]
