@@ -42,4 +42,4 @@ class Comment(models.Model):
         return (utc_now() - self.created_at).seconds // 3600
 
     def __str__(self):
-        return f"{self.id} {self.author}: {self.post} \n {self.content}"
+        return f"{self.id} {self.author}: {self.post.id} \n {self.content}"
