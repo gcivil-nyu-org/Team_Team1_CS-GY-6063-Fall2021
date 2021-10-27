@@ -2,9 +2,13 @@
 
 */__pycache__/*
 
+*/__pycache_git _/*
+
 Pipfile
 
 Pipfile.lock
+
+sent_emails/*
  
 # Byte-compiled / optimized / DLL files
 __pycache__/
