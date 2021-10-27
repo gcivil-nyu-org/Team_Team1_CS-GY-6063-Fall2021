@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "forum",
     # for email verification
     "verify_email.apps.VerifyEmailConfig",
+    'booking',
 ]
 
 
