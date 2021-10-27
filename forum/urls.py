@@ -6,6 +6,7 @@ from forum.views import (
     PostDetailView,
     PostListView,
     PostUpdateView,
+    CommentCreateView,
 )
 
 urlpatterns = [
@@ -14,4 +15,5 @@ urlpatterns = [
     path("update/<int:pk>", PostUpdateView.as_view(), name="post_update"),
     path("delete/<int:pk>", PostDeleteView.as_view(), name="post_delete"),
     path("new/", PostCreateView.as_view(), name="post_create"),
+    path("comment/", CommentCreateView.as_view(), name="comment_create"),
 ]

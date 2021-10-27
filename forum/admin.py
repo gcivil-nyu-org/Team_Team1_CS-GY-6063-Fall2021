@@ -1,5 +1,5 @@
 from django.contrib import admin
-from forum.models import Post
+from forum.models import Post, Comment
 
 
 @admin.register(Post)
@@ -10,5 +10,16 @@ class PostAdmin(admin.ModelAdmin):
         "created_at",
         "author",
         "title",
+        "content",
+    )
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "created_at",
+        "post",
+        "author",
         "content",
     )
