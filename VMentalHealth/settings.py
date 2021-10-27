@@ -152,4 +152,4 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 # must place in the last line
-# django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals(), test_runner=False)
