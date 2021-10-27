@@ -2,7 +2,6 @@ from django.views.generic import TemplateView, CreateView
 from django.urls import reverse_lazy
 from vmental.forms import UserCreationForm
 from verify_email.email_handler import send_verification_email
-
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login
@@ -11,7 +10,9 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
+
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.contrib.auth.models import User
 # Create your views here.
@@ -109,15 +110,18 @@ class SignUpView(CreateView):
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
+        User = get_user_model()
         user = User.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
-    if user is not None and account_activation_token.check_token(user, token):
+    if user is not None:
+        # and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
         login(request, user)
+        return render(request, 'index.html')
         # return redirect('home')
-        return 'index'
+        # return 'index'
     else:
         return HttpResponse('Activation link is invalid!')
 
