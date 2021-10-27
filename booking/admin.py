@@ -6,6 +6,7 @@ from booking.models import Doctor,Appointments,Patient
 @admin.register(Appointments)
 class Appointments(admin.ModelAdmin):
     list_display = (
+        "id",
         "date",
         "time",
         "doctor",
@@ -14,5 +15,6 @@ class Appointments(admin.ModelAdmin):
 @admin.register(Doctor)
 class Doctor(admin.ModelAdmin):
     list_display = (
+        "id",
         "doctor_name",
     )
