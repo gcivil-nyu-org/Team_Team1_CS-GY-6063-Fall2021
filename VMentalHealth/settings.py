@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "verify_email.apps.VerifyEmailConfig",
 ]
 
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -146,6 +147,12 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATIC_URL = '/static/'
 
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# STATIC_URL = "/static/"
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 # for password reset function
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = str(BASE_DIR.joinpath("sent_emails"))
@@ -164,5 +171,14 @@ EMAIL_USE_SSL = False
 # EMAIL_HOST_PASSWORD = 'meng1112'
 # EMAIL_PORT = 587
 
+
+# for email verify
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mengznyc@gmail.com'
+EMAIL_HOST_PASSWORD = 'meng1112'
+EMAIL_PORT = 587
+
 # must place in the last line
-#django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals(), test_runner=False)
+
