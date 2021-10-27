@@ -23,5 +23,4 @@ urlpatterns = [
     path("", include("user_profile.urls")),
     path("forum/", include("forum.urls")),
     path("", include("vmental.urls")),
-
 ]
