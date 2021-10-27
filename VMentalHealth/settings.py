@@ -45,13 +45,8 @@ INSTALLED_APPS = [
     "imagekit",
     # project app
     "vmental",
-<<<<<<< HEAD
-    "forum",
-||||||| parent of 760a1ef (have issue)
-=======
     # email verify
     "verify_email.apps.VerifyEmailConfig",
->>>>>>> 760a1ef (have issue)
 ]
 
 MIDDLEWARE = [
@@ -140,39 +135,33 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_REDIRECT_URL = "profile"
+LOGIN_REDIRECT_URL = "index"
 
 LOGOUT_REDIRECT_URL = "index"
 
 AUTH_USER_MODEL = "vmental.CustomizedUser"
 
-<<<<<<< HEAD
-||||||| parent of 760a1ef (have issue)
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-=======
 # STATIC_URL = "/static/"
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
->>>>>>> 760a1ef (have issue)
 # for password reset function
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = str(BASE_DIR.joinpath("sent_emails"))
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "mengznyc@gmail.com"  # your email-id
-EMAIL_HOST_PASSWORD = "meng1112"  # your password
+
+EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mengznyc@gmail.com' #your email-id
+EMAIL_HOST_PASSWORD = 'meng1112' #your password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 # for email verify
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mengznyc@gmail.com'
-EMAIL_HOST_PASSWORD = 'meng1112'
-EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'mengznyc@gmail.com'
+# EMAIL_HOST_PASSWORD = 'meng1112'
+# EMAIL_PORT = 587
 
 # must place in the last line
 # django_heroku.settings(locals(), test_runner=False)
