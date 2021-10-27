@@ -17,6 +17,7 @@ from django.core.mail import EmailMessage
 class IndexView(TemplateView):
     template_name = "index.html"
 
+
 # class SignUpView(CreateView):
 #     form_class = UserCreationForm
 #     template_name = 'signup.html'
