@@ -1,7 +1,7 @@
 from vmental.models import CustomizedUser
 from django.test import TestCase, RequestFactory
 from forum.models import Post, Comment
-from forum.views import PostListView
+from forum.views import PostListView, CommentCreateView
 from forum.forms import CommentForm
 from datetime import timedelta
 from utils.time_helpers import utc_now
@@ -30,7 +30,7 @@ class PostModelTests(TestCase):
         self.assertEqual("1 teset_user: test_title \n test_content", str(post))
 
 
-class CoomentModelTests(TestCase):
+class CommentModelTests(TestCase):
     def test_hours_to_now(self):
         test_user = CustomizedUser.objects.create_user(username="test_user")
         post = Post.objects.create(
@@ -87,6 +87,31 @@ class PostListViewTests(TestCase):
         view.request = request
         qs = view.get_queryset()
         self.assertQuerysetEqual(qs, Post.objects.all().order_by("-created_at"))
+
+
+class CommentListViewTests(TestCase):
+    def test_get_queryset(self):
+        test_user = CustomizedUser.objects.create_user(username="test_user")
+        post1 = Post.objects.create(
+            author=test_user,
+            title="test_title_1",
+            content="test_content_1",
+        )
+        post1.save()
+        comment_1 = Comment.objects.create(
+            post=post1, author=test_user, content="Test comment by test_user"
+        )
+        comment_1.save()
+        request = RequestFactory().get("/forum/comment/?post_id="+str(post1.id))
+        request.user = test_user
+        view = CommentCreateView()
+        view.request = request
+        qs = view.get_success_url()
+        self.assertEqual(qs, '/forum/'+str(post1.id))
+        form_data = {"content": "test_content", }
+        form = CommentForm(form_data)
+        returns = view.form_valid(form)
+        self.assertEqual(returns.status_code, 302)
 
 
 class CommentFormTest(TestCase):
