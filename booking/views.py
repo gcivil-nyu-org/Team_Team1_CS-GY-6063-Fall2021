@@ -1,34 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import Doctor,Appointments
+
 # Create your views here.
-appointments = [
-    {
-        'date': '29 Oct 2021',
-        'day': 'Thursday',
-        'time': '9:00 pm',
-        'location': 'ABC Place',
-        'status': 'unbooked',
-    },
-    {
-        'date': '29 Oct 2021',
-        'day': 'Thursday',
-        'time': '10:00 pm',
-        'location': 'XYZ Place',
-        'status': 'unbooked',
-    },
-    {
-        'date': '30 Oct 2021',
-        'day': 'Friday',
-        'time': '9:00 pm',
-        'location': 'PQR Place',
-        'status': 'unbooked',
-    },
-]
+
 
 def booking(request):
     context = {
-        'appointments': appointments
+        'appointments': Appointments.objects.all()
     }
     return render(request,'booking/booking.html', context)
     

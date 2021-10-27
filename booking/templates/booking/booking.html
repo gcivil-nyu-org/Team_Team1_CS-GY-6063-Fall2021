@@ -27,11 +27,13 @@
                                 <div class="card-body p-sm-5">
                                     <div class="row text-center mx-0">
                                         {% for a in appointments %}
-                                        {{a.date}}
-                                        <div class="col-md-2 col-4 my-1 px-2"> 
+                                            
+                                        <div class="col-md-4 col-4 my-1 px-2"> 
+                                            {{a.date}}
                                             <div class="cell py-1">
                                                 {{a.time}}
                                             </div>  
+
                                         </div>
                                         {% endfor %}
                                     </div>
