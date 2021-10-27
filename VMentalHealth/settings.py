@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "imagekit",
     # project app
     "vmental",
+    "forum",
     # email verify
     "verify_email.apps.VerifyEmailConfig",
 ]
@@ -163,4 +164,4 @@ EMAIL_USE_SSL = False
 # EMAIL_PORT = 587
 
 # must place in the last line
-django_heroku.settings(locals(), test_runner=False)
+# django_heroku.settings(locals(), test_runner=False)
