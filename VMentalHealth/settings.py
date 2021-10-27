@@ -185,4 +185,3 @@ EMAIL_PORT = 587
 
 # must place in the last line
 django_heroku.settings(locals(), test_runner=False)
-
