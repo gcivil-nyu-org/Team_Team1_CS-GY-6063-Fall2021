@@ -2,10 +2,11 @@
 {% load static %}
 
 {% block content %}
-    <div class="form_container">
+    <div class="form_container"  style="margin:5rem 5rem;">
       <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
+          <a class="nav-item nav-link" href="{% url 'password_reset' %}">Reset Password</a>
           <button type="submit" class="submit_button">Login</button>
       </form>
     </div>
