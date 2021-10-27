@@ -50,7 +50,7 @@ class PostListViewTests(TestCase):
             content="test_content_3",
         )
         post_3.save()
-        request = RequestFactory().get('/forum/')
+        request = RequestFactory().get("/forum/")
         view = PostListView()
         view.request = request
         qs = view.get_queryset()
