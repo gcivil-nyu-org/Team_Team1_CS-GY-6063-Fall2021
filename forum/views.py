@@ -24,6 +24,14 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     fields = ["title", "content"]
     template_name_suffix = "_update"
 
+    def get_success_url(self):
+        return reverse_lazy(
+            "post_detail",
+            kwargs={
+                "pk": self.object.pk,
+            },
+        )
+
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
