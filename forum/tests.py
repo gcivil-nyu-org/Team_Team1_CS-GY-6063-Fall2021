@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from vmental.models import CustomizedUser
 from django.test import TestCase
 from forum.models import Post
 from datetime import timedelta
@@ -7,9 +7,9 @@ from utils.time_helpers import utc_now
 
 class PostTests(TestCase):
     def test_hours_to_now(self):
-        test_user = User.objects.create_user(username="test_user")
+        test_user = CustomizedUser.objects.create_user(username="test_user")
         post = Post.objects.create(
-            user=test_user,
+            author=test_user,
             title="Hello, world!",
             content="This is the content of a sample post.",
         )
