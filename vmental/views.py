@@ -1,9 +1,7 @@
-from django.views.generic import TemplateView, CreateView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, CreateView
 from django.urls import reverse_lazy
 
 from vmental.forms import UserCreationForm
-from vmental.models import CustomizedUser
 
 
 # Create your views here.
