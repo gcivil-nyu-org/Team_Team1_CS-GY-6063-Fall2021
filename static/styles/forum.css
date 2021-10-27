@@ -1,0 +1,22 @@
+.form_attribute{
+  font-size: 24px;
+  font-style: bold;
+  margin: 10px;
+}
+
+.form_entities{
+  font-size: 20px;
+  margin: 5px;
+}
+
+.post_detail_title{
+  font-size: 36px;
+}
+
+.lead{
+  font-size: 16px;
+}
+
+.post_content{
+  font-size: 20px;
+}
