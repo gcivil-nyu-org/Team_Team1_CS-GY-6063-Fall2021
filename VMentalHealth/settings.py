@@ -147,4 +147,4 @@ EMAIL_FILE_PATH = str(BASE_DIR.joinpath("sent_emails"))
 
 
 # must place in the last line
-django_heroku.settings(locals(), test_runner=False)
+# django_heroku.settings(locals(), test_runner=False)
