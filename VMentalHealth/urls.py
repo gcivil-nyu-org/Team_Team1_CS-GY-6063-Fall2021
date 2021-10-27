@@ -21,7 +21,12 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("vmental.urls")),
     path("", include("user_profile.urls")),
+<<<<<<< HEAD
     path("forum/", include("forum.urls", namespace="forum")),
     path('booking/', include('booking.urls')),
 
+=======
+    path("forum/", include("forum.urls")),
+    path("booking/", include("booking.urls")),
+>>>>>>> ed7abdd... commit8
 ]

@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-from booking.models import Doctor,Appointments,Patient
+from booking.models import Doctor, Appointments
+
 # Register your models here.
+
 
 @admin.register(Appointments)
 class Appointments(admin.ModelAdmin):
@@ -11,6 +13,7 @@ class Appointments(admin.ModelAdmin):
         "time",
         "doctor",
     )
+
 
 @admin.register(Doctor)
 class Doctor(admin.ModelAdmin):

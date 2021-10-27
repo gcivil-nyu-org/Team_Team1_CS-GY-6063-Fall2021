@@ -1,14 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
-from .models import Doctor,Appointments
+# from django.http import HttpResponse
 
-# Create your views here.
+from .models import Appointments
 
 
 def booking(request):
-    context = {
-        'appointments': Appointments.objects.all()
-    }
-    return render(request,'booking/booking.html', context)
-    
+    context = {"appointments": Appointments.objects.all()}
+    return render(request, "booking/booking.html", context)

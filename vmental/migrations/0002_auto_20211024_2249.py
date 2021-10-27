@@ -6,28 +6,30 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('vmental', '0001_initial'),
+        ("vmental", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customizeduser',
-            name='date_of_birth',
+            model_name="customizeduser",
+            name="date_of_birth",
             field=models.DateField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='customizeduser',
-            name='gender',
-            field=models.CharField(blank=True, choices=[('F', 'Female'), ('M', 'Male')], max_length=1),
+            model_name="customizeduser",
+            name="gender",
+            field=models.CharField(
+                blank=True, choices=[("F", "Female"), ("M", "Male")], max_length=1
+            ),
         ),
         migrations.AlterField(
-            model_name='customizeduser',
-            name='is_provider',
+            model_name="customizeduser",
+            name="is_provider",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='customizeduser',
-            name='phone_number',
+            model_name="customizeduser",
+            name="phone_number",
             field=models.CharField(blank=True, max_length=10),
         ),
     ]

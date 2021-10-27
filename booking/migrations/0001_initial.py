@@ -8,35 +8,71 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Doctor',
+            name="Doctor",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('doctor_name', models.CharField(max_length=30)),
-                ('reg_date', models.DateTimeField(verbose_name='date registered')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("doctor_name", models.CharField(max_length=30)),
+                ("reg_date", models.DateTimeField(verbose_name="date registered")),
             ],
         ),
         migrations.CreateModel(
-            name='Patient',
+            name="Patient",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('patient_name', models.CharField(max_length=30)),
-                ('registration_date', models.DateTimeField(verbose_name='date registered')),
-                ('waiting_status', models.BooleanField()),
-                ('doctor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='booking.doctor')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("patient_name", models.CharField(max_length=30)),
+                (
+                    "registration_date",
+                    models.DateTimeField(verbose_name="date registered"),
+                ),
+                ("waiting_status", models.BooleanField()),
+                (
+                    "doctor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="booking.doctor"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Appointments',
+            name="Appointments",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField()),
-                ('time', models.TimeField()),
-                ('doctor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='booking.doctor')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField()),
+                ("time", models.TimeField()),
+                (
+                    "doctor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="booking.doctor"
+                    ),
+                ),
             ],
         ),
     ]

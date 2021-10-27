@@ -45,9 +45,13 @@ INSTALLED_APPS = [
     # project app
     "vmental",
     "forum",
+<<<<<<< HEAD
     # for email verification
     "verify_email.apps.VerifyEmailConfig",
     'booking',
+=======
+    "booking",
+>>>>>>> ed7abdd... commit8
 ]
 
 
