@@ -1,11 +1,12 @@
 from vmental.models import CustomizedUser
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from forum.models import Post
+from forum.views import PostListView
 from datetime import timedelta
 from utils.time_helpers import utc_now
 
 
-class PostTests(TestCase):
+class PostModelTests(TestCase):
     def test_hours_to_now(self):
         test_user = CustomizedUser.objects.create_user(username="test_user")
         post = Post.objects.create(
@@ -26,3 +27,31 @@ class PostTests(TestCase):
         )
         post.save()
         self.assertEqual("1 teset_user: test_title \n test_content", str(post))
+
+
+class PostListViewTests(TestCase):
+    def test_get_queryset(self):
+        test_user = CustomizedUser.objects.create_user(username="test_user")
+        post_1 = Post.objects.create(
+            author=test_user,
+            title="test_title_1",
+            content="test_content_1",
+        )
+        post_1.save()
+        post_2 = Post.objects.create(
+            author=test_user,
+            title="test_title_2",
+            content="test_content_2",
+        )
+        post_2.save()
+        post_3 = Post.objects.create(
+            author=test_user,
+            title="test_title_3",
+            content="test_content_3",
+        )
+        post_3.save()
+        request = RequestFactory().get('/forum/')
+        view = PostListView()
+        view.request = request
+        qs = view.get_queryset()
+        self.assertQuerysetEqual(qs, Post.objects.all().order_by("-created_at"))
