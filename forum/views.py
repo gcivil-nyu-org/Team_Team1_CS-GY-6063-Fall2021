@@ -1,11 +1,8 @@
 from django.views.generic import ListView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView, DeleteView, FormView
+from django.views.generic.edit import CreateView, DeleteView
 from django.urls import reverse_lazy
-from django.http import JsonResponse
-from django.core import serializers
 from forum.models import Comment, Post
-from forum.forms import CommentForm
 
 
 class PostListView(LoginRequiredMixin, ListView):
@@ -62,12 +59,12 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy(
             "post_detail",
             kwargs={
-                "pk": self.request.GET.get('post_id'),
+                "pk": self.request.GET.get("post_id"),
             },
         )
 
     def form_valid(self, form):
-        post = Post.objects.get(id=self.request.GET.get('post_id'))
+        post = Post.objects.get(id=self.request.GET.get("post_id"))
         author = self.request.user
         form.instance.author = author
         form.instance.post = post
