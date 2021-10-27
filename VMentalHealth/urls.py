@@ -18,16 +18,10 @@ from django.urls import path, include
 
 
 urlpatterns = [
-<<<<<<< HEAD
     path("admin/", admin.site.urls),
     path("", include("vmental.urls")),
     path("", include("user_profile.urls")),
     path("forum/", include("forum.urls", namespace="forum")),
     path('booking/', include('booking.urls')),
 
-=======
-    path('admin/', admin.site.urls),
-    path('', include('vmental.urls')),
-    path('booking/', include('booking.urls')),
->>>>>>> 0d28f78... booking_frontend
 ]
