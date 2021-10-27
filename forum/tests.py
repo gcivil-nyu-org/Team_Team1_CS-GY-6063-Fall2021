@@ -2,6 +2,7 @@ from vmental.models import CustomizedUser
 from django.test import TestCase, RequestFactory
 from forum.models import Post
 from forum.views import PostListView
+from forum.forms import CommentForm
 from datetime import timedelta
 from utils.time_helpers import utc_now
 
@@ -55,3 +56,10 @@ class PostListViewTests(TestCase):
         view.request = request
         qs = view.get_queryset()
         self.assertQuerysetEqual(qs, Post.objects.all().order_by("-created_at"))
+
+
+class CommentFormTest(TestCase):
+    def test_comment_form(self):
+        form_data = {"content": "test_content"}
+        form = CommentForm(form_data)
+        self.assertTrue(form.is_valid())
