@@ -1,7 +1,7 @@
 from django.db import models
 
-# Create your models here.
-class Doctor(models.Model):
+
+class Doctor(models.Model):  # E302
     doctor_name = models.CharField(max_length=30)
 
 
