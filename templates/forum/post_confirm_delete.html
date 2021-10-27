@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>Delete Post</h1>
-
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <p> Do you want to delete "{{post.title}}" ? </p>
-    <button type="submit">Delete</button>
-</form>
-
+<div class="container">
+  <div class="row">
+    <div class="profile_head">Delete Post</div>
+  </div>
+  <div class="row">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p> Do you want to delete "{{post.title}}" ? </p>
+        <button type="submit">Delete</button>
+    </form>
+  </div>
+</div>
 {% endblock content %}

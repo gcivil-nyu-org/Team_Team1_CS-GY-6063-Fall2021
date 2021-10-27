@@ -21,23 +21,25 @@
   <div class="post_content">
       {{ post.content }}
   </div>
-  <div class="row comments-title">
-    <div class="col-6">Comments</div>
-    <a class = "col-2 btn btn-sm"href="{% url 'comment_create' %}?post_id={{ post.id }}">Create comment</a>
-  </div>
-  <div class="row comments-list">
+  <div class="container">
+    <div class="row align-items-center comments-title">
+      <div class="col-6">Comments</div>
+      <a class = "col-2 btn btn-sm"href="{% url 'comment_create' %}?post_id={{ post.id }}">Create comment</a>
+    </div>
     {% for comment in object.comments.all %}
-    <div class="comment">
-        <div class="info">
-            <p>{{ comment.author }}<span> . {{ comment.created_at }}</span></p>
-            <p>{{ comment.content }}</p>
-        </div>
+    <div class="row align-items-center comments-content">
+      <div class="col-9">{{ comment.content }}</div>
+    </div>
+    <div class="row align-items-center justify-content-end comments-info">
+      <small class="col-2">{{ comment.author }}</small>
+    </div>
+    <div class="row align-items-center justify-content-end comments-info">
+      <small class="col-2">{{ comment.created_at }}</small>
     </div>
     {% empty %}
-    <p class="no-comment">
+    <div class="row align-items-center no-comment">
         <small class="text-muted">There are no comments yet.</small>
-    </p>
+    </div>
     {% endfor %}
-  </div>
 </div>
 {% endblock content %}

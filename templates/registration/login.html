@@ -1,13 +1,17 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block content %}
-    <div class="form_container"  style="margin:5rem 5rem;">
-      <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <a class="nav-item nav-link" href="{% url 'password_reset' %}">Reset Password</a>
-          <button type="submit" class="submit_button">Login</button>
-      </form>
-    </div>
+<div class="container">
+  <div class="row">
+    <div class="login_head">Log In</div>
+  </div>
+  <div class="row">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a class="nav-item nav-link" href="{% url 'password_reset' %}">Reset Password</a>
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+  </div>
+</div>
 {% endblock %}

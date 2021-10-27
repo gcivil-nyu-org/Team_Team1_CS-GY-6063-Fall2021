@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1 style="margin-left:5rem; margin-top: 5rem;">Edit Profile</h1>
-
-<form action="" method="post" enctype="multipart/form-data" style="margin-left:5rem; margin-top: 2rem;">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Update</button>
-    <a class="btn btn-primary" href="{% url 'profile' %}" role="button">Cancel</a>
-</form>
-
+<div class="container">
+  <div class="row">
+    <div class="profile_head">Edit Profile</div>
+  </div>
+  <div class="row">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a class="btn btn-primary" href="{% url 'profile' %}" role="button">Cancel</a>
+    </form>
+  </div>
+</div>
 {% endblock content %}
