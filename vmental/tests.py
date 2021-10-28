@@ -75,10 +75,10 @@ class VMMentalHealthTest(TestCase):
             },
         )
         self.assertEqual(response.status_code, 200)
-        response1 = self.client.post(
-            reverse("login"),
-            {"username": "test8901", "password": "Passw0rd!"},
-        )
+        # response1 = self.client.post(
+        #     reverse("login"),
+        #     {"username": "test8901", "password": "Passw0rd!"},
+        # )
         # self.assertNotIn(
         #     "Please enter a correct username and password.", str(response1.content)
         # )
