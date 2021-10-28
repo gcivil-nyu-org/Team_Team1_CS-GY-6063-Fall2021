@@ -4,3 +4,4 @@ psycopg2
 django-heroku
 pillow
 django-imagekit
+Django-Verify-Email
