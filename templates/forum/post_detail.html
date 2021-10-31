@@ -14,7 +14,7 @@
       </p>
       {% if request.user.is_authenticated and request.user.id == post.author.id %}
       <a class = "col-2 btn btn-sm"href="{% url 'forum:post_update' post.slug %}">Edit post</a>
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_delete' post.id %}">Delete post</a>
+      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_delete' post.slug %}">Delete post</a>
       <a class = "col-2 btn btn-sm"href="{% url 'forum:post_list' %}">Back to Forum</a>
       {% endif %}
   </div>
