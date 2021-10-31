@@ -49,9 +49,7 @@ class PostCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy(
             "forum:post_detail",
-            kwargs={
-                "slug": self.object.slug
-            },
+            kwargs={"slug": self.object.slug},
         )
 
     def form_valid(self, form):
