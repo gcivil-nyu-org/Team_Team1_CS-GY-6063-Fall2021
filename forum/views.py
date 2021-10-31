@@ -8,7 +8,7 @@ from forum.models import Comment, Post
 class PostListView(LoginRequiredMixin, ListView):
     model = Post
     login_url = "login"
-    template_name_suffix = "_list"
+    template_name = "post_list"
 
     def get_queryset(self):
         return Post.objects.all().order_by("-created_at")

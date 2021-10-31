@@ -3,14 +3,16 @@ from forum.models import Post, Comment
 
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+class PostFBVAdmin(admin.ModelAdmin):
     date_hierarchy = "created_at"
     list_display = (
         "id",
+        "title",
+        "slug",
         "created_at",
         "author",
-        "title",
         "content",
+        "status",
     )
 
 
