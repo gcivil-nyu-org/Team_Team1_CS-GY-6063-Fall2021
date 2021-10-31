@@ -19,7 +19,7 @@
   <div class="row align-items-center form_entities">
     {% for post in object_list %}
       <div class="col-4">
-        <a href="{% url 'forum:post_detail' post.id %}">{{ post.title }}</a>
+        <a href="{% url 'forum:post_detail' post.slug %}">{{ post.title }}</a>
       </div>
       <div class="col-4">
         {{ post.author}}
