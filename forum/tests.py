@@ -29,6 +29,28 @@ class PostModelTests(TestCase):
         post.save()
         self.assertEqual("1 teset_user: test_title \n test_content", str(post))
 
+    def test_get_comments_count(self):
+        test_user = CustomizedUser.objects.create_user(username="teset_user")
+        post = Post.objects.create(
+            author=test_user,
+            title="test_title",
+            content="test_content",
+        )
+        post.save()
+        comment_1 = Comment.objects.create(
+            post=post, author=test_user, content="Test comment 1 by test_user"
+        )
+        comment_1.save()
+        comment_2 = Comment.objects.create(
+            post=post, author=test_user, content="Test comment 2 by test_user"
+        )
+        comment_2.save()
+        comment_3 = Comment.objects.create(
+            post=post, author=test_user, content="Test comment 3 by test_user"
+        )
+        comment_3.save()
+        self.assertEqual(3, post.get_comments_count())
+
 
 class CommentModelTests(TestCase):
     def test_hours_to_now(self):
@@ -87,33 +109,6 @@ class PostListViewTests(TestCase):
         view.request = request
         qs = view.get_queryset()
         self.assertQuerysetEqual(qs, Post.objects.all().order_by("-created_at"))
-
-
-class CommentListViewTests(TestCase):
-    def test_get_queryset(self):
-        test_user = CustomizedUser.objects.create_user(username="test_user")
-        post1 = Post.objects.create(
-            author=test_user,
-            title="test_title_1",
-            content="test_content_1",
-        )
-        post1.save()
-        comment_1 = Comment.objects.create(
-            post=post1, author=test_user, content="Test comment by test_user"
-        )
-        comment_1.save()
-        request = RequestFactory().get("/forum/comment/?post_id=" + str(post1.id))
-        request.user = test_user
-        view = CommentCreateView()
-        view.request = request
-        qs = view.get_success_url()
-        self.assertEqual(qs, "/forum/" + str(post1.id))
-        form_data = {
-            "content": "test_content",
-        }
-        form = CommentForm(form_data)
-        returns = view.form_valid(form)
-        self.assertEqual(returns.status_code, 302)
 
 
 class CommentFormTest(TestCase):
