@@ -13,8 +13,8 @@
         Created by <small class="text-muted">{{ post.author }}</small> at <small class="text-muted">{{ post.created_at }}</small>
       </p>
       {% if request.user.is_authenticated and request.user.id == post.author.id %}
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_update' post.id %}">Edit post</a>
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_delete' post.id %}">Delete post</a>
+      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_update' post.slug %}">Edit post</a>
+      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_delete' post.slug %}">Delete post</a>
       <a class = "col-2 btn btn-sm"href="{% url 'forum:post_list' %}">Back to Forum</a>
       {% endif %}
   </div>
@@ -24,7 +24,7 @@
   <div class="container">
     <div class="row align-items-center comments-title">
       <div class="col-6">Comments</div>
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:comment_create' %}?post_id={{ post.id }}">Create comment</a>
+      <a class = "col-2 btn btn-sm"href="{% url 'forum:comment_create' %}?slug={{ post.slug }}">Create comment</a>
     </div>
     {% for comment in object.comments.all %}
     <div class="row align-items-center comments-content">

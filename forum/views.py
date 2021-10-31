@@ -30,7 +30,7 @@ class PostUpdateView(UpdateView):
         return reverse_lazy(
             "forum:post_detail",
             kwargs={
-                "pk": self.object.pk,
+                "slug": self.object.slug,
             },
         )
 
@@ -49,9 +49,7 @@ class PostCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy(
             "forum:post_detail",
-            kwargs={
-                "pk": self.object.pk,
-            },
+            kwargs={"slug": self.object.slug},
         )
 
     def form_valid(self, form):
@@ -69,12 +67,12 @@ class CommentCreateView(CreateView):
         return reverse_lazy(
             "forum:post_detail",
             kwargs={
-                "pk": self.request.GET.get("post_id"),
+                "slug": self.request.GET.get("slug"),
             },
         )
 
     def form_valid(self, form):
-        post = Post.objects.get(id=self.request.GET.get("post_id"))
+        post = Post.objects.get(slug=self.request.GET.get("slug"))
         author = self.request.user
         form.instance.author = author
         form.instance.post = post

@@ -48,6 +48,9 @@ class Post(models.Model):
     def __str__(self):
         return f"{self.id} {self.author}: {self.title} \n {self.content}"
 
+    def get_comments_count(self):
+        return self.comments.count()
+
 
 class Comment(models.Model):
     post = models.ForeignKey(
