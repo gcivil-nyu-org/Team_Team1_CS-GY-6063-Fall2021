@@ -1,25 +1,27 @@
 from django.views.generic import ListView, DetailView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, DeleteView
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from forum.models import Comment, Post
 
 
-class PostListView(LoginRequiredMixin, ListView):
+@method_decorator(login_required, name="dispatch")
+class PostListView(ListView):
     model = Post
-    login_url = "login"
     template_name = "post_list"
 
     def get_queryset(self):
         return Post.objects.all().order_by("-created_at")
 
 
-class PostDetailView(LoginRequiredMixin, DetailView):
+@method_decorator(login_required, name="dispatch")
+class PostDetailView(DetailView):
     model = Post
-    login_url = "login"
 
 
-class PostUpdateView(LoginRequiredMixin, UpdateView):
+@method_decorator(login_required, name="dispatch")
+class PostUpdateView(UpdateView):
     model = Post
     fields = ["title", "content"]
     template_name_suffix = "_update"
@@ -33,16 +35,16 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
         )
 
 
-class PostDeleteView(LoginRequiredMixin, DeleteView):
+@method_decorator(login_required, name="dispatch")
+class PostDeleteView(DeleteView):
     model = Post
     success_url = reverse_lazy("post_list")
-    login_url = "login"
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+@method_decorator(login_required, name="dispatch")
+class PostCreateView(CreateView):
     model = Post
     fields = ["title", "content"]
-    login_url = "login"
 
     def get_success_url(self):
         return reverse_lazy(
@@ -58,10 +60,10 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super(PostCreateView, self).form_valid(form)
 
 
-class CommentCreateView(LoginRequiredMixin, CreateView):
+@method_decorator(login_required, name="dispatch")
+class CommentCreateView(CreateView):
     model = Comment
     fields = ["content"]
-    login_url = "login"
     success_url = reverse_lazy("post_list")
 
     def get_success_url(self):

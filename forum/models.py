@@ -34,7 +34,7 @@ class Post(models.Model):
             "pk": self.id,
             "slug": self.slug,
         }
-        return reverse("post_detail_fbv", kwargs=kwargs)
+        return reverse("post_detail", kwargs=kwargs)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, allow_unicode=True)
