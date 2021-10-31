@@ -31,7 +31,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <div class="navbar-nav mr-auto">
-                  <a class="nav-item nav-link" href="{% url 'post_list' %}">Forum</a>
+                  <a class="nav-item nav-link" href="{% url 'forum:post_list' %}">Forum</a>
                 </div>
                 <!-- Navbar Right Side -->
                 {% if request.user.is_authenticated %}
