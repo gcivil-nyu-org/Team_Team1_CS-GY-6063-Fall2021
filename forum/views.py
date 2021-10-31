@@ -9,7 +9,7 @@ from forum.models import Comment, Post
 @method_decorator(login_required, name="dispatch")
 class PostListView(ListView):
     model = Post
-    template_name = "post_list"
+    template_name = "forum:post_list"
 
     def get_queryset(self):
         return Post.objects.all().order_by("-created_at")
@@ -28,7 +28,7 @@ class PostUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy(
-            "post_detail",
+            "forum:post_detail",
             kwargs={
                 "pk": self.object.pk,
             },
@@ -38,7 +38,7 @@ class PostUpdateView(UpdateView):
 @method_decorator(login_required, name="dispatch")
 class PostDeleteView(DeleteView):
     model = Post
-    success_url = reverse_lazy("post_list")
+    success_url = reverse_lazy("forum:post_list")
 
 
 @method_decorator(login_required, name="dispatch")
@@ -48,7 +48,7 @@ class PostCreateView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy(
-            "post_detail",
+            "forum:post_detail",
             kwargs={
                 "pk": self.object.pk,
             },
@@ -64,11 +64,10 @@ class PostCreateView(CreateView):
 class CommentCreateView(CreateView):
     model = Comment
     fields = ["content"]
-    success_url = reverse_lazy("post_list")
 
     def get_success_url(self):
         return reverse_lazy(
-            "post_detail",
+            "forum:post_detail",
             kwargs={
                 "pk": self.request.GET.get("post_id"),
             },
