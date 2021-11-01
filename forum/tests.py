@@ -105,6 +105,7 @@ class PostListViewTests(TestCase):
         )
         post_3.save()
         request = RequestFactory().get("/forum/")
+        request.user = test_user
         view = PostListView()
         view.request = request
         qs = view.get_queryset()
