@@ -22,6 +22,5 @@ urlpatterns = [
     path("", include("vmental.urls")),
     path("", include("user_profile.urls")),
     path("forum/", include("forum.urls", namespace="forum")),
-    path('booking/', include('booking.urls')),
-
+    path("booking/", include("booking.urls")),
 ]

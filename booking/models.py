@@ -16,5 +16,6 @@ class Appointments(models.Model):
     date = models.DateField()
     time = models.TimeField()
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+
     def __main__(self):
         return self
