@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "vmental",
     "forum",
     # for email verification
-    "verify_email.apps.VerifyEmailConfig",
+    # "verify_email.apps.VerifyEmailConfig",
 ]
 
 
