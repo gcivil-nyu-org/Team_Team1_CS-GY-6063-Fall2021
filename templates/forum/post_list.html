@@ -11,21 +11,25 @@
     </div>
   </div>
   <div class="row align-items-center form_attribute">
-      <div class="col-4">Title</div>
-      <div class="col-4">Author</div>
-      <div class="col-4">Created_at</div>
+      <div class="col-6">Title</div>
+      <div class="col-2">Status</div>
+      <div class="col-2">Author</div>
+      <div class="col-2">Created_at</div>
   </div>
 
   <div class="row align-items-center form_entities">
     {% for post in object_list %}
-      <div class="col-4">
+      <div class="col-6">
         <a href="{% url 'forum:post_detail' post.slug %}">{{ post.title }}</a>
       </div>
-      <div class="col-4">
-        {{ post.author}}
+      <div class="col-2">
+        {{ post.status }}
       </div>
-      <div class="col-4">
-        {{ post.created_at}}
+      <div class="col-2">
+        {{ post.author }}
+      </div>
+      <div class="col-2">
+        {{ post.created_at }}
       </div>
     {% endfor %}
   </div>

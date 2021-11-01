@@ -12,7 +12,9 @@ class PostListView(ListView):
     template_name = "forum:post_list"
 
     def get_queryset(self):
-        return Post.objects.all().order_by("-created_at")
+        published_qs = Post.objects.filter(status='published')
+        curr_user_qs = Post.objects.filter(author=self.request.user.id)
+        return published_qs.union(curr_user_qs).order_by("-created_at")
 
 
 @method_decorator(login_required, name="dispatch")
@@ -23,7 +25,7 @@ class PostDetailView(DetailView):
 @method_decorator(login_required, name="dispatch")
 class PostUpdateView(UpdateView):
     model = Post
-    fields = ["title", "content"]
+    fields = ["title", "content", "status", ]
     template_name_suffix = "_update"
 
     def get_success_url(self):
@@ -44,7 +46,7 @@ class PostDeleteView(DeleteView):
 @method_decorator(login_required, name="dispatch")
 class PostCreateView(CreateView):
     model = Post
-    fields = ["title", "content"]
+    fields = ["title", "content", "status", ]
 
     def get_success_url(self):
         return reverse_lazy(

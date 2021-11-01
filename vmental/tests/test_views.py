@@ -6,9 +6,6 @@ from vmental.models import CustomizedUser
 # from vmental.views import *
 
 
-# Create your tests here.
-
-
 class VMMentalHealthTest(TestCase):
     def test_html_home_page(self):
         response = self.client.get("/")
