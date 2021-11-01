@@ -20,8 +20,8 @@ class PostFBVAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "created_at",
         "post",
         "author",
+        "created_at",
         "content",
     )
