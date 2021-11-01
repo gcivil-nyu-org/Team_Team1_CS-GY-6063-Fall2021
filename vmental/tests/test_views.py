@@ -60,7 +60,8 @@ class VMMentalHealthTest(TestCase):
     #     print(response_wrong_email.content)
 
     def test_html_signup_page(self):
-        response = self.client.post(
+        # response = self.client.post(
+        self.client.post(
             reverse("signup"),
             {
                 "email": "abc@test.com",
@@ -74,7 +75,8 @@ class VMMentalHealthTest(TestCase):
                 "password2": "Passw0rd!",
             },
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(1, CustomizedUser.objects.all().count())
+        # self.assertEqual(response.status_code, 200)
         # response1 = self.client.post(
         #     reverse("login"),
         #     {"username": "test8901", "password": "Passw0rd!"},
