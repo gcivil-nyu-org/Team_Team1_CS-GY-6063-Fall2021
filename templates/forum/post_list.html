@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+<div class="container content">
   <div class="row align-items-center">
     <div class = "col-9">
-      <h1>Discussion Forum</h1>
+      <div class="main_title">Discussion Forum</div>
     </div>
     <div class = "col-3">
       <a class="btn btn-primary" href="{% url 'forum:post_create' %}" role="button">Create New Post</a>
