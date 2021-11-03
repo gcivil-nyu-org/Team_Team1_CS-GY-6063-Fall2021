@@ -1,12 +1,16 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block content %}
-  <div class="form_container" style="margin:5rem 5rem;">
+<div class="container content">
+  <div class="row">
+    <div class="main_title">Sign Up</div>
+  </div>
+  <div class="row">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Sign up</button>
+        <button class="btn btn-primary" type="submit">Sign up</button>
     </form>
   </div>
+</div>
 {% endblock %}

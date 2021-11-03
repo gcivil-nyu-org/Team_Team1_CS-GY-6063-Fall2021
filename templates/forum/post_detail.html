@@ -1,45 +1,101 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<div class="container post_detail">
+<div class="container content post_detail">
   <div class="row align-items-center">
-    <div class = "col-12 post_detail_title">
+    <div class = "col-6 main_title">
         {{ post.title }}
     </div>
-  </div>
-  <div class="row align-items-center">
-      <p class="col-6 lead">
-        Created by <small class="text-muted">{{ post.author }}</small> at <small class="text-muted">{{ post.created_at }}</small>
-      </p>
-      {% if request.user.is_authenticated and request.user.id == post.author.id %}
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_update' post.slug %}">Edit post</a>
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_delete' post.slug %}">Delete post</a>
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_list' %}">Back to Forum</a>
-      {% endif %}
+    <div class="col-6">
+      <a class = "col-2 btn btn-lg" href="{% url 'forum:post_list' %}">Back to Forum</a>
+    </div>
   </div>
   <div class="post_content">
       {{ post.content }}
   </div>
+  <div class="row align-items-center">
+      <p class="col-4 lead">
+        Created by <small class="text-muted">{{ post.author }}</small> at <small class="text-muted">{{ post.created_at }}</small>
+      </p>
+      {% if request.user.is_authenticated and request.user.id == post.author.id %}
+      <a class = "col-1 offset-2 btn btn-sm"href="{% url 'forum:post_update' post.slug %}">Edit post</a>
+      <a class = "col-1 btn btn-sm"href="{% url 'forum:post_delete' post.slug %}">Delete post</a>
+      {% endif %}
+  </div>
   <div class="container">
     <div class="row align-items-center comments-title">
-      <div class="col-6">Comments</div>
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:comment_create' %}?slug={{ post.slug }}">Create comment</a>
+      <div class="col-6 main_title">Comments</div>
+      <a class = "col-2 btn btn-primary"href="{% url 'forum:comment_create' %}?slug={{ post.slug }}">Create comment</a>
     </div>
-    {% for comment in object.comments.all %}
-    <div class="row align-items-center comments-content">
-      <div class="col-9">{{ comment.content }}</div>
+
+    {% load mptt_tags %}
+
+    <div>
+      {% recursetree comments %}
+      <div class="my-2 p-2" style="border: 1px solid grey">
+        <div class="row align-items-center comments-content">
+          <div id="{{ node.id }}" class="col-9">{{ node.content }}</div>
+        </div>
+        <div class="row align-items-center justify-content-end comments-info">
+          <small class="col-2">{{ node.author }}</small>
+        </div>
+        <div class="row align-items-center justify-content-end comments-info">
+          <small class="col-2">{{ node.created_at }}</small>
+        </div>
+        <hr />
+        <button class="button" onclick="replyFunction({{ node.id }})">Reply</button>
+      </div>
+
+      {% if not node.is_leaf_node %}
+
+        <div class="children pl-2 pl-md-5">
+          {{ children }}
+        </div>
+
+      {% endif %}
+
+      {% endrecursetree %}
     </div>
-    <div class="row align-items-center justify-content-end comments-info">
-      <small class="col-2">{{ comment.author }}</small>
-    </div>
-    <div class="row align-items-center justify-content-end comments-info">
-      <small class="col-2">{{ comment.created_at }}</small>
-    </div>
-    {% empty %}
-    <div class="row align-items-center no-comment">
-        <small class="text-muted">There are no comments yet.</small>
-    </div>
-    {% endfor %}
+
+
+    <h2>New Comment</h2>
+
+    <form id="comment_form" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+    </form>
 </div>
+<script>
+
+  function formExit() {
+    document.getElementById("replyForm").remove();
+  }
+
+  function replyFunction(id) {
+
+    if (document.contains(document.getElementById("replyForm"))) {
+      document.getElementById("replyForm").remove();
+    }
+
+    var a = document.getElementById(id)
+    a.insertAdjacentHTML('afterend',
+      '<form id="replyForm" class="form-insert py-2" method="post"> \
+        <div class="d-flex justify-content-between"> \
+        <h4>Reply4</h4> \
+        <div><button type="button" class="btn btn-outline-secondary" onclick="formExit()"">Close</button></div> \
+        </div> \
+        <select name="parent" class="d-none" id="id_parentt"> \
+        <option value="' + id + '" selected="' + id + '"></option> \
+        </select> \
+        <label for="id_content">Content</label> \
+        <textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
+        {% csrf_token %} \
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button> \
+      </form>'
+    );
+  }
+
+  $('#comment_form').trigger("reset");
+</script>
 {% endblock content %}

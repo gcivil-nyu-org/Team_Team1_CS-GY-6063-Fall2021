@@ -42,11 +42,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third party
     "imagekit",
+    "verify_email.apps.VerifyEmailConfig",  # for email verification
+    "mptt",
     # project app
     "vmental",
     "forum",
-    # for email verification
-    # "verify_email.apps.VerifyEmailConfig",
 ]
 
 
@@ -138,7 +138,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = "login"
 
-LOGIN_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "profile"
 
 LOGOUT_REDIRECT_URL = "index"
 
