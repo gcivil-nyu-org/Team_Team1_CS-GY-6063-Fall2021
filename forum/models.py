@@ -67,15 +67,15 @@ class Comment(MPTTModel):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     parent = TreeForeignKey(
-        'self',
+        "self",
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        related_name='children',
+        related_name="children",
     )
 
     class MPTTMeta:
-        order_insertion_by = ['created_at']
+        order_insertion_by = ["created_at"]
 
     @property
     def hours_to_now(self):

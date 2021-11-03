@@ -9,15 +9,16 @@ class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['parent'].widget.attrs.update(
-            {"class": "d-none"}
-        )
-        self.fields['parent'].label = ""
-        self.fields['parent'].required = False
+        self.fields["parent"].widget.attrs.update({"class": "d-none"})
+        self.fields["parent"].label = ""
+        self.fields["parent"].required = False
 
     class Meta:
         model = Comment
-        fields = ("parent", "content",)
+        fields = (
+            "parent",
+            "content",
+        )
         widgets = {
             "content": forms.Textarea(attrs={"class": "form-control"}),
         }
