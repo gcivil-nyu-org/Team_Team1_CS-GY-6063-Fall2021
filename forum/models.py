@@ -32,10 +32,9 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         kwargs = {
-            "pk": self.id,
             "slug": self.slug,
         }
-        return reverse("post_detail", kwargs=kwargs)
+        return reverse("forum:post_detail", kwargs=kwargs)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, allow_unicode=True)

@@ -49,6 +49,15 @@ class PostModelTests(TestCase):
         comment_3.save()
         self.assertEqual(3, post.get_comments_count())
 
+    def test_get_absolute_url(self):
+        test_user = CustomizedUser.objects.create_user(username="test_user")
+        self.post = Post.objects.create(
+            author=test_user,
+            title="Hello, world!",
+            content="This is the content of a sample post.",
+        )
+        self.assertEqual("/forum/hello-world", self.post.get_absolute_url())
+
 
 class CommentModelTests(TestCase):
     def test_hours_to_now(self):
