@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, DeleteView, FormMixin
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from forum.forms import CommentForm
-from forum.models import Comment, Post
+from forum.models import Post
 
 
 @method_decorator(login_required, name="dispatch")
@@ -57,11 +57,6 @@ class PostView(FormMixin, DetailView):
 
 
 @method_decorator(login_required, name="dispatch")
-class PostDetailView(DetailView):
-    model = Post
-
-
-@method_decorator(login_required, name="dispatch")
 class PostUpdateView(UpdateView):
     model = Post
     fields = [
@@ -105,24 +100,3 @@ class PostCreateView(CreateView):
         author = self.request.user
         form.instance.author = author
         return super(PostCreateView, self).form_valid(form)
-
-
-@method_decorator(login_required, name="dispatch")
-class CommentCreateView(CreateView):
-    model = Comment
-    fields = ["content"]
-
-    def get_success_url(self):
-        return reverse_lazy(
-            "forum:post_detail",
-            kwargs={
-                "slug": self.request.GET.get("slug"),
-            },
-        )
-
-    def form_valid(self, form):
-        post = Post.objects.get(slug=self.request.GET.get("slug"))
-        author = self.request.user
-        form.instance.author = author
-        form.instance.post = post
-        return super(CommentCreateView, self).form_valid(form)
