@@ -1,84 +1,29 @@
 from django.test import TestCase
 from django.urls import reverse
-
 from vmental.models import CustomizedUser
-
-# from vmental.views import *
-
-
-# Create your tests here.
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from vmental.tokens import account_activation_token
 
 
-class VMMentalHealthTest(TestCase):
-    def test_html_home_page(self):
-        response = self.client.get("/")
-        self.assertEqual(response.status_code, 200)
-
-    def createUser(self, username, email, password):
-        # cannot be written as User.objects.create() as password needs to be
-        # encrypted, username and email needs normalization
+class test_email_functions(TestCase):
+    def create_user(self):
         return CustomizedUser.objects.create(username="test_user1", password="test1234")
 
-    def test_html_login_page(self):
-        response = self.client.get("/auth/login/")
+    def test_valid_verification(self):
+        temp_user = self.create_user()
+        uid64 = urlsafe_base64_encode(force_bytes(temp_user.pk))
+        token = account_activation_token.make_token(temp_user)
+        url = reverse("activate", args=[uid64, token])
+        response = self.client.post(url)
+        self.assertNotIn("Activation link is invalid!", str(response.content))
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(
-            "/auth/login/",
-            {"username": "abcd", "password": "abc123def456"},
-        )
+    def test_invalid_verification(self):
+        temp_user = self.create_user()
+        uid64 = urlsafe_base64_encode(force_bytes(100000))
+        token = account_activation_token.make_token(temp_user)
+        url = reverse("activate", args=[uid64, token])
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 200)
-
-    def test_html_login_page_failtest(self):
-        response = self.client.get("/auth/login/")
-        self.assertEqual(response.status_code, 200)
-
-        response = self.client.post(
-            "/auth/login/",
-            {"username": "test_user2", "password": "test12341231"},
-        )
-        self.assertIn(
-            "Please enter a correct username and password.", str(response.content)
-        )
-
-    # def test_html_signup_failtest(self):
-    #     response_wrong_email = self.client.post(
-    #         "/auth/signup",
-    #         {
-    #             "email": "test",
-    #             "username": "test123",
-    #             "first_name": "test",
-    #             "last_name": "test1234",
-    #             "gender": "F",
-    #             "date_of_birth": "03/17/1998",
-    #             "phone_number": 123123123,
-    #             "password1": "test123abc456",
-    #             "password2": "test123abc456",
-    #         },
-    #     )
-    #     print(response_wrong_email)
-    #     print(response_wrong_email.content)
-
-    def test_html_signup_page(self):
-        response = self.client.post(
-            reverse("signup"),
-            {
-                "email": "abc@test.com",
-                "username": "test8901",
-                "first_name": "test",
-                "last_name": "test1234",
-                "gender": "F",
-                "date_of_birth": "03/17/1998",
-                "phone_number": "1234567890",
-                "password1": "Passw0rd!",
-                "password2": "Passw0rd!",
-            },
-        )
-        self.assertEqual(response.status_code, 200)
-        # response1 = self.client.post(
-        #     reverse("login"),
-        #     {"username": "test8901", "password": "Passw0rd!"},
-        # )
-        # self.assertNotIn(
-        #     "Please enter a correct username and password.", str(response1.content)
-        # )
+        self.assertIn("Activation link is invalid!", str(response.content))
