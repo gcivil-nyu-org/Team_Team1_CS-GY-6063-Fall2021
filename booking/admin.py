@@ -7,11 +7,4 @@ from booking.models import Appointments
 
 @admin.register(Appointments)
 class Appointments(admin.ModelAdmin):
-    list_display = (
-        "id",
-        "date",
-        "time",
-        "doctor",
-        "user",
-        "status"
-    )
+    list_display = ("id", "date", "time", "doctor", "user", "status")

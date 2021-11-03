@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, UpdateView
+from django.views.generic import UpdateView
 from django.contrib.auth.decorators import login_required
-from django.views.generic.edit import CreateView, DeleteView
+
+# from django.views.generic.edit import CreateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 
@@ -10,8 +11,8 @@ from django.utils.decorators import method_decorator
 
 from .models import Appointments
 
-@method_decorator(login_required, name="dispatch")
 
+@method_decorator(login_required, name="dispatch")
 class BookingUpdateView(UpdateView):
     model = Appointments
     fields = ["user", "status"]
@@ -22,16 +23,11 @@ class BookingUpdateView(UpdateView):
             "user_appointments",
             kwargs={
                 "pk": self.object.pk,
-
             },
         )
- 
+
     def get_queryset(self):
-        return Appointments.objects.filter(status='confirmed').order_by("date")
-
-
-
-
+        return Appointments.objects.filter(status="confirmed").order_by("date")
 
 
 def booking(request):
