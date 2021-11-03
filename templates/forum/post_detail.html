@@ -1,29 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<div class="container post_detail">
+<div class="container content post_detail">
   <div class="row align-items-center">
-    <div class = "col-12 post_detail_title">
+    <div class = "col-6 main_title">
         {{ post.title }}
     </div>
-  </div>
-  <div class="row align-items-center">
-      <p class="col-6 lead">
-        Created by <small class="text-muted">{{ post.author }}</small> at <small class="text-muted">{{ post.created_at }}</small>
-      </p>
-      {% if request.user.is_authenticated and request.user.id == post.author.id %}
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_update' post.slug %}">Edit post</a>
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_delete' post.slug %}">Delete post</a>
-      <a class = "col-2 btn btn-sm"href="{% url 'forum:post_list' %}">Back to Forum</a>
-      {% endif %}
+    <div class="col-6">
+      <a class = "col-2 btn btn-lg" href="{% url 'forum:post_list' %}">Back to Forum</a>
+    </div>
   </div>
   <div class="post_content">
       {{ post.content }}
   </div>
+  <div class="row align-items-center">
+      <p class="col-4 lead">
+        Created by <small class="text-muted">{{ post.author }}</small> at <small class="text-muted">{{ post.created_at }}</small>
+      </p>
+      {% if request.user.is_authenticated and request.user.id == post.author.id %}
+      <a class = "col-1 offset-2 btn btn-sm"href="{% url 'forum:post_update' post.slug %}">Edit post</a>
+      <a class = "col-1 btn btn-sm"href="{% url 'forum:post_delete' post.slug %}">Delete post</a>
+      {% endif %}
+  </div>
   <div class="container">
     <div class="row align-items-center comments-title">
-      <div class="col-6">Comments</div>
+      <div class="col-6 main_title">Comments</div>
+      <a class = "col-2 btn btn-primary"href="{% url 'forum:comment_create' %}?slug={{ post.slug }}">Create comment</a>
     </div>
     {% for comment in object.comments.all %}
     <div class="row align-items-center comments-content">
