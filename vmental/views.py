@@ -1,9 +1,10 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from vmental.forms import UserCreationForm
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login
 from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
@@ -17,10 +18,10 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
 
-# class SignUpView(CreateView):
-#     form_class = UserCreationForm
-#     template_name = 'signup.html'
-#     reverse_lazy= 'login.html'
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    template_name = "signup.html"
+    success_url = reverse_lazy("login")
 
 
 def signup(request):
