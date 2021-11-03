@@ -1,8 +1,6 @@
 from vmental.models import CustomizedUser
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 from forum.models import Post, Comment
-from forum.views import PostListView
-from forum.forms import CommentForm
 from datetime import timedelta
 from utils.time_helpers import utc_now
 
