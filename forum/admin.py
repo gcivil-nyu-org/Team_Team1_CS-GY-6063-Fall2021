@@ -1,4 +1,5 @@
 from django.contrib import admin
+from mptt.admin import MPTTModelAdmin
 from forum.models import Post, Comment
 
 
@@ -17,7 +18,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 @admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
+class CommentAdmin(MPTTModelAdmin):
     list_display = (
         "id",
         "post",
