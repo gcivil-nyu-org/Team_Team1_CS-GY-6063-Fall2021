@@ -141,7 +141,7 @@ LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "index"
 
 LOGOUT_REDIRECT_URL = "index"
-ALLOWED_HOSTS = [".herokuapp.com/"]
+ALLOWED_HOSTS = ["vmentalhealth.herokuapp.com"]
 AUTH_USER_MODEL = "vmental.CustomizedUser"
 
 
