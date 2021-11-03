@@ -47,11 +47,6 @@ INSTALLED_APPS = [
     # project app
     "vmental",
     "forum",
-<<<<<<< HEAD
-    # for email verification
-    # "verify_email.apps.VerifyEmailConfig",
-=======
->>>>>>> 9f7f02d (mptt comments for the forum)
 ]
 
 
