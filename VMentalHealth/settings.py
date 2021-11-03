@@ -42,11 +42,16 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third party
     "imagekit",
+    "verify_email.apps.VerifyEmailConfig",  # for email verification
+    "mptt",
     # project app
     "vmental",
     "forum",
+<<<<<<< HEAD
     # for email verification
     # "verify_email.apps.VerifyEmailConfig",
+=======
+>>>>>>> 9f7f02d (mptt comments for the forum)
 ]
 
 
