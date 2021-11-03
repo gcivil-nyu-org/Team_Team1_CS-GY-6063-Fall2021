@@ -41,16 +41,5 @@
         <small class="text-muted">There are no comments yet.</small>
     </div>
     {% endfor %}
-
-    <h2>Make a new comment</h2>
-
-    <form id="comment_form" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
-    </form>
 </div>
-<script>
-  $('#comment_form').trigger("reset");
-  </script>
 {% endblock content %}
