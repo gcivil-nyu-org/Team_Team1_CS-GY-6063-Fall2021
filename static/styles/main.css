@@ -48,6 +48,8 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+<<<<<<< HEAD
+=======
 
 .content{
   margin-top: 55px;
@@ -56,3 +58,4 @@ body {
   font-size: 36px;
   margin-top: 20px;
 }
+>>>>>>> fc610ac9ff4915d6cff14c381459b1b8e8b7fc03

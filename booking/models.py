@@ -1,0 +1,23 @@
+from django.db import models
+
+# from django.contrib.auth import user_logged_in
+from vmental.models import CustomizedUser
+
+
+class Appointments(models.Model):
+    status_option = {
+        ("available", "available"),
+        ("confirmed", "confirmed"),
+    }
+    date = models.DateField()
+    time = models.TimeField()
+    user = models.ForeignKey(
+        CustomizedUser, on_delete=models.CASCADE, null=True, related_name="user"
+    )
+    doctor = models.ForeignKey(
+        CustomizedUser, on_delete=models.CASCADE, related_name="doctor"
+    )
+    status = models.CharField(max_length=10, choices=status_option, default="draft")
+
+    def __main__(self):
+        return self
