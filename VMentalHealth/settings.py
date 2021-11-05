@@ -47,12 +47,6 @@ INSTALLED_APPS = [
     # project app
     "vmental",
     "forum",
-<<<<<<< HEAD
-    # for email verification
-    "verify_email.apps.VerifyEmailConfig",
-    "booking",
-=======
->>>>>>> fc610ac9ff4915d6cff14c381459b1b8e8b7fc03
 ]
 
 
