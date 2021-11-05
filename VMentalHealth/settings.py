@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # project app
     "vmental",
     "forum",
+    "booking",
 ]
 
 
