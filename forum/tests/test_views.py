@@ -1,7 +1,7 @@
 from vmental.models import CustomizedUser
 from django.test import TestCase, RequestFactory
-from forum.models import Post, Comment
-from forum.views import PostListView, CommentCreateView
+from forum.models import Post
+from forum.views import PostListView
 from forum.forms import CommentForm
 
 
@@ -39,25 +39,3 @@ class CommentFormTest(TestCase):
         form_data = {"content": "test_content"}
         form = CommentForm(form_data)
         self.assertTrue(form.is_valid())
-
-
-class CommentCreateViewTest(TestCase):
-    def test_comment_view(self):
-        test_user = CustomizedUser.objects.create_user(username="test_user")
-        post_1 = Post.objects.create(
-            author=test_user,
-            title="test_title_1",
-            content="test_content_1",
-        )
-        post_1.save()
-        comment_1 = Comment.objects.create(
-            author=test_user,
-            post=post_1,
-            content="test_comment_content",
-        )
-        comment_1.save()
-        request = RequestFactory().get("/forum/comment/?slug=" + str(post_1.content))
-        view = CommentCreateView()
-        view.request = request
-        url = view.get_success_url()
-        self.assertEqual(url, "/forum/" + str(post_1.content))
