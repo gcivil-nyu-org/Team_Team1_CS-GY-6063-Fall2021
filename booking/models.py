@@ -17,7 +17,7 @@ class Appointments(models.Model):
     doctor = models.ForeignKey(
         CustomizedUser, on_delete=models.CASCADE, related_name="doctor"
     )
-    status = models.CharField(max_length=10, choices=status_option, default="draft")
+    status = models.CharField(max_length=10, choices=status_option, default="available")
 
     def __main__(self):
         return self
