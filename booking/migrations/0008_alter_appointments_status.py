@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('booking', '0007_alter_appointments_status'),
+        ("booking", "0007_alter_appointments_status"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='appointments',
-            name='status',
-            field=models.CharField(choices=[('confirmed', 'confirmed'), ('available', 'available')], default='available', max_length=10),
+            model_name="appointments",
+            name="status",
+            field=models.CharField(
+                choices=[("confirmed", "confirmed"), ("available", "available")],
+                default="available",
+                max_length=10,
+            ),
         ),
     ]
