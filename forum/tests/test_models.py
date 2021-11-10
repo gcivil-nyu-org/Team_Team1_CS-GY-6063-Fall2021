@@ -1,8 +1,9 @@
-from vmental.models import CustomizedUser
-from django.test import TestCase
-from forum.models import Post, Comment
 from datetime import timedelta
+
+from django.test import TestCase
+from forum.models import Comment, Post
 from utils.time_helpers import utc_now
+from vmental.models import CustomizedUser
 
 
 class PostModelTests(TestCase):

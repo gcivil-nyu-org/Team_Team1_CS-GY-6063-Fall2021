@@ -2,8 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from mptt.models import MPTTModel, TreeForeignKey
-from vmental.models import CustomizedUser
 from utils.time_helpers import utc_now
+from vmental.models import CustomizedUser
 
 
 class Post(models.Model):
