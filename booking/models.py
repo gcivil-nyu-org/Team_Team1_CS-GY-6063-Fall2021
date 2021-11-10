@@ -21,3 +21,8 @@ class Appointments(models.Model):
 
     def __main__(self):
         return self
+
+class provider_timeSlots(models.Model):
+    date = models.DateField(),
+    time_from = models.TimeField(),
+    time_to = models.TimeField()

@@ -34,7 +34,7 @@
                   {% if request.user.is_authenticated and not request.user.is_provider%}
                   <a class="nav-item nav-link" href="{% url 'patient-booking' %}">Book Slots</a>   
                   {% elif request.user.is_authenticated and request.user.is_provider %}
-                  <a class="nav-item nav-link" href="{% url 'provider-availability' %}">My Availability</a>   
+                  <a class="nav-item nav-link" href="{% url 'my_availability' %}">My Availability</a>   
                   {% endif %}
                 </div>
                 <!-- Navbar Right Side -->

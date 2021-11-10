@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import UpdateView
 from django.contrib.auth.decorators import login_required
@@ -9,7 +10,7 @@ from django.utils.decorators import method_decorator
 
 # from django.http import HttpResponse
 
-from .models import Appointments
+from .models import Appointments, provider_timeSlots
 
 
 @method_decorator(login_required, name="dispatch")
@@ -34,22 +35,14 @@ def booking(request):
     context = {"appointments": Appointments.objects.all()}
     return render(request, "booking/booking.html", context)
 
-def doctor_availability(request):
-    return render(request, "booking/doctor_availability.html")
+def timeSlotsView(request):
+    all_items =  provider_timeSlots.objects.all()
+    return render(request, "booking/provider_availability.html", {'item':all_items})
 
-
-class createAvalibility(UpdateView):
-    fields = [
-        "Date",
-        "Time",
-        "Status",
-    ]
-    template_name_suffix = "_update"
-
-    def get_success_url(self):
-        return reverse_lazy(
-            "forum:post_detail",
-            kwargs={
-                "slug": self.object.slug,
-            },
-        )
+def addSlotView(request):
+    x = request.POST['date']
+    y = request.POST['time_from']
+    z = request.POST['time_to']
+    new_item = provider_timeSlots(date = x, time_from = y, time_to = z)
+    provider_timeSlots.add_to_class(new_item)
+    return HttpResponseRedirect("timeSlotsView") 
