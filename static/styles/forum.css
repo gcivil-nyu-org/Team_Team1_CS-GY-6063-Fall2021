@@ -28,6 +28,6 @@
 .comments-list{
   font-size: 20px;
 }
-.comments-content{
-
+.reply-content{
+  margin-left: auto;
 }

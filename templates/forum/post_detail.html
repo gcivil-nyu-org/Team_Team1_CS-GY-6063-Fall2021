@@ -26,45 +26,39 @@
     <div class="row align-items-center comments-title">
       <div class="col-6 main_title">Comments</div>
     </div>
-
     {% load mptt_tags %}
-
-    <div>
+    <div class = "row">
+      <div class = "col-6">
       {% recursetree comments %}
       <div class="my-2 p-2" style="border: 1px solid grey">
-        <div class="row align-items-center comments-content">
-          <div id="{{ node.id }}" class="col-9">{{ node.content }}</div>
+        <div class="row align-items-center comments-info">
+          <small class="col-3">{{ node.author }}</small>
+          <small class="col-4">{{ node.created_at }}</small>
         </div>
-        <div class="row align-items-center justify-content-end comments-info">
-          <small class="col-2">{{ node.author }}</small>
+        <div class="row align-items-center comments-content" id="{{ node.id }}">
+          <div class="col-9">{{ node.content }}</div>
         </div>
-        <div class="row align-items-center justify-content-end comments-info">
-          <small class="col-2">{{ node.created_at }}</small>
-        </div>
-        <hr />
-        <button class="button" onclick="replyFunction({{ node.id }})">Reply</button>
+        <button class="btn btn-primary btn-sm" onclick="replyFunction({{ node.id }})">Reply</button>
       </div>
-
       {% if not node.is_leaf_node %}
-
         <div class="children pl-2 pl-md-5">
           {{ children }}
         </div>
-
       {% endif %}
-
       {% endrecursetree %}
+      </div>
     </div>
-
-
-    <h2>New Comment</h2>
-
-    <form id="comment_form" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
-    </form>
+    <div class = "row">
+      <div class = "col-6">
+        <form id="comment_form" method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary btn-sm btn-block">Submit</button>
+        </form>
+      </div>
+    </div>
 </div>
+
 <script>
 
   function formExit() {
@@ -79,19 +73,20 @@
 
     var a = document.getElementById(id)
     a.insertAdjacentHTML('afterend',
-      '<form id="replyForm" class="form-insert py-2" method="post"> \
-        <div class="d-flex justify-content-between"> \
-        <h4>Reply</h4> \
-        <div><button type="button" class="btn btn-outline-secondary" onclick="formExit()"">Close</button></div> \
-        </div> \
-        <select name="parent" class="d-none" id="id_parentt"> \
-        <option value="' + id + '" selected="' + id + '"></option> \
-        </select> \
-        <label for="id_content">Content</label> \
-        <textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
-        {% csrf_token %} \
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button> \
-      </form>'
+      '<div class="row reply-content">\
+        <form id="replyForm" class="form-insert py-2" method="post"> \
+          <select name="parent" class="d-none" id="id_parentt"> \
+          <option value="' + id + '" selected="' + id + '"></option> \
+          </select> \
+          <label for="id_content">Content</label> \
+          <textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
+          {% csrf_token %} \
+          <div class="row justify-content-end">\
+              <button type="submit" class="btn btn-primary btn-sm">Submit</button> \
+              <button type="button" class="btn btn-outline-secondary btn-sm offset-1" onclick="formExit()"">Close</button>\
+          </div> \
+        </form>\
+        </div>'
     );
   }
 
