@@ -1,10 +1,29 @@
 from vmental.models import CustomizedUser
 from django.test import TestCase, RequestFactory, Client
 from forum.models import Post
-from forum.views import PostListView
+from forum.views import PostCreateView, PostListView
 from forum.forms import CommentForm
 from django.urls import reverse
 from django.utils.text import slugify
+
+
+class PostCreateViewTest(TestCase):
+    def setUp(self) -> None:
+        self.factory = RequestFactory()
+        self.user = CustomizedUser.objects.create_user(username="test_user")
+
+    def test_form_valid(self):
+        post_data = {
+            "title": "Test post title",
+            "content": "Test post content",
+            "status": "draft",
+        }
+
+        request = self.factory.post(path="forum:post_create", data=post_data)
+        request.user = self.user
+        response = PostCreateView.as_view()(request)
+
+        self.assertEqual(response.status_code, 302)
 
 
 class PostListViewTests(TestCase):
