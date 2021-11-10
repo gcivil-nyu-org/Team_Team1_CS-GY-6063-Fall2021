@@ -10,7 +10,7 @@ import imagekit.models.fields
 class Migration(migrations.Migration):
 
     initial = True
-
+    run_before = [("admin.0001_initial")]
     dependencies = [
         ("auth", "0012_alter_user_first_name_max_length"),
     ]
