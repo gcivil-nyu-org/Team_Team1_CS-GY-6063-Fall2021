@@ -16,8 +16,7 @@ class VMMentalHealthTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         response = self.client.post(
-            "/auth/login/",
-            {"username": "abcd", "password": "abc123def456"},
+            "/auth/login/", {"username": "abcd", "password": "abc123def456"},
         )
         self.assertEqual(response.status_code, 200)
 
@@ -26,8 +25,7 @@ class VMMentalHealthTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         response = self.client.post(
-            "/auth/login/",
-            {"username": "test_user2", "password": "test12341231"},
+            "/auth/login/", {"username": "test_user2", "password": "test12341231"},
         )
         self.assertIn(
             "Please enter a correct username and password.", str(response.content)

@@ -6,15 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('booking', '0013_alter_appointments_status'),
+        ("booking", "0013_alter_appointments_status"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='provider_timeSlots',
+            name="provider_timeSlots",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('time_to', models.TimeField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("time_to", models.TimeField()),
             ],
         ),
     ]

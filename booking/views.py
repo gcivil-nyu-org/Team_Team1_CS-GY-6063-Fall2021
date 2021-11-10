@@ -20,12 +20,7 @@ class BookingUpdateView(UpdateView):
     template_name = "user_appointments"
 
     def get_success_url(self):
-        return reverse_lazy(
-            "user_appointments",
-            kwargs={
-                "pk": self.object.pk,
-            },
-        )
+        return reverse_lazy("user_appointments", kwargs={"pk": self.object.pk,},)
 
     def get_queryset(self):
         return Appointments.objects.filter(status="confirmed").order_by("date")
@@ -35,14 +30,16 @@ def booking(request):
     context = {"appointments": Appointments.objects.all()}
     return render(request, "booking/booking.html", context)
 
+
 def timeSlotsView(request):
-    all_items =  provider_timeSlots.objects.all()
-    return render(request, "booking/provider_availability.html", {'item':all_items})
+    all_items = provider_timeSlots.objects.all()
+    return render(request, "booking/provider_availability.html", {"item": all_items})
+
 
 def addSlotView(request):
-    x = request.POST['date']
-    y = request.POST['time_from']
-    z = request.POST['time_to']
-    new_item = provider_timeSlots(date = x, time_from = y, time_to = z)
+    x = request.POST["date"]
+    y = request.POST["time_from"]
+    z = request.POST["time_to"]
+    new_item = provider_timeSlots(date=x, time_from=y, time_to=z)
     provider_timeSlots.add_to_class(new_item)
-    return HttpResponseRedirect("timeSlotsView") 
+    return HttpResponseRedirect("timeSlotsView")
