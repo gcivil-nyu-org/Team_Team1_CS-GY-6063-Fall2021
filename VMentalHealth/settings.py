@@ -142,7 +142,7 @@ LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "profile"
 
 LOGOUT_REDIRECT_URL = "index"
-ALLOWED_HOSTS = ["vmentalhealth.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = [".herokuapp.com", "127.0.0.1"]
 AUTH_USER_MODEL = "vmental.CustomizedUser"
 
 
