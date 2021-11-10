@@ -14,18 +14,10 @@ class Post(models.Model):
     }
 
     title = models.CharField(max_length=255)
-    slug = models.SlugField(
-        max_length=255,
-        unique=True,
-        editable=False,
-        default="",
-    )
+    slug = models.SlugField(max_length=255, unique=True, editable=False, default="",)
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
-        CustomizedUser,
-        on_delete=models.CASCADE,
-        null=True,
-        related_name="posts",
+        CustomizedUser, on_delete=models.CASCADE, null=True, related_name="posts",
     )
     content = models.TextField()
     status = models.CharField(max_length=10, choices=status_option, default="draft")
@@ -54,15 +46,8 @@ class Post(models.Model):
 
 class Comment(MPTTModel):
 
-    post = models.ForeignKey(
-        Post,
-        on_delete=models.CASCADE,
-        related_name="comments",
-    )
-    author = models.ForeignKey(
-        CustomizedUser,
-        on_delete=models.CASCADE,
-    )
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments",)
+    author = models.ForeignKey(CustomizedUser, on_delete=models.CASCADE,)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     parent = TreeForeignKey(
