@@ -1,6 +1,7 @@
 from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
-from forum.models import Post, Comment
+
+from forum.models import Comment, Post
 
 
 @admin.register(Post)

@@ -1,8 +1,9 @@
-from django.views.generic import ListView, DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
-from django.views.generic.edit import CreateView, DeleteView, FormMixin
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.views.generic import DetailView, ListView, UpdateView
+from django.views.generic.edit import CreateView, DeleteView, FormMixin
+
 from forum.forms import CommentForm
 from forum.models import Post
 
