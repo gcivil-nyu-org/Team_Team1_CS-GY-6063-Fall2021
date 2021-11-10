@@ -27,6 +27,17 @@
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Add Availability</button>
         <button type="submit" class="btn btn-primary">Cancel Appointment</button>
+        <ul>
+          {% for i in item %} 
+          <li>{{i}}</li>
+          {% endfor %}
+        </ul> 
+        <form action="/addTimeSlot/" method = "post">{% csrf_token %}        
+        <input type="date" name="Date">
+        <input type="time" name="Time From">
+        <input type="time" name="Time To">
+        <input type="submit" value="Add Time Slot">
+        </form>
     </form>
   </div>
 </div>
