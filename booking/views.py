@@ -33,3 +33,23 @@ class BookingUpdateView(UpdateView):
 def booking(request):
     context = {"appointments": Appointments.objects.all()}
     return render(request, "booking/booking.html", context)
+
+def doctor_availability(request):
+    return render(request, "booking/doctor_availability.html")
+
+
+class createAvalibility(UpdateView):
+    fields = [
+        "Date",
+        "Time",
+        "Status",
+    ]
+    template_name_suffix = "_update"
+
+    def get_success_url(self):
+        return reverse_lazy(
+            "forum:post_detail",
+            kwargs={
+                "slug": self.object.slug,
+            },
+        )
