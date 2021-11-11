@@ -1,21 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import UpdateView
-from django.contrib.auth.decorators import login_required
-
-# from django.views.generic.edit import CreateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.views.generic import UpdateView
 
-
-# from django.http import HttpResponse
-
-from .models import Appointments, provider_timeSlots
+from booking.models import Appointment, provider_timeSlots
 
 
 @method_decorator(login_required, name="dispatch")
 class BookingUpdateView(UpdateView):
-    model = Appointments
+    model = Appointment
     fields = ["user", "status"]
     template_name = "user_appointments"
 
@@ -28,11 +23,11 @@ class BookingUpdateView(UpdateView):
         )
 
     def get_queryset(self):
-        return Appointments.objects.filter(status="confirmed").order_by("date")
+        return Appointment.objects.filter(status="confirmed").order_by("date")
 
 
 def booking(request):
-    context = {"appointments": Appointments.objects.all()}
+    context = {"appointments": Appointment.objects.all()}
     return render(request, "booking/booking.html", context)
 
 

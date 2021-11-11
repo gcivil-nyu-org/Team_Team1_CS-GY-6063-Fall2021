@@ -2,7 +2,7 @@ from django.test import RequestFactory, TestCase
 from forum.forms import CommentForm
 from forum.models import Post
 from forum.views import PostCreateView, PostListView, PostUpdateView, PostView
-from vmental.models import CustomizedUser
+from account.models import CustomizedUser
 
 
 class CommentFormTest(TestCase):

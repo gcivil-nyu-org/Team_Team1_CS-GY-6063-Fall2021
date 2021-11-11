@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
-import django_heroku
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -35,7 +33,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "django.contrib.admin",
-    "vmental",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -46,7 +43,7 @@ INSTALLED_APPS = [
     "verify_email.apps.VerifyEmailConfig",  # for email verification
     "mptt",
     # project app
-    # "vmental",
+    "account",
     "forum",
     "booking",
 ]
@@ -146,7 +143,7 @@ LOGIN_REDIRECT_URL = "profile"
 
 LOGOUT_REDIRECT_URL = "index"
 ALLOWED_HOSTS = [".herokuapp.com", "127.0.0.1"]
-AUTH_USER_MODEL = "vmental.CustomizedUser"
+AUTH_USER_MODEL = "account.CustomizedUser"
 
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -165,4 +162,11 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 # must place in the last line
-django_heroku.settings(locals(), test_runner=False)
+if "HEROKU" in os.environ:
+    import django_heroku
+
+    django_heroku.settings(locals())
+elif "CI" in os.environ:
+    import django_heroku
+
+    django_heroku.settings(locals(), test_runner=False)

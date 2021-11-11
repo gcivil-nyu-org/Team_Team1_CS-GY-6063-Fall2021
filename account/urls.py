@@ -1,6 +1,6 @@
 from django.conf.urls import include
 from django.urls import path
-from vmental.views import (
+from account.views import (
     IndexView,
     SignUpView,
     activate,

@@ -1,6 +1,6 @@
+from account.models import CustomizedUser
 from django.test import TestCase
 from django.urls import reverse
-from vmental.models import CustomizedUser
 
 
 class VMMentalHealthTest(TestCase):
