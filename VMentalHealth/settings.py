@@ -164,7 +164,9 @@ EMAIL_USE_SSL = False
 # must place in the last line
 if "HEROKU" in os.environ:
     import django_heroku
+
     django_heroku.settings(locals())
 elif "CI" in os.environ:
     import django_heroku
+
     django_heroku.settings(locals(), test_runner=False)
