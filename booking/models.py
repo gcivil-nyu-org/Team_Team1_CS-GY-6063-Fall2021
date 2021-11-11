@@ -1,7 +1,7 @@
 from django.db import models
 
 # from django.contrib.auth import user_logged_in
-from vmental.models import CustomizedUser
+from account.models import CustomizedUser
 
 
 class Appointment(models.Model):

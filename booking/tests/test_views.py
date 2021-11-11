@@ -1,4 +1,4 @@
-from booking.models import Appointments
+from booking.models import Appointment
 from django.test import TestCase, RequestFactory
 from forum.models import CustomizedUser
 from booking.views import BookingUpdateView
@@ -15,7 +15,7 @@ class BookingUpdateViewTests(TestCase):
         test_doctor = CustomizedUser.objects.create_user(
             username="test_doctor", email="test_doctor@test_doctor.com"
         )
-        test_app = Appointments.objects.create(
+        test_app = Appointment.objects.create(
             user=test_user,
             doctor=test_doctor,
             date=date.today(),
@@ -28,4 +28,4 @@ class BookingUpdateViewTests(TestCase):
         view = BookingUpdateView()
         view.request = request
         qs = view.get_queryset()
-        self.assertQuerysetEqual(qs, Appointments.objects.all().order_by("date"))
+        self.assertQuerysetEqual(qs, Appointment.objects.all().order_by("date"))

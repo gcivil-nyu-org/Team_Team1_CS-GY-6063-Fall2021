@@ -1,5 +1,5 @@
 from django.contrib import admin
-from vmental.models import CustomizedUser
+from account.models import CustomizedUser
 
 
 @admin.register(CustomizedUser)

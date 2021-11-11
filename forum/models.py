@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from mptt.models import MPTTModel, TreeForeignKey
 from utils.time_helpers import utc_now
-from vmental.models import CustomizedUser
+from account.models import CustomizedUser
 
 
 class Post(models.Model):
