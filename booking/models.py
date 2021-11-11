@@ -4,7 +4,7 @@ from django.db import models
 from vmental.models import CustomizedUser
 
 
-class Appointments(models.Model):
+class Appointment(models.Model):
     status_option = {
         ("available", "available"),
         ("confirmed", "confirmed"),

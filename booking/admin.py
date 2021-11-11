@@ -1,10 +1,8 @@
 from django.contrib import admin
 
-from booking.models import Appointments
-
-# Register your models here.
+from booking.models import Appointment
 
 
-@admin.register(Appointments)
-class Appointments(admin.ModelAdmin):
+@admin.register(Appointment)
+class AppointmentAdmin(admin.ModelAdmin):
     list_display = ("id", "date", "time", "doctor", "user", "status")

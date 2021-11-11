@@ -35,7 +35,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "django.contrib.admin",
-    "vmental",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -46,7 +45,7 @@ INSTALLED_APPS = [
     "verify_email.apps.VerifyEmailConfig",  # for email verification
     "mptt",
     # project app
-    # "vmental",
+    "vmental",
     "forum",
     "booking",
 ]
@@ -165,4 +164,5 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 # must place in the last line
-django_heroku.settings(locals(), test_runner=False)
+if "CI" in os.environ:
+    django_heroku.settings(locals(), test_runner=False)
