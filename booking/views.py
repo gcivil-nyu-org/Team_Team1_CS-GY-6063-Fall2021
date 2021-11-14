@@ -3,9 +3,18 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import UpdateView,CreateView
+from django.views.generic import UpdateView,CreateView, ListView
 
 from booking.models import Appointment, provider_timeSlots
+
+
+@method_decorator(login_required, name="dispatch")
+class ProviderAppointmentListView(ListView):
+    model = Appointment
+    template_name = "appointment_list"
+
+    def get_queryset(self):
+        return Appointment.objects.filter(doctor=self.request.user.id)
 
 
 @method_decorator(login_required, name="dispatch")
@@ -57,4 +66,4 @@ class BookingCreateView(CreateView):
     def form_valid(self, form):
         form.instance.doctor = self.request.user
         return super().form_valid(form)
-    
+
