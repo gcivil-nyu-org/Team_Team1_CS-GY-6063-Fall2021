@@ -1,5 +1,4 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
 {% load static %}
 <html>
     <head>
@@ -16,21 +15,30 @@
       
     </head>
 </html>
+
 {% block content %}
-    <main>
-        <div class="container">
-            <h4>Appointments</h4>
-            <div class="card">
-                <div class="card-body">
-                {% for a in appointments %}
-                  <p class="card-text">
-                    Time:{{a.time}}                   
-                  </p>
-                  <p class="card-text">
-                      Date:{{a.date}}
-                  </p>
-                </div>
-              </div>
-        </div>
-    </main>
-{% end block %}
+<div class="container content">
+  <div class="row">
+    <div class="main_title">Provider Dashboard</div>
+  </div>
+  <div class="row">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Availability</button>
+        <button type="submit" class="btn btn-primary">Cancel Appointment</button>
+        <ul>
+          {% for i in item %} 
+          <li>{{i}}</li>
+          {% endfor %}
+        </ul> 
+        <form action="/addTimeSlot/" method = "post">{% csrf_token %}        
+        <input type="date" name="Date">
+        <input type="time" name="Time From">
+        <input type="time" name="Time To">
+        <input type="submit" value="Add Time Slot">
+        </form>
+    </form>
+  </div>
+</div>
+{% endblock content %}

@@ -3,7 +3,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView,CreateView
 
 from booking.models import Appointment, provider_timeSlots
 
@@ -11,8 +11,7 @@ from booking.models import Appointment, provider_timeSlots
 @method_decorator(login_required, name="dispatch")
 class BookingUpdateView(UpdateView):
     model = Appointment
-    fields = ["user", "status"]
-    template_name = "user_appointments"
+    fields = ["patient"]
 
     def get_success_url(self):
         return reverse_lazy(
@@ -22,8 +21,8 @@ class BookingUpdateView(UpdateView):
             },
         )
 
-    def get_queryset(self):
-        return Appointment.objects.filter(status="confirmed").order_by("date")
+    #def get_queryset(self):
+    #    return Appointment.objects.filter().order_by("date")
 
 
 def booking(request):
@@ -43,3 +42,19 @@ def addSlotView(request):
     new_item = provider_timeSlots(date=x, time_from=y, time_to=z)
     provider_timeSlots.add_to_class(new_item)
     return HttpResponseRedirect("timeSlotsView")
+
+
+
+@method_decorator(login_required, name="dispatch")
+class BookingCreateView(CreateView):
+    model = Appointment
+    fields = [
+        "date",
+        "start_time",
+        "end_time",
+    ]
+
+    def form_valid(self, form):
+        form.instance.doctor = self.request.user
+        return super().form_valid(form)
+    
