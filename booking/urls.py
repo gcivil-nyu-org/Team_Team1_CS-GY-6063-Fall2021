@@ -1,5 +1,10 @@
 from django.urls import path
-from booking.views import ProviderAppointmentListView, PatientAppointmentListView
+
+from booking.views import (
+    PatientAppointmentListView,
+    AppointmentCreateView,
+    ProviderAppointmentListView,
+)
 
 app_name = "booking"
 
@@ -17,5 +22,10 @@ urlpatterns = [
         "patient_appointment_list",
         PatientAppointmentListView.as_view(),
         name="patient_appointment_list",
+    ),
+    path(
+        "new_appointment",
+        AppointmentCreateView.as_view(),
+        name="new_appointment",
     ),
 ]

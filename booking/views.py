@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView
+from django.urls import reverse_lazy
 
 from booking.models import Appointment
 
@@ -19,28 +20,23 @@ class ProviderAppointmentListView(UserPassesTestMixin, ListView):
 
 
 @method_decorator(login_required, name="dispatch")
-class ProviderAppointmentCreateView(UserPassesTestMixin, CreateView):
+class AppointmentCreateView(UserPassesTestMixin, CreateView):
     model = Appointment
+    template_name = "booking/new_appointment.html"
     fields = [
         "date",
         "start_time",
         "end_time",
+        "meeting_link",
     ]
+    success_url = reverse_lazy("booking:provider_appointment_list")
 
-    # def get_success_url(self):
-    #     return reverse_lazy(
-    #         "forum:post_detail",
-    #         kwargs={"slug": self.object.slug},
-    #     )
-
-    # def form_valid(self, form):
-    #     author = self.request.user
-    #     form.instance.author = author
-    #     return super(PostCreateView, self).form_valid(form)
+    def form_valid(self, form):
+        form.instance.doctor = self.request.user
+        return super(AppointmentCreateView, self).form_valid(form)
 
     def test_func(self):
         return self.request.user.is_provider
-
 
 
 @method_decorator(login_required, name="dispatch")
@@ -51,7 +47,9 @@ class PatientAppointmentListView(UserPassesTestMixin, ListView):
 
     def get_queryset(self):
         queryset = {
-            "upcoming_appointment": Appointment.objects.filter(patient=self.request.user.id),
+            "upcoming_appointment": Appointment.objects.filter(
+                patient=self.request.user.id
+            ),
             "available_appointment": Appointment.objects.filter(patient__isnull=True),
         }
         return queryset
