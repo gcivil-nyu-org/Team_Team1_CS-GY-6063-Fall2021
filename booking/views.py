@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.views.generic import ListView
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, ListView
 
 from booking.models import Appointment
 
@@ -19,6 +19,31 @@ class ProviderAppointmentListView(UserPassesTestMixin, ListView):
 
 
 @method_decorator(login_required, name="dispatch")
+class ProviderAppointmentCreateView(UserPassesTestMixin, CreateView):
+    model = Appointment
+    fields = [
+        "date",
+        "start_time",
+        "end_time",
+    ]
+
+    # def get_success_url(self):
+    #     return reverse_lazy(
+    #         "forum:post_detail",
+    #         kwargs={"slug": self.object.slug},
+    #     )
+
+    # def form_valid(self, form):
+    #     author = self.request.user
+    #     form.instance.author = author
+    #     return super(PostCreateView, self).form_valid(form)
+
+    def test_func(self):
+        return self.request.user.is_provider
+
+
+
+@method_decorator(login_required, name="dispatch")
 class PatientAppointmentListView(UserPassesTestMixin, ListView):
     model = Appointment
     template_name = "booking/patient_appointment_list.html"
@@ -33,6 +58,7 @@ class PatientAppointmentListView(UserPassesTestMixin, ListView):
 
     def test_func(self):
         return not self.request.user.is_provider
+
 
 # @method_decorator(login_required, name="dispatch")
 # class BookingUpdateView(UpdateView):
