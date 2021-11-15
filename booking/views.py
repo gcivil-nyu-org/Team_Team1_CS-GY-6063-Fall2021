@@ -9,7 +9,7 @@ from booking.models import Appointment
 @method_decorator(login_required, name="dispatch")
 class ProviderAppointmentListView(UserPassesTestMixin, ListView):
     model = Appointment
-    template_name = "booking/prov_appmnt_list.html"
+    template_name = "booking/provider_appointment_list.html"
 
     def get_queryset(self):
         return Appointment.objects.filter(doctor=self.request.user.id)
@@ -17,6 +17,22 @@ class ProviderAppointmentListView(UserPassesTestMixin, ListView):
     def test_func(self):
         return self.request.user.is_provider
 
+
+@method_decorator(login_required, name="dispatch")
+class PatientAppointmentListView(UserPassesTestMixin, ListView):
+    model = Appointment
+    template_name = "booking/patient_appointment_list.html"
+    context_object_name = "appointments"
+
+    def get_queryset(self):
+        queryset = {
+            "upcoming_appointment": Appointment.objects.filter(patient=self.request.user.id),
+            "available_appointment": Appointment.objects.filter(patient__isnull=True),
+        }
+        return queryset
+
+    def test_func(self):
+        return not self.request.user.is_provider
 
 # @method_decorator(login_required, name="dispatch")
 # class BookingUpdateView(UpdateView):
