@@ -9,7 +9,7 @@ from booking.models import Appointment
 @method_decorator(login_required, name="dispatch")
 class ProviderAppointmentListView(UserPassesTestMixin, ListView):
     model = Appointment
-    template_name = "prov_appmnt_list"
+    template_name = "booking/prov_appmnt_list.html"
 
     def get_queryset(self):
         return Appointment.objects.filter(doctor=self.request.user.id)
