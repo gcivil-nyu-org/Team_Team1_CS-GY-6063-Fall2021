@@ -56,3 +56,19 @@ body {
   font-size: 36px;
   margin-top: 20px;
 }
+
+.form_attribute{
+  font-size: 20px;
+  font-style: bold;
+  /* margin: 10px; */
+}
+
+.form_entities{
+  font-size: 18px;
+  margin: 5px;
+}
+
+.form_title{
+  font-size: 20px;
+  margin: 5px;
+}
