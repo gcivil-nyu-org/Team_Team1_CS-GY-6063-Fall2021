@@ -9,11 +9,11 @@ class Appointment(models.Model):
     doctor = models.ForeignKey(
         CustomizedUser, on_delete=models.CASCADE, related_name="doctor"
     )
-    user = models.ForeignKey(
+    patient = models.ForeignKey(
         CustomizedUser,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="user",
+        related_name="patient",
     )
     meeting_link = models.URLField(blank=True)

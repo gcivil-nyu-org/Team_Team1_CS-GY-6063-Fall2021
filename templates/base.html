@@ -32,9 +32,9 @@
                 <div class="navbar-nav mr-auto">
                   <a class="nav-item nav-link" href="{% url 'forum:post_list' %}">Forum</a>
                   {% if request.user.is_authenticated and not request.user.is_provider%}
-                  <a class="nav-item nav-link" href="{% url 'patient-booking' %}">Book Slots</a>   
+                  <a class="nav-item nav-link" href="{% url 'patient-booking' %}">Book Slots</a>
                   {% elif request.user.is_authenticated and request.user.is_provider %}
-                  <a class="nav-item nav-link" href="{% url 'my_availability' %}">My Availability</a>   
+                  <a class="nav-item nav-link" href="{% url 'prov_appmnt_list' %}">Booking</a>
                   {% endif %}
                 </div>
                 <!-- Navbar Right Side -->
