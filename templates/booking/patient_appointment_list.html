@@ -59,7 +59,7 @@
             {{ appointment.doctor }}
         </div>
         <div class="col-2">
-            <a class = "btn btn-primary" href="{% url 'profile' %}">Book</a>
+            <a class = "btn btn-primary" href="{% url 'booking:reserve_appointment' appointment.pk %}">Book</a>
         </div>
     </div>
     {% endfor %}
