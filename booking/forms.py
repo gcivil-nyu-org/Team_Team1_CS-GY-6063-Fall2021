@@ -10,6 +10,7 @@ class ReserveForm(forms.ModelForm):
             "patient": forms.HiddenInput(),
         }
 
+
 class CancelForm(forms.ModelForm):
     class Meta:
         model = Appointment
