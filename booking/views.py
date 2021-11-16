@@ -100,8 +100,7 @@ class PatientCancelView(UserPassesTestMixin, UpdateView):
 
 
 @method_decorator(login_required, name="dispatch")
-# class ProviderCancelView(UserPassesTestMixin, UpdateView):
-class ProviderCancelView(UpdateView):
+class ProviderCancelView(UserPassesTestMixin, UpdateView):
     model = Appointment
     fields = [
         "status",
@@ -116,5 +115,5 @@ class ProviderCancelView(UpdateView):
         context["form"].fields["status"].initial = "cancelled"
         return context
 
-    # def test_func(self):
-    #     return self.request.user.is_provider
+    def test_func(self):
+        return self.request.user.is_provider
