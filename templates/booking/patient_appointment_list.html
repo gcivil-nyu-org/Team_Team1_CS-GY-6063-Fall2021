@@ -31,7 +31,10 @@
             {{ appointment.doctor }}
         </div>
         <div class="col-2">
-            {{ appointment.meeting_link }}
+            <a class = "btn btn-primary" href="{{ appointment.meeting_link }}">Link</a>
+        </div>
+        <div class="col-2">
+            <a class = "btn btn-primary" href="{% url 'booking:patient_cancel' appointment.pk %}">Cancel</a>
         </div>
     </div>
     {% endfor %}
