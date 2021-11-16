@@ -1,10 +1,11 @@
 from django.urls import path
 
 from booking.views import (
-    PatientAppointmentListView,
     AppointmentCreateView,
-    ProviderAppointmentListView,
+    PatientAppointmentListView,
+    PatientCancelView,
     PatientReserveView,
+    ProviderAppointmentListView,
 )
 
 app_name = "booking"
@@ -29,5 +30,10 @@ urlpatterns = [
         "reserve_appointment/<int:pk>",
         PatientReserveView.as_view(),
         name="reserve_appointment",
+    ),
+    path(
+        "patient_cancel/<int:pk>",
+        PatientCancelView.as_view(),
+        name="patient_cancel",
     ),
 ]

@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView
-from django.urls import reverse_lazy
 
-from booking.models import Appointment
 from booking.forms import ReserveForm
+from booking.models import Appointment
 
 
 @method_decorator(login_required, name="dispatch")
@@ -73,6 +73,26 @@ class PatientReserveView(UserPassesTestMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context["form"] = self.reserve_form
         context["form"].fields["patient"].initial = self.request.user
+        return context
+
+    def test_func(self):
+        return not self.request.user.is_provider
+
+
+@method_decorator(login_required, name="dispatch")
+class PatientCancelView(UserPassesTestMixin, UpdateView):
+    model = Appointment
+    fields = [
+        "patient",
+    ]
+    reserve_form = ReserveForm()
+    template_name = "booking/patient_cancel.html"
+    success_url = reverse_lazy("booking:patient_appointment_list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = self.reserve_form
+        context["form"].fields["patient"].initial = None
         return context
 
     def test_func(self):
