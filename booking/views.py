@@ -1,69 +1,119 @@
 from django.contrib.auth.decorators import login_required
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import UpdateView,CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 
-from booking.models import Appointment, provider_timeSlots
+from booking.forms import CancelForm, ReserveForm
+from booking.models import Appointment
 
 
 @method_decorator(login_required, name="dispatch")
-class ProviderAppointmentListView(ListView):
+class ProviderAppointmentListView(UserPassesTestMixin, ListView):
     model = Appointment
-    template_name = "appointment_list"
+    template_name = "booking/provider_appointment_list.html"
 
     def get_queryset(self):
         return Appointment.objects.filter(doctor=self.request.user.id)
 
-
-@method_decorator(login_required, name="dispatch")
-class BookingUpdateView(UpdateView):
-    model = Appointment
-    fields = ["patient"]
-
-    def get_success_url(self):
-        return reverse_lazy(
-            "user_appointments",
-            kwargs={
-                "pk": self.object.pk,
-            },
-        )
-
-    #def get_queryset(self):
-    #    return Appointment.objects.filter().order_by("date")
-
-
-def booking(request):
-    context = {"appointments": Appointment.objects.all()}
-    return render(request, "booking/booking.html", context)
-
-
-def timeSlotsView(request):
-    all_items = provider_timeSlots.objects.all()
-    return render(request, "booking/provider_availability.html", {"item": all_items})
-
-
-def addSlotView(request):
-    x = request.POST["date"]
-    y = request.POST["time_from"]
-    z = request.POST["time_to"]
-    new_item = provider_timeSlots(date=x, time_from=y, time_to=z)
-    provider_timeSlots.add_to_class(new_item)
-    return HttpResponseRedirect("timeSlotsView")
-
+    def test_func(self):
+        return self.request.user.is_provider
 
 
 @method_decorator(login_required, name="dispatch")
-class BookingCreateView(CreateView):
+class AppointmentCreateView(UserPassesTestMixin, CreateView):
     model = Appointment
+    template_name = "booking/new_appointment.html"
     fields = [
         "date",
         "start_time",
         "end_time",
+        "meeting_link",
     ]
+    success_url = reverse_lazy("booking:provider_appointment_list")
 
     def form_valid(self, form):
         form.instance.doctor = self.request.user
-        return super().form_valid(form)
+        return super(AppointmentCreateView, self).form_valid(form)
 
+    def test_func(self):
+        return self.request.user.is_provider
+
+
+@method_decorator(login_required, name="dispatch")
+class PatientAppointmentListView(UserPassesTestMixin, ListView):
+    model = Appointment
+    template_name = "booking/patient_appointment_list.html"
+    context_object_name = "appointments"
+
+    def get_queryset(self):
+        queryset = {
+            "upcoming_appointment": Appointment.objects.filter(
+                patient=self.request.user.id
+            ),
+            "available_appointment": Appointment.objects.filter(patient__isnull=True),
+        }
+        return queryset
+
+    def test_func(self):
+        return not self.request.user.is_provider
+
+
+@method_decorator(login_required, name="dispatch")
+class PatientReserveView(UserPassesTestMixin, UpdateView):
+    model = Appointment
+    fields = [
+        "patient",
+    ]
+    reserve_form = ReserveForm()
+    template_name = "booking/reserve_appointment.html"
+    success_url = reverse_lazy("booking:patient_appointment_list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = self.reserve_form
+        context["form"].fields["patient"].initial = self.request.user
+        return context
+
+    def test_func(self):
+        return not self.request.user.is_provider
+
+
+@method_decorator(login_required, name="dispatch")
+class PatientCancelView(UserPassesTestMixin, UpdateView):
+    model = Appointment
+    fields = [
+        "patient",
+    ]
+    reserve_form = ReserveForm()
+    template_name = "booking/patient_cancel.html"
+    success_url = reverse_lazy("booking:patient_appointment_list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = self.reserve_form
+        context["form"].fields["patient"].initial = None
+        return context
+
+    def test_func(self):
+        return not self.request.user.is_provider
+
+
+@method_decorator(login_required, name="dispatch")
+class ProviderCancelView(UserPassesTestMixin, UpdateView):
+    model = Appointment
+    fields = [
+        "status",
+    ]
+    reserve_form = CancelForm()
+    template_name = "booking/provider_cancel.html"
+    success_url = reverse_lazy("booking:provider_appointment_list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = self.reserve_form
+        context["form"].fields["status"].initial = "cancelled"
+        return context
+
+    def test_func(self):
+        return self.request.user.is_provider

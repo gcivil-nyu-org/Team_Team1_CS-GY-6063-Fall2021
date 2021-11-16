@@ -1,36 +1,32 @@
+<<<<<<< HEAD
 from django.db import models
 from django.urls import reverse
 
 
 # from django.contrib.auth import user_logged_in
+=======
+>>>>>>> 10e95c76ff4ba429e41bcf1edcb46209ab5c65c6
 from account.models import CustomizedUser
+from django.db import models
 
 
 class Appointment(models.Model):
-    status_option = {
-        ("available", "available"),
-        ("confirmed", "confirmed"),
-    }
     date = models.DateField()
-    start_time = models.TimeField(null=True)
-    end_time = models.TimeField(null=True)
-    patient = models.ForeignKey(
-        CustomizedUser, on_delete=models.SET_NULL,null=True, blank=True, related_name="patient"
-    )
+    start_time = models.TimeField()
+    end_time = models.TimeField()
     doctor = models.ForeignKey(
         CustomizedUser, on_delete=models.CASCADE, related_name="doctor"
     )
-    
-    meeting_link = models.URLField(null=True)
-
-    def __main__(self):
-        return self
-    
-    def get_absolute_url(self):
-        return reverse('my_availability')
-
-
-class provider_timeSlots(models.Model):
-    date = (models.DateField(),)
-    time_from = (models.TimeField(),)
-    time_to = models.TimeField()
+    patient = models.ForeignKey(
+        CustomizedUser,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="patient",
+    )
+    meeting_link = models.URLField(blank=True)
+    status_option = {
+        ("active", "active"),
+        ("cancelled", "cancelled"),
+    }
+    status = models.CharField(max_length=10, choices=status_option, default="active")
