@@ -1,10 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 from django.urls import reverse_lazy
 
 from booking.models import Appointment
+from booking.forms import ReserveForm
 
 
 @method_decorator(login_required, name="dispatch")
@@ -58,38 +60,19 @@ class PatientAppointmentListView(UserPassesTestMixin, ListView):
         return not self.request.user.is_provider
 
 
-# @method_decorator(login_required, name="dispatch")
-# class BookingUpdateView(UpdateView):
-#     model = Appointment
-#     fields = ["user", "status"]
-#     template_name = "user_appointments"
+@method_decorator(login_required, name="dispatch")
+class PatientReserveView(UserPassesTestMixin, UpdateView):
+    model = Appointment
+    fields = ["patient",]
+    reserve_form = ReserveForm()
+    template_name = "booking/reserve_appointment.html"
+    success_url = reverse_lazy("booking:patient_appointment_list")
 
-#     def get_success_url(self):
-#         return reverse_lazy(
-#             "user_appointments",
-#             kwargs={
-#                 "pk": self.object.pk,
-#             },
-#         )
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        context["form"] = self.reserve_form
+        context["form"].fields["patient"].initial = self.request.user
+        return context
 
-#     def get_queryset(self):
-#         return Appointment.objects.filter(status="confirmed").order_by("date")
-
-
-# def booking(request):
-#     context = {"appointments": Appointment.objects.all()}
-#     return render(request, "booking/booking.html", context)
-
-
-# def timeSlotsView(request):
-#     all_items = provider_timeSlots.objects.all()
-#     return render(request, "booking/provider_availability.html", {"item": all_items})
-
-
-# def addSlotView(request):
-#     x = request.POST["date"]
-#     y = request.POST["time_from"]
-#     z = request.POST["time_to"]
-#     new_item = provider_timeSlots(date=x, time_from=y, time_to=z)
-#     provider_timeSlots.add_to_class(new_item)
-#     return HttpResponseRedirect("timeSlotsView")
+    def test_func(self):
+        return not self.request.user.is_provider

@@ -4,15 +4,12 @@ from booking.views import (
     PatientAppointmentListView,
     AppointmentCreateView,
     ProviderAppointmentListView,
+    PatientReserveView,
 )
 
 app_name = "booking"
 
 urlpatterns = [
-    # path("", views.booking, name="patient-booking"),
-    # path("provider_availability", views.timeSlotsView, name="my_availability"),
-    # path("addTimeSlot", views.addSlotView, name="addTimeSlot"),
-    # path("appointments/<int:pk>", BookingUpdateView.as_view(), name="appointments"),
     path(
         "provider_appointment_list",
         ProviderAppointmentListView.as_view(),
@@ -27,5 +24,10 @@ urlpatterns = [
         "new_appointment",
         AppointmentCreateView.as_view(),
         name="new_appointment",
+    ),
+    path(
+        "reserve_appointment/<int:pk>",
+        PatientReserveView.as_view(),
+        name="reserve_appointment",
     ),
 ]
