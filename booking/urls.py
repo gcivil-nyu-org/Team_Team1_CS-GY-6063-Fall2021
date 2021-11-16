@@ -6,6 +6,7 @@ from booking.views import (
     PatientCancelView,
     PatientReserveView,
     ProviderAppointmentListView,
+    ProviderCancelView,
 )
 
 app_name = "booking"
@@ -35,5 +36,10 @@ urlpatterns = [
         "patient_cancel/<int:pk>",
         PatientCancelView.as_view(),
         name="patient_cancel",
+    ),
+    path(
+        "provider_cancel/<int:pk>",
+        ProviderCancelView.as_view(),
+        name="provider_cancel",
     ),
 ]

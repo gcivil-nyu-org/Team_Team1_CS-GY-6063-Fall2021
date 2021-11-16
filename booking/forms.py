@@ -7,5 +7,13 @@ class ReserveForm(forms.ModelForm):
         model = Appointment
         fields = ("patient",)
         widgets = {
-            "content": forms.HiddenInput(),
+            "patient": forms.HiddenInput(),
+        }
+
+class CancelForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = ("status",)
+        widgets = {
+            "status": forms.HiddenInput(),
         }

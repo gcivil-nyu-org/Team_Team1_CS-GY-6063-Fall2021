@@ -17,3 +17,8 @@ class Appointment(models.Model):
         related_name="patient",
     )
     meeting_link = models.URLField(blank=True)
+    status_option = {
+        ("active", "active"),
+        ("cancelled", "cancelled"),
+    }
+    status = models.CharField(max_length=10, choices=status_option, default="active")

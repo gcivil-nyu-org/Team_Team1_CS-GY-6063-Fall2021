@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView
 
-from booking.forms import ReserveForm
+from booking.forms import CancelForm, ReserveForm
 from booking.models import Appointment
 
 
@@ -97,3 +97,24 @@ class PatientCancelView(UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return not self.request.user.is_provider
+
+
+@method_decorator(login_required, name="dispatch")
+# class ProviderCancelView(UserPassesTestMixin, UpdateView):
+class ProviderCancelView(UpdateView):
+    model = Appointment
+    fields = [
+        "status",
+    ]
+    reserve_form = CancelForm()
+    template_name = "booking/provider_cancel.html"
+    success_url = reverse_lazy("booking:provider_appointment_list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = self.reserve_form
+        context["form"].fields["status"].initial = "cancelled"
+        return context
+
+    # def test_func(self):
+    #     return self.request.user.is_provider

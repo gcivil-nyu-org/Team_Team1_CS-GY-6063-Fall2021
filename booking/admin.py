@@ -13,4 +13,5 @@ class AppointmentAdmin(admin.ModelAdmin):
         "doctor",
         "patient",
         "meeting_link",
+        "status",
     )
