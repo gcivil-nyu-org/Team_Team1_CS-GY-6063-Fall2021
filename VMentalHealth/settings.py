@@ -164,11 +164,5 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 # must place in the last line
-# try:
-#     import django_heroku
-
-#     django_heroku.settings(locals())
-# except ImportError:
-#     found = False
 if "/app" in os.environ["HOME"]:
     django_heroku.settings(locals())
