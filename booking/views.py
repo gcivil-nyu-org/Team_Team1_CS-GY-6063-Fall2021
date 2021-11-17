@@ -56,6 +56,10 @@ class PatientAppointmentListView(UserPassesTestMixin, ListView):
                 patient__isnull=True,
                 status="active",
             ).order_by("-date"),
+            "cancelled_appointment": Appointment.objects.filter(
+                patient=self.request.user.id,
+                status="cancelled",
+            ).order_by("-date"),
         }
         return queryset
 
