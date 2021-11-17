@@ -164,18 +164,7 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 # must place in the last line
-# if "HEROKU" in os.environ:
-#     import django_heroku
-
-#     django_heroku.settings(locals())
-# elif "CI" in os.environ:
-#     import django_heroku
-
-#     django_heroku.settings(locals(), test_runner=False)
-
-# django_heroku.settings(locals(), test_runner=False)
 try:
-    # Configure Django App for Heroku.
     import django_heroku
 
     django_heroku.settings(locals())
