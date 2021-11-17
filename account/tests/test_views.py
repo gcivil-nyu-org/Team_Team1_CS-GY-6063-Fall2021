@@ -1,9 +1,9 @@
-from django.test import TestCase
-from django.urls import reverse
-from account.models import CustomizedUser
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
-from account.tokens import account_activation_token
+# from django.test import TestCase
+# from django.urls import reverse
+# from account.models import CustomizedUser
+# from django.utils.http import urlsafe_base64_encode
+# from django.utils.encoding import force_bytes
+# from account.tokens import account_activation_token
 
 # from django.core import mail
 #
