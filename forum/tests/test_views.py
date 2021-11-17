@@ -1,8 +1,8 @@
+from account.models import CustomizedUser
 from django.test import RequestFactory, TestCase
 from forum.forms import CommentForm
 from forum.models import Post
 from forum.views import PostCreateView, PostListView, PostUpdateView, PostView
-from account.models import CustomizedUser
 
 
 class CommentFormTest(TestCase):
