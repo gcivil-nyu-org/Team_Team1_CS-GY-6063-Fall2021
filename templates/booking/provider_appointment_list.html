@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container content">
+    <div class="row align-items-center">
+      <div class="col-6">
+        <div class="main_title">Provider Dashboard</div>
+      </div>
+      <div class="col-6">
+        <a class = "btn btn-primary" href="{% url 'booking:new_appointment' %}">Add New Slot</a>
+      </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="secondary_title">Upcoming Sessions</div>
+    </div>
+    <div class="row align-items-center form_title">
+        <div class="col-2">Date</div>
+        <div class="col-2">Start Time</div>
+        <div class="col-2">End Time</div>
+        <div class="col-2">Patient</div>
+        <div class="col-2">Meeting Link</div>
+    </div>
+    {% for appointment in object_list %}
+      {% if appointment.status == "active" and appointment.patient %}
+      <div class="row align-items-center form_entities">
+        <div class="col-2">
+            {{ appointment.date }}
+        </div>
+        <div class="col-2">
+            {{ appointment.start_time }}
+        </div>
+        <div class="col-2">
+            {{ appointment.end_time }}
+        </div>
+        <div class="col-2">
+            {{ appointment.patient }}
+        </div>
+        <div class="col-2">
+          <a class = "btn btn-primary" href="{{ appointment.meeting_link }}">Link</a>
+        </div>
+        <div class="col-2">
+            <a class = "btn btn-primary" href="{% url 'booking:provider_cancel' appointment.pk %}">Cancel</a>
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+    <div class="row align-items-center">
+        <div class="secondary_title">Unbooked Sessions</div>
+    </div>
+    <div class="row align-items-center form_title">
+        <div class="col-2">Date</div>
+        <div class="col-2">Start Time</div>
+        <div class="col-2">End Time</div>
+    </div>
+    {% for appointment in object_list %}
+      {% if appointment.status == "active" and not appointment.patient %}
+      <div class="row align-items-center form_entities">
+        <div class="col-2">
+            {{ appointment.date }}
+        </div>
+        <div class="col-2">
+            {{ appointment.start_time }}
+        </div>
+        <div class="col-2">
+            {{ appointment.end_time }}
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+    <div class="row align-items-center">
+        <div class="secondary_title">Cancelled Slots</div>
+    </div>
+    <div class="row align-items-center form_title">
+        <div class="col-2">Date</div>
+        <div class="col-2">Start Time</div>
+        <div class="col-2">End Time</div>
+    </div>
+    {% for appointment in object_list %}
+      {% if appointment.status == "cancelled" %}
+      <div class="row align-items-center form_entities">
+        <div class="col-2">
+            {{ appointment.date }}
+        </div>
+        <div class="col-2">
+            {{ appointment.start_time }}
+        </div>
+        <div class="col-2">
+            {{ appointment.end_time }}
+        </div>
+        <div class="col-2">
+            {{appointment.status}}
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+</div>
+{% endblock content %}

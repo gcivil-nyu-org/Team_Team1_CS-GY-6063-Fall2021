@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container content">
+  <div class="row">
+    <div class="main_title">Cancel Appointment</div>
+  </div>
+  <div class="row">
+    <div class="secondary_title">Are you sure you would like to cancel the following appointment:</div>
+  </div>
+  <div class="row card">
+    <div class="card-body col-6">
+      <div class = "form_entities">Date: {{ appointment.date }}</div>
+      <br>
+      <div class = "form_entities">Start time: {{ appointment.start_time }}</div>
+      <br>
+      <div class = "form_entities">End time: {{ appointment.end_time }}</div>
+      <br>
+      <div class = "form_entities">Provider: {{ appointment.doctor }}</div>
+      <br>
+      <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.patient.as_hidden}}
+          <button class="btn btn-primary" type="submit">Confirm</button>
+          <a class = "btn btn-primary" href="{% url 'booking:patient_appointment_list' %}">Go Back</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

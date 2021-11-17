@@ -1,5 +1,7 @@
 from django.contrib import admin
-from forum.models import Post, Comment
+from mptt.admin import MPTTModelAdmin
+
+from forum.models import Comment, Post
 
 
 @admin.register(Post)
@@ -7,19 +9,21 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = "created_at"
     list_display = (
         "id",
+        "title",
+        "slug",
         "created_at",
         "author",
-        "title",
         "content",
+        "status",
     )
 
 
 @admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
+class CommentAdmin(MPTTModelAdmin):
     list_display = (
         "id",
-        "created_at",
         "post",
         "author",
+        "created_at",
         "content",
     )

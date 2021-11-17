@@ -10,6 +10,8 @@
       <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
       <link rel="stylesheet" type="text/css" href="{% static 'styles/forum.css' %}">
       <link rel="stylesheet" type="text/css" href="{% static 'styles/profile.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'styles/registration.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'styles/booking.css' %}">
         {% if title %}
             <title> {{title}}</title>
         {% else %}
@@ -26,12 +28,15 @@
             {% else %}
             <a class="navbar-brand mr-4" href="{% url 'index' %}">Virtual Mental Health</a>
             {% endif %}
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <div class="navbar-nav mr-auto">
-                  <a class="nav-item nav-link" href="{% url 'post_list' %}">Forum</a>
+                  <a class="nav-item nav-link" href="{% url 'forum:post_list' %}">Forum</a>
+                  {% if request.user.is_authenticated and request.user.is_provider %}
+                  <a class="nav-item nav-link" href="{% url 'booking:provider_appointment_list' %}">Booking</a>
+                  {% elif request.user.is_authenticated and not request.user.is_provider %}
+                  <a class="nav-item nav-link" href="{% url 'booking:patient_appointment_list' %}">Booking</a>
+                  {% endif %}
                 </div>
                 <!-- Navbar Right Side -->
                 {% if request.user.is_authenticated %}
@@ -43,9 +48,6 @@
                 <div class="navbar-nav">
                   <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                   <a class="nav-item nav-link" href="{% url 'signup' %}">Register</a>
-                <!-- it's better to not show it on the menu bar
-                    <a class="nav-item nav-link" href="{% url 'password_reset' %}">Reset Password</a>
-                -->
                 </div>
                 {% endif %}
             </div>

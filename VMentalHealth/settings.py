@@ -41,12 +41,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # third party
-    "rest_framework",
     "imagekit",
+    "verify_email.apps.VerifyEmailConfig",  # for email verification
+    "mptt",
     # project app
-    "vmental",
+    "account",
     "forum",
+    "booking",
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -56,6 +59,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "VMentalHealth.urls"
@@ -128,17 +132,25 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+LOGIN_URL = "login"
+
 LOGIN_REDIRECT_URL = "profile"
 
 LOGOUT_REDIRECT_URL = "index"
+ALLOWED_HOSTS = [".herokuapp.com", "127.0.0.1"]
+AUTH_USER_MODEL = "account.CustomizedUser"
 
-AUTH_USER_MODEL = "vmental.CustomizedUser"
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
+STATIC_URL = "/static/"
 
 # for password reset function
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
@@ -152,4 +164,13 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 # must place in the last line
+# if "HEROKU" in os.environ:
+#     import django_heroku
+
+#     django_heroku.settings(locals())
+# elif "CI" in os.environ:
+#     import django_heroku
+
+#     django_heroku.settings(locals(), test_runner=False)
+
 django_heroku.settings(locals(), test_runner=False)

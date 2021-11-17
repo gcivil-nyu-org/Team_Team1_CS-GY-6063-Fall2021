@@ -4,13 +4,6 @@ body {
     /* margin-top: 5rem; */
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    color: #444444;
-  }
-
-  ul {
-    margin: 0;
-  }
 
   .bg-steel {
     background-color: #5f788a;
@@ -36,55 +29,9 @@ body {
     margin-bottom: 20px;
   }
 
-  .article-title {
-    color: #444444;
-  }
-
-  a.article-title:hover {
-    color: #428bca;
-    text-decoration: none;
-  }
-
-  .article-content {
-    white-space: pre-line;
-  }
-
-  .article-img {
-    height: 65px;
-    width: 65px;
-    margin-right: 16px;
-  }
-
-  .article-metadata {
-    padding-bottom: 1px;
-    margin-bottom: 4px;
-    border-bottom: 1px solid #e3e3e3
-  }
-
-  .article-metadata a:hover {
-    color: #333;
-    text-decoration: none;
-  }
-
-  .article-svg {
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-  }
-
-  .account-img {
-    height: 125px;
-    width: 125px;
-    margin-right: 20px;
-    margin-bottom: 16px;
-  }
-
-  .account-heading {
-    font-size: 2.5rem;
-  }
-
   .main_content{
-    margin-top: 55px;
+    position: static;
+
   }
   .home_img{
     background:url(../images/home_page_img.jpg) no-repeat center center fixed;
@@ -101,7 +48,31 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.login_head{
+
+.content{
+  margin-top: 55px;
+}
+.main_title{
   font-size: 36px;
   margin-top: 20px;
+}
+.secondary_title{
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.form_attribute{
+  font-size: 20px;
+  font-style: bold;
+  /* margin: 10px; */
+}
+
+.form_entities{
+  font-size: 18px;
+  margin: 5px;
+}
+
+.form_title{
+  font-size: 20px;
+  margin: 5px;
 }

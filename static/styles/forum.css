@@ -1,17 +1,3 @@
-.form_attribute{
-  font-size: 24px;
-  font-style: bold;
-  margin: 10px;
-}
-.forum_head{
-  font-size: 36px;
-  margin-top: 20px;
-}
-.form_entities{
-  font-size: 20px;
-  margin: 5px;
-}
-
 .post_detail_title{
   font-size: 36px;
 }
@@ -23,13 +9,14 @@
 .post_content{
   font-size: 20px;
   margin: 20px;
+  height:30vh;
 }
 .comments-title{
-  font-size: 24px;
+  font-size: 20px;
 }
 .comments-list{
   font-size: 20px;
 }
-.comments-content{
-
+.reply-content{
+  margin-left: auto;
 }
