@@ -48,23 +48,52 @@
         <div class="col-2">Provider</div>
     </div>
     {% for appointment in appointments.available_appointment %}
-    <div class="row align-items-center form_entities">
-        <div class="col-2">
-            {{ appointment.date }}
-        </div>
-        <div class="col-2">
-            {{ appointment.start_time }}
-        </div>
-        <div class="col-2">
-            {{ appointment.end_time }}
-        </div>
-        <div class="col-2">
-            {{ appointment.doctor }}
-        </div>
-        <div class="col-2">
-            <a class = "btn btn-primary" href="{% url 'booking:reserve_appointment' appointment.pk %}">Book</a>
-        </div>
+      {% if appointment.status == 'active' %}
+      <div class="row align-items-center form_entities">
+          <div class="col-2">
+              {{ appointment.date }}
+          </div>
+          <div class="col-2">
+              {{ appointment.start_time }}
+          </div>
+          <div class="col-2">
+              {{ appointment.end_time }}
+          </div>
+          <div class="col-2">
+              {{ appointment.doctor }}
+          </div>
+          <div class="col-2">
+              <a class = "btn btn-primary" href="{% url 'booking:reserve_appointment' appointment.pk %}">Book</a>
+          </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+    <div class="row align-items-center">
+        <div class="secondary_title">Cancelled by Provider</div>
     </div>
+    <div class="row align-items-center form_title">
+        <div class="col-2">Date</div>
+        <div class="col-2">Start Time</div>
+        <div class="col-2">End Time</div>
+        <div class="col-2">Provider</div>
+    </div>
+    {% for appointment in appointments.available_appointment %}
+      {% if appointment.status == 'cancelled' %}
+      <div class="row align-items-center form_entities">
+          <div class="col-2">
+              {{ appointment.date }}
+          </div>
+          <div class="col-2">
+              {{ appointment.start_time }}
+          </div>
+          <div class="col-2">
+              {{ appointment.end_time }}
+          </div>
+          <div class="col-2">
+              {{ appointment.doctor }}
+          </div>
+      </div>
+      {% endif %}
     {% endfor %}
 </div>
 {% endblock content %}
