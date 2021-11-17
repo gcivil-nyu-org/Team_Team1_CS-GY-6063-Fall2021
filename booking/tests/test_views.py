@@ -164,6 +164,12 @@ class PatientListViewTest(TestCase):
                 "-date"
             ),
         )
+        self.assertQuerysetEqual(
+            qs1.get("cancelled_appointment"),
+            Appointment.objects.filter(
+                patient=self.patient1, status="cancelled"
+            ).order_by("-date"),
+        )
         request2 = self.factory.get("/booking/patient_appointment_list")
         request2.user = self.patient2
         view2 = PatientAppointmentListView()
@@ -174,6 +180,12 @@ class PatientListViewTest(TestCase):
             Appointment.objects.filter(patient=self.patient2, status="active").order_by(
                 "-date"
             ),
+        )
+        self.assertQuerysetEqual(
+            qs2.get("cancelled_appointment"),
+            Appointment.objects.filter(
+                patient=self.patient2, status="cancelled"
+            ).order_by("-date"),
         )
 
 
