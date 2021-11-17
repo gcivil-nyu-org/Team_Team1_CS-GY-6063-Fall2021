@@ -1,6 +1,13 @@
 from account.models import CustomizedUser
 from booking.models import Appointment
-from booking.views import ProviderAppointmentListView, PatientAppointmentListView, AppointmentCreateView, PatientReserveView, PatientCancelView, ProviderCancelView
+from booking.views import (
+    ProviderAppointmentListView,
+    PatientAppointmentListView,
+    AppointmentCreateView,
+    PatientReserveView,
+    PatientCancelView,
+    ProviderCancelView,
+)
 from django.test import RequestFactory, TestCase
 
 
@@ -57,13 +64,17 @@ class ProviderListViewTest(TestCase):
         view1 = ProviderAppointmentListView()
         view1.request = request1
         qs1 = view1.get_queryset()
-        self.assertQuerysetEqual(qs1, Appointment.objects.filter(doctor=self.prov1).order_by("-date"))
+        self.assertQuerysetEqual(
+            qs1, Appointment.objects.filter(doctor=self.prov1).order_by("-date")
+        )
         request2 = self.factory.get("/booking/provider_appointment_list")
         request2.user = self.prov2
         view2 = ProviderAppointmentListView()
         view2.request = request2
         qs2 = view2.get_queryset()
-        self.assertQuerysetEqual(qs2, Appointment.objects.filter(doctor=self.prov2).order_by("-date"))
+        self.assertQuerysetEqual(
+            qs2, Appointment.objects.filter(doctor=self.prov2).order_by("-date")
+        )
 
     def test_test_func(self):
         request = self.factory.get("/booking/provider_appointment_list")
@@ -71,6 +82,7 @@ class ProviderListViewTest(TestCase):
         view = ProviderAppointmentListView()
         view.request = request
         self.assertTrue(view.test_func())
+
 
 class PatientListViewTest(TestCase):
     def setUp(self) -> None:
@@ -146,13 +158,23 @@ class PatientListViewTest(TestCase):
         view1 = PatientAppointmentListView()
         view1.request = request1
         qs1 = view1.get_queryset()
-        self.assertQuerysetEqual(qs1.get("upcoming_appointment"), Appointment.objects.filter(patient=self.patient1, status="active").order_by("-date"))
+        self.assertQuerysetEqual(
+            qs1.get("upcoming_appointment"),
+            Appointment.objects.filter(patient=self.patient1, status="active").order_by(
+                "-date"
+            ),
+        )
         request2 = self.factory.get("/booking/patient_appointment_list")
         request2.user = self.patient2
         view2 = PatientAppointmentListView()
         view2.request = request2
         qs2 = view2.get_queryset()
-        self.assertQuerysetEqual(qs2.get("upcoming_appointment"), Appointment.objects.filter(patient=self.patient2, status="active").order_by("-date"))
+        self.assertQuerysetEqual(
+            qs2.get("upcoming_appointment"),
+            Appointment.objects.filter(patient=self.patient2, status="active").order_by(
+                "-date"
+            ),
+        )
 
 
 class AppointmentCreateViewTest(TestCase):
@@ -174,7 +196,7 @@ class AppointmentCreateViewTest(TestCase):
     def test_form_valid(self):
         post_data = {
             "date": "2021-11-20",
-            "start_time":"9:00:00",
+            "start_time": "9:00:00",
             "end_time": "12:00:00",
             "doctor": self.prov,
             "status": "active",
@@ -221,6 +243,7 @@ class PatientReserveViewTest(TestCase):
         self.assertIsInstance(response.context_data, dict)
         self.assertEqual(len(response.context_data), 4)
 
+
 class PatientCancelViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
@@ -256,6 +279,7 @@ class PatientCancelViewTest(TestCase):
         response = PatientCancelView.as_view()(request, pk=self.app.pk)
         self.assertIsInstance(response.context_data, dict)
         self.assertEqual(len(response.context_data), 4)
+
 
 class ProviderCancelViewTest(TestCase):
     def setUp(self) -> None:
