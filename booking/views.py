@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView
 
-from booking.forms import CancelForm, ReserveForm
+from booking.forms import CancelForm, ReserveForm, BookForm
 from booking.models import Appointment
 
 
@@ -30,7 +30,13 @@ class AppointmentCreateView(UserPassesTestMixin, CreateView):
         "end_time",
         "meeting_link",
     ]
+    book_form = BookForm()
     success_url = reverse_lazy("booking:provider_appointment_list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = self.book_form
+        return context
 
     def form_valid(self, form):
         form.instance.doctor = self.request.user
