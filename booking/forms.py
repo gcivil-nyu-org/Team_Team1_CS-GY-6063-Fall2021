@@ -28,17 +28,13 @@ class BookForm(forms.ModelForm):
                 attrs={"type": "date"},
                 format="%Y-%m-%dT",
             ),
-            "start_time": forms.TimeInput(
-                attrs={'type': 'time'}
-            ),
-            "end_time": forms.TimeInput(
-                attrs={'type': 'time'}
-            ),
-            "meeting_link": forms.TextInput(
-                attrs={'type': 'text'}
-            ),
+            "start_time": forms.TimeInput(attrs={"type": "time"}),
+            "end_time": forms.TimeInput(attrs={"type": "time"}),
+            "meeting_link": forms.TextInput(attrs={"type": "text"}),
         }
-        fields = ("date",
-                "start_time",
-                "end_time",
-                "meeting_link",)
+        fields = (
+            "date",
+            "start_time",
+            "end_time",
+            "meeting_link",
+        )
