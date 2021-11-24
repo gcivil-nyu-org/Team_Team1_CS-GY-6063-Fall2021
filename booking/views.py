@@ -14,7 +14,7 @@ class ProviderAppointmentListView(UserPassesTestMixin, ListView):
     template_name = "booking/provider_appointment_list.html"
 
     def get_queryset(self):
-        return Appointment.objects.filter(doctor=self.request.user.id)
+        return Appointment.objects.filter(doctor=self.request.user.id).order_by("-date")
 
     def test_func(self):
         return self.request.user.is_provider
@@ -49,9 +49,17 @@ class PatientAppointmentListView(UserPassesTestMixin, ListView):
     def get_queryset(self):
         queryset = {
             "upcoming_appointment": Appointment.objects.filter(
-                patient=self.request.user.id
-            ),
-            "available_appointment": Appointment.objects.filter(patient__isnull=True),
+                patient=self.request.user.id,
+                status="active",
+            ).order_by("-date"),
+            "available_appointment": Appointment.objects.filter(
+                patient__isnull=True,
+                status="active",
+            ).order_by("-date"),
+            "cancelled_appointment": Appointment.objects.filter(
+                patient=self.request.user.id,
+                status="cancelled",
+            ).order_by("-date"),
         }
         return queryset
 

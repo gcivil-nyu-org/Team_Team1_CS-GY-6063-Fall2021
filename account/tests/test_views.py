@@ -5,10 +5,6 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from account.tokens import account_activation_token
 
-# from django.core import mail
-#
-# from vmental.views import signup
-
 
 class test_email_functions(TestCase):
     def create_user(self):
