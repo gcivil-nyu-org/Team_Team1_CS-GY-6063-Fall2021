@@ -11,7 +11,7 @@ from account.views import (
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
     path("auth/", include("django.contrib.auth.urls")),
-    # path("auth/signup/", signup, name="signup"),
+    # path("auth/signup/", signup.as_view(), name="signup"),
     path("auth/signup/", SignUpView.as_view(), name="signup"),
-    path("activate/<uidb64>/<token>/", activate, name="activate"),
+    path("activate/<uidb64>/<token>/", activate.as_view(), name="activate"),
 ]

@@ -21,9 +21,7 @@ class PostModelTests(TestCase):
     def test__str__(self):
         test_user = CustomizedUser.objects.create_user(username="teset_user")
         post = Post.objects.create(
-            author=test_user,
-            title="test_title",
-            content="test_content",
+            author=test_user, title="test_title", content="test_content",
         )
         post.save()
         self.assertEqual("1 teset_user: test_title \n test_content", str(post))
@@ -31,9 +29,7 @@ class PostModelTests(TestCase):
     def test_get_comments_count(self):
         test_user = CustomizedUser.objects.create_user(username="teset_user")
         post = Post.objects.create(
-            author=test_user,
-            title="test_title",
-            content="test_content",
+            author=test_user, title="test_title", content="test_content",
         )
         post.save()
         comment_1 = Comment.objects.create(
