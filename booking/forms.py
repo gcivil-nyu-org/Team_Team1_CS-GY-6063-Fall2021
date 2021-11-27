@@ -18,3 +18,23 @@ class CancelForm(forms.ModelForm):
         widgets = {
             "status": forms.HiddenInput(),
         }
+
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        widgets = {
+            "date": forms.DateInput(
+                attrs={"type": "date"},
+                format="%Y-%m-%dT",
+            ),
+            "start_time": forms.TimeInput(attrs={"type": "time"}),
+            "end_time": forms.TimeInput(attrs={"type": "time"}),
+            "meeting_link": forms.TextInput(attrs={"type": "text"}),
+        }
+        fields = (
+            "date",
+            "start_time",
+            "end_time",
+            "meeting_link",
+        )
