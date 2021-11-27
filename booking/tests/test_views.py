@@ -193,9 +193,7 @@ class AppointmentCreateViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
         self.prov = CustomizedUser.objects.create_user(
-            username="test_provider",
-            email="test_provider@email.com",
-            is_provider=True,
+            username="test_provider", email="test_provider@email.com", is_provider=True,
         )
 
     def test_test_func(self):
@@ -224,14 +222,10 @@ class PatientReserveViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
         self.prov = CustomizedUser.objects.create_user(
-            username="test_provider",
-            email="test_provider@email.com",
-            is_provider=True,
+            username="test_provider", email="test_provider@email.com", is_provider=True,
         )
         self.patient = CustomizedUser.objects.create_user(
-            username="test_patient",
-            email="test_patient@email.com",
-            is_provider=False,
+            username="test_patient", email="test_patient@email.com", is_provider=False,
         )
         self.app = Appointment.objects.create(
             date="2021-11-20",
@@ -260,14 +254,10 @@ class PatientCancelViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
         self.prov = CustomizedUser.objects.create_user(
-            username="test_provider",
-            email="test_provider@email.com",
-            is_provider=True,
+            username="test_provider", email="test_provider@email.com", is_provider=True,
         )
         self.patient = CustomizedUser.objects.create_user(
-            username="test_patient",
-            email="test_patient@email.com",
-            is_provider=False,
+            username="test_patient", email="test_patient@email.com", is_provider=False,
         )
         self.app = Appointment.objects.create(
             date="2021-11-20",
@@ -297,14 +287,10 @@ class ProviderCancelViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
         self.prov = CustomizedUser.objects.create_user(
-            username="test_provider",
-            email="test_provider@email.com",
-            is_provider=True,
+            username="test_provider", email="test_provider@email.com", is_provider=True,
         )
         self.patient = CustomizedUser.objects.create_user(
-            username="test_patient",
-            email="test_patient@email.com",
-            is_provider=False,
+            username="test_patient", email="test_patient@email.com", is_provider=False,
         )
         self.app = Appointment.objects.create(
             date="2021-11-20",
