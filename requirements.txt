@@ -8,5 +8,3 @@ Django-Verify-Email
 django.utils.six
 django-mptt
 django-six
-bootstrap4
-bootstrap_datepicker_plus

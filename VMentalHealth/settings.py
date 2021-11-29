@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     "account",
     "forum",
     "booking",
-    "bootstrap4",
-    "bootstrap_datepicker_plus",
 ]
 
 
