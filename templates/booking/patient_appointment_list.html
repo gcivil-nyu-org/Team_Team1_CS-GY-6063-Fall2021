@@ -2,6 +2,15 @@
 {% load static %}
 
 {% block content %}
+
+{% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+
 <div class="container content">
     <div class="row align-items-center">
         <div class="main_title">Patient Dashboard</div>
@@ -16,6 +25,7 @@
         <div class="col-2">Provider</div>
         <div class="col-2">Meeting Link</div>
     </div>
+    
     {% for appointment in appointments.upcoming_appointment %}
     <div class="row align-items-center form_entities">
         <div class="col-2">
