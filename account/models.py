@@ -3,7 +3,6 @@ from django.db.models.fields import (
     BooleanField,
     CharField,
     DateField,
-    DateTimeField,
     EmailField,
 )
 from imagekit.models import ProcessedImageField
