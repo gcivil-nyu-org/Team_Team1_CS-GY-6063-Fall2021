@@ -15,16 +15,47 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Appointment',
+            name="Appointment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField()),
-                ('start_time', models.TimeField()),
-                ('end_time', models.TimeField()),
-                ('meeting_link', models.URLField(blank=True)),
-                ('status', models.CharField(choices=[('cancelled', 'cancelled'), ('active', 'active')], default='active', max_length=10)),
-                ('doctor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='doctor', to=settings.AUTH_USER_MODEL)),
-                ('patient', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='patient', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField()),
+                ("start_time", models.TimeField()),
+                ("end_time", models.TimeField()),
+                ("meeting_link", models.URLField(blank=True)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("cancelled", "cancelled"), ("active", "active")],
+                        default="active",
+                        max_length=10,
+                    ),
+                ),
+                (
+                    "doctor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="doctor",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "patient",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="patient",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

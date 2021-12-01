@@ -26,7 +26,10 @@ class PostView(FormMixin, DetailView):
     form_class = CommentForm
 
     def get_success_url(self):
-        return reverse_lazy("forum:post_detail", kwargs={"slug": self.object.slug},)
+        return reverse_lazy(
+            "forum:post_detail",
+            kwargs={"slug": self.object.slug},
+        )
 
     def get_context_data(self, **kwargs):
         context = super(PostView, self).get_context_data(**kwargs)
@@ -65,7 +68,12 @@ class PostUpdateView(UpdateView):
     template_name_suffix = "_update"
 
     def get_success_url(self):
-        return reverse_lazy("forum:post_detail", kwargs={"slug": self.object.slug, },)
+        return reverse_lazy(
+            "forum:post_detail",
+            kwargs={
+                "slug": self.object.slug,
+            },
+        )
 
 
 @method_decorator(login_required, name="dispatch")
@@ -84,7 +92,10 @@ class PostCreateView(CreateView):
     ]
 
     def get_success_url(self):
-        return reverse_lazy("forum:post_detail", kwargs={"slug": self.object.slug},)
+        return reverse_lazy(
+            "forum:post_detail",
+            kwargs={"slug": self.object.slug},
+        )
 
     def form_valid(self, form):
         author = self.request.user

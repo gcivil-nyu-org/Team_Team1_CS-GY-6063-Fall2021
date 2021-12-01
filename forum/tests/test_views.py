@@ -35,15 +35,21 @@ class PostListViewTests(TestCase):
     def test_get_queryset(self):
         test_user = CustomizedUser.objects.create_user(username="test_user")
         post_1 = Post.objects.create(
-            author=test_user, title="test_title_1", content="test_content_1",
+            author=test_user,
+            title="test_title_1",
+            content="test_content_1",
         )
         post_1.save()
         post_2 = Post.objects.create(
-            author=test_user, title="test_title_2", content="test_content_2",
+            author=test_user,
+            title="test_title_2",
+            content="test_content_2",
         )
         post_2.save()
         post_3 = Post.objects.create(
-            author=test_user, title="test_title_3", content="test_content_3",
+            author=test_user,
+            title="test_title_3",
+            content="test_content_3",
         )
         post_3.save()
         request = RequestFactory().get("/forum/")
@@ -84,7 +90,9 @@ class PostViewTest(TestCase):
         self.factory = RequestFactory()
         self.user = CustomizedUser.objects.create_user(username="test_user")
         self.post = Post.objects.create(
-            author=self.user, title="test post title", content="test post content",
+            author=self.user,
+            title="test post title",
+            content="test post content",
         )
 
     def test_form_valid(self):

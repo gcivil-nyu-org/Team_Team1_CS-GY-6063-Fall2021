@@ -1,8 +1,16 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models.fields import BooleanField, CharField, DateField, DateTimeField, EmailField
+from django.db.models.fields import (
+    BooleanField,
+    CharField,
+    DateField,
+    DateTimeField,
+    EmailField,
+)
 from imagekit.models import ProcessedImageField
 from django.core.validators import MaxValueValidator
 from datetime import date
+
+
 class CustomizedUser(AbstractUser):
     email = EmailField(max_length=200, unique=True)
     date_of_birth = DateField(validators=[MaxValueValidator(limit_value=date.today)])

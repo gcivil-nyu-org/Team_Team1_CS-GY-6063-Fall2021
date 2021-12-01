@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from account.forms import DateInput
 from account.models import CustomizedUser
 
+
 class ProfileView(TemplateView, LoginRequiredMixin):
     template_name = "profile.html"
     model = CustomizedUser
@@ -19,7 +20,9 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     fields = ["first_name", "last_name", "date_of_birth", "phone_number"]
     success_url = reverse_lazy("profile")
     widgets = {
-            'date_of_birth': DateInput(),
-            'date_of_birth': DateField(validators=[MaxValueValidator(limit_value=date.today)]),
-            'date_of_birth': forms.DateInput(attrs={'class':'datepicker'}),
-        }
+        "date_of_birth": DateInput(),
+        "date_of_birth": DateField(
+            validators=[MaxValueValidator(limit_value=date.today)]
+        ),
+        "date_of_birth": forms.DateInput(attrs={"class": "datepicker"}),
+    }
