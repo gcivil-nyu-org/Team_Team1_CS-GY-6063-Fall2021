@@ -1,16 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="container content">
-  <div class="row">
-    <div class="main_title">Sign Up</div>
-  </div>
-  <div class="row">
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary" type="submit">Sign up</button>
-    </form>
+  <div class = "form_container ">
+    <div class="row justify-content-center">
+      <div class="main_title">Sign Up</div>
+    </div>
+    <div class="row justify-content-center">
+      <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <!-- {{ form.as_p }} -->
+          <div class="row field">
+          {% for field in form  %}
+            <div class="col-md-5 offset-md-1">
+              <b>{{ field.label_tag }}</b> {{ field }}
+            </div>
+          {% endfor %}
+          </div>
+          <div class="row justify-content-center">
+            <button class="btn btn-primary" type="submit">Sign up</button>
+          </div>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %}
