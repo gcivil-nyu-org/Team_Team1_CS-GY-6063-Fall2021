@@ -8,3 +8,4 @@ Django-Verify-Email
 django.utils.six
 django-mptt
 django-six
+django-phone-verify==0.1.1
