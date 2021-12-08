@@ -170,7 +170,7 @@ CELERY_RESULT_BACKEND = "django-db"
 CELERY_CACHE_BACKEND = "django-cache"
 
 BROKER_POOL_LIMIT = 3
-# BROKER_URL =
+BROKER_URL = "amqps://magjsbbl:jxBiNrSnImeHgpv4RhPdJ2zEG5ZhZz4t@fox.rmq.cloudamqp.com/magjsbbl"
 
 # must place in the last line
 if "/app" in os.environ["HOME"]:
