@@ -1,12 +1,15 @@
+import datetime
+
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator
-from django.db.models.fields import BooleanField, CharField, DateField, EmailField
+from django.db.models.fields import (BooleanField, CharField, DateField,
+                                     EmailField)
 from imagekit.models import ProcessedImageField
-from utils.time_helpers import utc_now
+
 
 class CustomizedUser(AbstractUser):
     email = EmailField(max_length=200, unique=True)
-    date_of_birth = DateField(validators=[MaxValueValidator(limit_value=utc_now().date())])
+    date_of_birth = DateField(validators=[MaxValueValidator(limit_value=datetime.date.today())], null=True)
     GENDER_CHOICES = {
         ("M", "Male"),
         ("F", "Female"),
