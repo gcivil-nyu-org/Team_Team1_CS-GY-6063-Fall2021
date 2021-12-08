@@ -1,7 +1,7 @@
 from datetime import date
 from django.core.validators import MaxValueValidator
 from django.db.models.fields import DateField
-from django.views.generic import TemplateView, UpdateView, ListView
+from django.views.generic import UpdateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from account.models import CustomizedUser
