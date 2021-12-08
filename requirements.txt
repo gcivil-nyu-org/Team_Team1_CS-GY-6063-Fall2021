@@ -1,6 +1,7 @@
 gunicorn
 djangorestframework
 psycopg2
+Django==3.2.8
 django-heroku
 pillow
 django-imagekit
