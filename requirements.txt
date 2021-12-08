@@ -8,3 +8,4 @@ Django-Verify-Email
 django.utils.six
 django-mptt
 django-six
+phonenumber_field.modelfields
