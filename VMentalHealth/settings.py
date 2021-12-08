@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third party
     "imagekit",
-    "verify_email.apps.VerifyEmailConfig",  # for email verification
+    #"verify_email.apps.VerifyEmailConfig",  # for email verification
     "mptt",
     "crispy_forms",
     # project app
