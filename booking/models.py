@@ -1,9 +1,16 @@
+import datetime
+
+from django.core.exceptions import ValidationError
+
 from account.models import CustomizedUser
+from django.core.validators import MinValueValidator
 from django.db import models
+
+from utils.time_helpers import utc_now
 
 
 class Appointment(models.Model):
-    date = models.DateField()
+    date = models.DateField(validators=[MinValueValidator(limit_value=utc_now().date() + datetime.timedelta(days=1))])
     start_time = models.TimeField()
     end_time = models.TimeField()
     doctor = models.ForeignKey(

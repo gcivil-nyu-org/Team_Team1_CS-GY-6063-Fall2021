@@ -1,6 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm
-from account.models import CustomizedUser
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+
+from account.models import CustomizedUser
 
 
 class DateInput(forms.DateInput):

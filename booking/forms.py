@@ -1,6 +1,8 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from booking.models import Appointment
 
+import datetime
 
 class ReserveForm(forms.ModelForm):
     class Meta:
@@ -38,3 +40,14 @@ class BookForm(forms.ModelForm):
             "end_time",
             "meeting_link",
         )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get("date")
+        start_time = cleaned_data.get("start_time")
+        start_datetime = datetime.datetime.combine(date, start_time)
+        end_time = self.cleaned_data.get("end_time")
+        end_datetime = datetime.datetime.combine(date, end_time)
+
+        if date <= datetime.date.today() or start_datetime <= datetime.datetime.now() or end_datetime <= start_datetime:
+            raise ValidationError("Invalid appointment time")
