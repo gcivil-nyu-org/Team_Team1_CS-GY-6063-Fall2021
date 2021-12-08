@@ -29,9 +29,6 @@ SECRET_KEY = "django-insecure-m&1k@b4lpnnec+i7v3es!#wo6@uk_m70mkra#omlbxfl3tl$w0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -169,8 +166,7 @@ EMAIL_USE_SSL = False
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_CACHE_BACKEND = "django-cache"
 
-BROKER_POOL_LIMIT = 3
-BROKER_URL = "amqps://magjsbbl:jxBiNrSnImeHgpv4RhPdJ2zEG5ZhZz4t@fox.rmq.cloudamqp.com/magjsbbl"
+CELERY_BROKER_URL = "amqps://magjsbbl:jxBiNrSnImeHgpv4RhPdJ2zEG5ZhZz4t@fox.rmq.cloudamqp.com/magjsbbl"
 
 # must place in the last line
 if "/app" in os.environ["HOME"]:
