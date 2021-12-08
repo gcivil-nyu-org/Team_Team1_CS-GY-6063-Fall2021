@@ -14,7 +14,7 @@ celery_app = Celery(
     result_backend="amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv",
 )
 celery_app.config_from_object(settings, namespace="CELERY")
-app.conf.update(BROKER_URL="amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv",
+celery_app.conf.update(BROKER_URL="amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv",
                 CELERY_RESULT_BACKEND="amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv"
 celery_app.conf.beat_schedule = {
     "appointments_update_task": {
