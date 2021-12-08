@@ -8,7 +8,11 @@ from django.conf import settings
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "VMentalHealth.settings")
 
-celery_app = Celery("VMentalHealth")
+celery_app = Celery(
+    "VMentalHealth",
+    broker="amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv",
+    result_backend="amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv",
+)
 celery_app.config_from_object(settings, namespace="CELERY")
 celery_app.conf.beat_schedule = {
     "appointments_update_task": {
