@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "imagekit",
     "verify_email.apps.VerifyEmailConfig",  # for email verification
     "mptt",
+    "crispy_forms",
     # project app
     "account",
     "forum",
