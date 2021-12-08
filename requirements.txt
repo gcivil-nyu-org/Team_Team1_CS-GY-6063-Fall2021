@@ -10,4 +10,4 @@ django.utils.six
 django-mptt
 django-six
 django-phone-verify==0.1.1
-django-crispy-form
+django-crispy-forms
