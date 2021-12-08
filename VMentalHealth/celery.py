@@ -19,6 +19,7 @@ celery_app.conf.beat_schedule = {
 
 celery_app.autodiscover_tasks()
 
+
 @celery_app.task(bind=True)
 def debug_task(self):
-    print('Request: {0!r}'.format(self.request))
+    print("Request: {0!r}".format(self.request))

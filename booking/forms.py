@@ -4,6 +4,7 @@ from booking.models import Appointment
 
 import datetime
 
+
 class ReserveForm(forms.ModelForm):
     class Meta:
         model = Appointment
@@ -49,5 +50,9 @@ class BookForm(forms.ModelForm):
         end_time = self.cleaned_data.get("end_time")
         end_datetime = datetime.datetime.combine(date, end_time)
 
-        if date <= datetime.date.today() or start_datetime <= datetime.datetime.now() or end_datetime <= start_datetime:
+        if (
+            date <= datetime.date.today()
+            or start_datetime <= datetime.datetime.now()
+            or end_datetime <= start_datetime
+        ):
             raise ValidationError("Invalid appointment time")

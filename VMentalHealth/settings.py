@@ -15,7 +15,6 @@ from pathlib import Path
 
 import django_heroku
 
-from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -169,6 +168,9 @@ EMAIL_USE_SSL = False
 
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_CACHE_BACKEND = "django-cache"
+
+BROKER_POOL_LIMIT = 3
+# BROKER_URL =
 
 # must place in the last line
 if "/app" in os.environ["HOME"]:

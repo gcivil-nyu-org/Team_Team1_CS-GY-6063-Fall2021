@@ -8,18 +8,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('booking', '0003_alter_appointment_status'),
+        ("booking", "0003_alter_appointment_status"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='appointment',
-            name='date',
-            field=models.DateField(validators=[django.core.validators.MinValueValidator(limit_value=datetime.date(2021, 12, 7))]),
+            model_name="appointment",
+            name="date",
+            field=models.DateField(
+                validators=[
+                    django.core.validators.MinValueValidator(
+                        limit_value=datetime.date(2021, 12, 7)
+                    )
+                ]
+            ),
         ),
         migrations.AlterField(
-            model_name='appointment',
-            name='status',
-            field=models.CharField(choices=[('cancelled', 'cancelled'), ('active', 'active'), ('expired', 'expired')], default='active', max_length=10),
+            model_name="appointment",
+            name="status",
+            field=models.CharField(
+                choices=[
+                    ("cancelled", "cancelled"),
+                    ("active", "active"),
+                    ("expired", "expired"),
+                ],
+                default="active",
+                max_length=10,
+            ),
         ),
     ]

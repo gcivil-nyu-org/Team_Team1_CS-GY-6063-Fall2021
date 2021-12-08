@@ -3,7 +3,6 @@ from __future__ import absolute_import, unicode_literals
 import datetime
 
 from celery import shared_task
-from celery.schedules import crontab
 
 from booking.models import Appointment
 
@@ -11,7 +10,7 @@ from booking.models import Appointment
 @shared_task
 def appointments_update():
     Appointment.objects.filter(
-        status='active',
+        status="active",
         date__range=["2000-01-01", datetime.date.today().strftime("%Y-%m-%d")],
-        start_time__range=["00:00:00",datetime.datetime.now().time()],
-    ).update(status='expired')
+        start_time__range=["00:00:00", datetime.datetime.now().time()],
+    ).update(status="expired")
