@@ -170,6 +170,8 @@ CELERY_BROKER_URL = (
     "amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv"
 )
 
+BROKER_URL = "amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv"
+
 # must place in the last line
 if "/app" in os.environ["HOME"]:
     django_heroku.settings(locals())
