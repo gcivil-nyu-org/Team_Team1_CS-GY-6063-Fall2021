@@ -1,6 +1,8 @@
 from django import forms
 from booking.models import Appointment
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class ReserveForm(forms.ModelForm):
     class Meta:
@@ -35,3 +37,4 @@ class BookForm(forms.ModelForm):
             "end_time",
             "meeting_link",
         )
+        
