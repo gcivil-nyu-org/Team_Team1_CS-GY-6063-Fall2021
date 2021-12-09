@@ -1,17 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="home_img"></div>
 <div class="container content">
-  <div class="row">
-    <div class="main_title">Edit Profile</div>
-  </div>
-  <div class="row">
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a class="btn btn-primary" href="{% url 'profile' %}" role="button">Cancel</a>
-    </form>
+  <div class="form_container">
+    <div class="row justify-content-center">
+      <div class="main_title">Edit Profile</div>
+    </div>
+    <div class="row justify-content-center">
+      <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <button type="submit" class="btn btn-block">Update</button>
+            </div>
+            <div class="col-6">
+              <a class="btn btn-block" href="{% url 'profile' %}" role="button">Cancel</a>
+            </div>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock content %}

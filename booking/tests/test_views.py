@@ -18,11 +18,13 @@ class ProviderListViewTest(TestCase):
             username="test_provider1",
             email="test_provider1@email.com",
             is_provider=True,
+            date_of_birth="1994-10-10",
         )
         self.prov2 = CustomizedUser.objects.create_user(
             username="test_provider2",
             email="test_provider2@email.com",
             is_provider=True,
+            date_of_birth="1994-10-10",
         )
 
         self.app_1 = Appointment.objects.create(
@@ -91,21 +93,25 @@ class PatientListViewTest(TestCase):
             username="test_provider1",
             email="test_provider1@email.com",
             is_provider=True,
+            date_of_birth="1994-10-10",
         )
         self.prov2 = CustomizedUser.objects.create_user(
             username="test_provider2",
             email="test_provider2@email.com",
             is_provider=True,
+            date_of_birth="1994-10-10",
         )
         self.patient1 = CustomizedUser.objects.create_user(
             username="test_patient1",
             email="test_patient1@email.com",
             is_provider=False,
+            date_of_birth="1994-10-10",
         )
         self.patient2 = CustomizedUser.objects.create_user(
             username="test_patient2",
             email="test_patient2@email.com",
             is_provider=False,
+            date_of_birth="1994-10-10",
         )
 
         self.app_1 = Appointment.objects.create(
@@ -193,7 +199,10 @@ class AppointmentCreateViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
         self.prov = CustomizedUser.objects.create_user(
-            username="test_provider", email="test_provider@email.com", is_provider=True,
+            username="test_provider",
+            email="test_provider@email.com",
+            is_provider=True,
+            date_of_birth="1994-10-10",
         )
 
     def test_test_func(self):
@@ -222,10 +231,16 @@ class PatientReserveViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
         self.prov = CustomizedUser.objects.create_user(
-            username="test_provider", email="test_provider@email.com", is_provider=True,
+            username="test_provider",
+            email="test_provider@email.com",
+            is_provider=True,
+            date_of_birth="1994-10-10",
         )
         self.patient = CustomizedUser.objects.create_user(
-            username="test_patient", email="test_patient@email.com", is_provider=False,
+            username="test_patient",
+            email="test_patient@email.com",
+            is_provider=False,
+            date_of_birth="1994-10-10",
         )
         self.app = Appointment.objects.create(
             date="2021-11-20",
@@ -254,10 +269,16 @@ class PatientCancelViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
         self.prov = CustomizedUser.objects.create_user(
-            username="test_provider", email="test_provider@email.com", is_provider=True,
+            username="test_provider",
+            email="test_provider@email.com",
+            is_provider=True,
+            date_of_birth="1994-10-10",
         )
         self.patient = CustomizedUser.objects.create_user(
-            username="test_patient", email="test_patient@email.com", is_provider=False,
+            username="test_patient",
+            email="test_patient@email.com",
+            is_provider=False,
+            date_of_birth="1994-10-10",
         )
         self.app = Appointment.objects.create(
             date="2021-11-20",
@@ -287,10 +308,16 @@ class ProviderCancelViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
         self.prov = CustomizedUser.objects.create_user(
-            username="test_provider", email="test_provider@email.com", is_provider=True,
+            username="test_provider",
+            email="test_provider@email.com",
+            is_provider=True,
+            date_of_birth="1994-10-10",
         )
         self.patient = CustomizedUser.objects.create_user(
-            username="test_patient", email="test_patient@email.com", is_provider=False,
+            username="test_patient",
+            email="test_patient@email.com",
+            is_provider=False,
+            date_of_birth="1994-10-10",
         )
         self.app = Appointment.objects.create(
             date="2021-11-20",

@@ -1,6 +1,7 @@
 gunicorn
 djangorestframework
 psycopg2
+Django==3.2.8
 django-heroku
 pillow
 django-imagekit
@@ -8,3 +9,5 @@ Django-Verify-Email
 django.utils.six
 django-mptt
 django-six
+django-phone-verify==0.1.1
+django-crispy-forms

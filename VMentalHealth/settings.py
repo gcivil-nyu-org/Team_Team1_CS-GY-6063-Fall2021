@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "account",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -42,12 +43,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third party
     "imagekit",
-    "verify_email.apps.VerifyEmailConfig",  # for email verification
+    #"verify_email.apps.VerifyEmailConfig",  # for email verification
     "mptt",
+    "crispy_forms",
     # project app
-    "account",
     "forum",
     "booking",
+    'phonenumber_field',
 ]
 
 

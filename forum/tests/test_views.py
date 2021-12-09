@@ -15,7 +15,9 @@ class CommentFormTest(TestCase):
 class PostCreateViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
-        self.user = CustomizedUser.objects.create_user(username="test_user")
+        self.user = CustomizedUser.objects.create_user(
+            username="test_user", date_of_birth="1994-10-10",
+        )
 
     def test_form_valid(self):
         post_data = {
@@ -33,7 +35,9 @@ class PostCreateViewTest(TestCase):
 
 class PostListViewTests(TestCase):
     def test_get_queryset(self):
-        test_user = CustomizedUser.objects.create_user(username="test_user")
+        test_user = CustomizedUser.objects.create_user(
+            username="test_user", date_of_birth="1994-10-10",
+        )
         post_1 = Post.objects.create(
             author=test_user, title="test_title_1", content="test_content_1",
         )
@@ -57,7 +61,9 @@ class PostListViewTests(TestCase):
 class PostUpdateViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
-        self.user = CustomizedUser.objects.create_user(username="test_user")
+        self.user = CustomizedUser.objects.create_user(
+            username="test_user", date_of_birth="1994-10-10",
+        )
         self.post = Post.objects.create(
             author=self.user,
             title="test post title",
@@ -82,7 +88,9 @@ class PostUpdateViewTest(TestCase):
 class PostViewTest(TestCase):
     def setUp(self) -> None:
         self.factory = RequestFactory()
-        self.user = CustomizedUser.objects.create_user(username="test_user")
+        self.user = CustomizedUser.objects.create_user(
+            username="test_user", date_of_birth="1994-10-10",
+        )
         self.post = Post.objects.create(
             author=self.user, title="test post title", content="test post content",
         )

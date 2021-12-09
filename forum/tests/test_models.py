@@ -8,7 +8,9 @@ from account.models import CustomizedUser
 
 class PostModelTests(TestCase):
     def test_hours_to_now(self):
-        test_user = CustomizedUser.objects.create_user(username="test_user")
+        test_user = CustomizedUser.objects.create_user(
+            username="test_user", date_of_birth="1994-10-10",
+        )
         post = Post.objects.create(
             author=test_user,
             title="Hello, world!",
@@ -19,7 +21,9 @@ class PostModelTests(TestCase):
         self.assertEqual(post.hours_to_now, 10)
 
     def test__str__(self):
-        test_user = CustomizedUser.objects.create_user(username="teset_user")
+        test_user = CustomizedUser.objects.create_user(
+            username="teset_user", date_of_birth="1994-10-10",
+        )
         post = Post.objects.create(
             author=test_user, title="test_title", content="test_content",
         )
@@ -27,7 +31,9 @@ class PostModelTests(TestCase):
         self.assertEqual("1 teset_user: test_title \n test_content", str(post))
 
     def test_get_comments_count(self):
-        test_user = CustomizedUser.objects.create_user(username="teset_user")
+        test_user = CustomizedUser.objects.create_user(
+            username="teset_user", date_of_birth="1994-10-10",
+        )
         post = Post.objects.create(
             author=test_user, title="test_title", content="test_content",
         )
@@ -47,7 +53,9 @@ class PostModelTests(TestCase):
         self.assertEqual(3, post.get_comments_count())
 
     def test_get_absolute_url(self):
-        test_user = CustomizedUser.objects.create_user(username="test_user")
+        test_user = CustomizedUser.objects.create_user(
+            username="test_user", date_of_birth="1994-10-10",
+        )
         self.post = Post.objects.create(
             author=test_user,
             title="Hello, world!",
@@ -58,7 +66,9 @@ class PostModelTests(TestCase):
 
 class CommentModelTests(TestCase):
     def test_hours_to_now(self):
-        test_user = CustomizedUser.objects.create_user(username="test_user")
+        test_user = CustomizedUser.objects.create_user(
+            username="test_user", date_of_birth="1994-10-10",
+        )
         post = Post.objects.create(
             author=test_user,
             title="Hello, world!",
@@ -73,7 +83,9 @@ class CommentModelTests(TestCase):
         self.assertEqual(comment.hours_to_now, 10)
 
     def test__str__(self):
-        test_user = CustomizedUser.objects.create_user(username="test_user")
+        test_user = CustomizedUser.objects.create_user(
+            username="test_user", date_of_birth="1994-10-10",
+        )
         post = Post.objects.create(
             author=test_user,
             title="Hello, world!",
