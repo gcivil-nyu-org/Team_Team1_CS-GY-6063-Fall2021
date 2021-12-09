@@ -1,16 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.contrib.messages.api import success
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView
-from django.contrib.messages.views import SuccessMessageMixin
 
 from booking.forms import CancelForm, ReserveForm, BookForm
 from booking.models import Appointment
-
-
-from django.contrib import messages
 
 
 @method_decorator(login_required, name="dispatch")
@@ -84,7 +79,7 @@ class PatientReserveView(UserPassesTestMixin, UpdateView):
     reserve_form = ReserveForm()
     template_name = "booking/reserve_appointment.html"
     success_url = reverse_lazy("booking:patient_appointment_list")
-    success_message = 'Appointment Cancelled!'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = self.reserve_form
@@ -102,17 +97,16 @@ class PatientCancelView(UserPassesTestMixin, UpdateView):
         "patient",
     ]
     reserve_form = ReserveForm()
-    template_name = "booking/patient_cancel.html"    
-    
+    template_name = "booking/patient_cancel.html"
     success_url = reverse_lazy("booking:patient_appointment_list")
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = self.reserve_form
         context["form"].fields["patient"].initial = None
         return context
 
-    def test_func(self):        
+    def test_func(self):
         return not self.request.user.is_provider
 
 

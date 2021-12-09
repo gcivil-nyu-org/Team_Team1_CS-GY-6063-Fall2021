@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+        
+        
+        <!-- CSS files -->
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/booking.css' %}">
+      
+    </head>
+</html>
+
+{% block content %}
+<div class="container content">
+  <div class="row">
+    <div class="main_title">Provider Dashboard</div>
+  </div>
+  <div class="row">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Availability</button>
+        <button type="submit" class="btn btn-primary">Cancel Appointment</button>
+        <ul>
+          {% for i in item %} 
+          <li>{{i}}</li>
+          {% endfor %}
+        </ul> 
+        <form action="/addTimeSlot/" method = "post">{% csrf_token %}        
+        <input type="date" name="Date">
+        <input type="time" name="Time From">
+        <input type="time" name="Time To">
+        <input type="submit" value="Add Time Slot">
+        </form>
+    </form>
+  </div>
+</div>
+{% endblock content %}
