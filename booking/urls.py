@@ -1,17 +1,39 @@
 from django.urls import path
-from . import views
+
 from booking.views import (
-    BookingUpdateView,
-    BookingCreateView,
+    AppointmentCreateView,
+    PatientAppointmentListView,
+    PatientCancelView,
+    PatientReserveView,
     ProviderAppointmentListView,
+    ProviderCancelView,
 )
 
+app_name = "booking"
+
 urlpatterns = [
-    path("", views.booking, name="patient-booking"),
-    #path("provider_availability", views.timeSlotsView, name="my_availability"),
-    #path("provider_availability", name="my_availability"),
-    path("addTimeSlot", views.addSlotView, name="addTimeSlot"),
-    path("appointments/<int:pk>", BookingUpdateView.as_view(), name="appointments"),
-    path("appointments/new/",BookingCreateView.as_view(),name='my_availability'),
-    path("appointment_list/", ProviderAppointmentListView.as_view(), name="appointment_list"),
+    path(
+        "provider_appointment_list",
+        ProviderAppointmentListView.as_view(),
+        name="provider_appointment_list",
+    ),
+    path(
+        "patient_appointment_list",
+        PatientAppointmentListView.as_view(),
+        name="patient_appointment_list",
+    ),
+    path("new_appointment", AppointmentCreateView.as_view(), name="new_appointment",),
+    path(
+        "reserve_appointment/<int:pk>",
+        PatientReserveView.as_view(),
+        name="reserve_appointment",
+    ),
+    path(
+        "patient_cancel/<int:pk>", PatientCancelView.as_view(), name="patient_cancel",
+    ),
+    path(
+        "provider_cancel/<int:pk>",
+        ProviderCancelView.as_view(),
+        name="provider_cancel",
+    ),
 ]
