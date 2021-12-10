@@ -224,7 +224,7 @@ class AppointmentCreateViewTest(TestCase):
         request.user = self.prov
         response = AppointmentCreateView.as_view()(request)
 
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
 
 
 class PatientReserveViewTest(TestCase):
