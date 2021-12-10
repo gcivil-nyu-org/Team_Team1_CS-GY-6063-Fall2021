@@ -15,6 +15,7 @@ from pathlib import Path
 
 import django_heroku
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,10 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-m&1k@b4lpnnec+i7v3es!#wo6@uk_m70mkra#omlbxfl3tl$w0"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = False
 
 # Application definition
 
@@ -44,6 +42,8 @@ INSTALLED_APPS = [
     "imagekit",
     "verify_email.apps.VerifyEmailConfig",  # for email verification
     "mptt",
+    "django_celery_results",
+    "django_celery_beat",
     # project app
     "account",
     "forum",
@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/New_York"
 
 USE_I18N = True
 
@@ -158,10 +158,21 @@ STATIC_URL = "/static/"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "mengznyc@gmail.com"  # your email-id
-EMAIL_HOST_PASSWORD = "meng1112"  # your password
+EMAIL_HOST_PASSWORD = "Meng1994."  # your password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_CACHE_BACKEND = "django-cache"
+
+CELERY_BROKER_URL = (
+    "amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv"
+)
+
+BROKER_URL = (
+    "amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv"
+)
 
 # must place in the last line
 if "/app" in os.environ["HOME"]:

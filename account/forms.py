@@ -1,6 +1,11 @@
-from django.contrib.auth.forms import UserCreationForm
-from account.models import CustomizedUser
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+
+from account.models import CustomizedUser
+
+
+class DateInput(forms.DateInput):
+    input_type = "date"
 
 
 class UserCreationForm(UserCreationForm):
@@ -19,3 +24,6 @@ class UserCreationForm(UserCreationForm):
             "date_of_birth",
             "phone_number",
         )
+        widgets = {
+            "date_of_birth": DateInput(),
+        }
