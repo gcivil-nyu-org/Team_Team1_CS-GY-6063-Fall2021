@@ -7,6 +7,7 @@ import django.core.validators
 from django.db import migrations, models
 import django.utils.timezone
 import imagekit.models.fields
+import phonenumber_field.modelfields
 
 
 class Migration(migrations.Migration):
@@ -98,24 +99,28 @@ class Migration(migrations.Migration):
                 (
                     "date_of_birth",
                     models.DateField(
-                        null=True,
                         validators=[
                             django.core.validators.MaxValueValidator(
-                                limit_value=datetime.date(2021, 12, 10)
+                                limit_value=datetime.date.today
                             )
-                        ],
+                        ]
                     ),
                 ),
                 (
                     "gender",
                     models.CharField(
                         blank=True,
-                        choices=[("M", "Male"), ("F", "Female")],
+                        choices=[("F", "Female"), ("M", "Male")],
                         max_length=1,
                     ),
                 ),
                 ("is_provider", models.BooleanField(default=False)),
-                ("phone_number", models.CharField(blank=True, max_length=10)),
+                (
+                    "phone_number",
+                    phonenumber_field.modelfields.PhoneNumberField(
+                        blank=True, max_length=12, region=None
+                    ),
+                ),
                 (
                     "profile_img",
                     imagekit.models.fields.ProcessedImageField(
