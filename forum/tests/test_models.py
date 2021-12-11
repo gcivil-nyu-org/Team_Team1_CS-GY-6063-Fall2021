@@ -69,7 +69,9 @@ class PostModelTests(TestCase):
             title="Hello, world!",
             content="This is the content of a sample post.",
         )
-        self.assertEqual("/forum/hello-world-test_user-none", self.post.get_absolute_url())
+        self.assertEqual(
+            "/forum/hello-world-test_user-none", self.post.get_absolute_url()
+        )
 
 
 class CommentModelTests(TestCase):
