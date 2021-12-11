@@ -65,7 +65,7 @@ class PostUpdateView(UpdateView):
     template_name_suffix = "_update"
 
     def get_success_url(self):
-        return reverse_lazy("forum:post_detail", kwargs={"slug": self.object.slug,},)
+        return reverse_lazy("forum:post_detail", kwargs={"slug": self.object.slug, },)
 
 
 @method_decorator(login_required, name="dispatch")
