@@ -44,9 +44,7 @@ class Migration(migrations.Migration):
                     models.TimeField(
                         validators=[
                             django.core.validators.MinValueValidator(
-
                                 limit_value=datetime.time(20, 34, 4, 382730)
-
                             )
                         ]
                     ),
