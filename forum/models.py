@@ -37,7 +37,9 @@ class Post(models.Model):
         return reverse("forum:post_detail", kwargs=kwargs)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(f"{self.title}-{self.author}-{self.created_at}", allow_unicode=True)
+        self.slug = slugify(
+            f"{self.title}-{self.author}-{self.created_at}", allow_unicode=True
+        )
         super().save(*args, **kwargs)
 
     @property
