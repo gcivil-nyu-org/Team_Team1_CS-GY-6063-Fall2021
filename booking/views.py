@@ -49,13 +49,16 @@ class PatientAppointmentListView(UserPassesTestMixin, ListView):
     def get_queryset(self):
         queryset = {
             "upcoming_appointment": Appointment.objects.filter(
-                patient=self.request.user.id, status="active",
+                patient=self.request.user.id,
+                status="active",
             ).order_by("-date"),
             "available_appointment": Appointment.objects.filter(
-                patient__isnull=True, status="active",
+                patient__isnull=True,
+                status="active",
             ).order_by("-date"),
             "cancelled_appointment": Appointment.objects.filter(
-                patient=self.request.user.id, status="cancelled",
+                patient=self.request.user.id,
+                status="cancelled",
             ).order_by("-date"),
         }
         return queryset

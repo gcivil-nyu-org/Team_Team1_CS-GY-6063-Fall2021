@@ -27,7 +27,10 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Appointment
         widgets = {
-            "date": forms.DateInput(attrs={"type": "date"}, format="%Y-%m-%dT",),
+            "date": forms.DateInput(
+                attrs={"type": "date"},
+                format="%Y-%m-%dT",
+            ),
             "start_time": forms.TimeInput(attrs={"type": "time"}),
             "end_time": forms.TimeInput(attrs={"type": "time"}),
             "meeting_link": forms.TextInput(attrs={"type": "text"}),

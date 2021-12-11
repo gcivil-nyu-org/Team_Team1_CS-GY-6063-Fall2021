@@ -22,14 +22,20 @@ urlpatterns = [
         PatientAppointmentListView.as_view(),
         name="patient_appointment_list",
     ),
-    path("new_appointment", AppointmentCreateView.as_view(), name="new_appointment",),
+    path(
+        "new_appointment",
+        AppointmentCreateView.as_view(),
+        name="new_appointment",
+    ),
     path(
         "reserve_appointment/<int:pk>",
         PatientReserveView.as_view(),
         name="reserve_appointment",
     ),
     path(
-        "patient_cancel/<int:pk>", PatientCancelView.as_view(), name="patient_cancel",
+        "patient_cancel/<int:pk>",
+        PatientCancelView.as_view(),
+        name="patient_cancel",
     ),
     path(
         "provider_cancel/<int:pk>",
