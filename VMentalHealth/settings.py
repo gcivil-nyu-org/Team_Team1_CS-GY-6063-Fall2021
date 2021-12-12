@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     "account",
     "forum",
     "booking",
-    "phonenumber_field",
 ]
 
 
