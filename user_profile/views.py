@@ -6,8 +6,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from account.models import CustomizedUser
 
+# from booking.models import Appointment
+# from forum.models import Post
 
-class ProfileView(TemplateView, LoginRequiredMixin):
+
+class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = "profile.html"
     model = CustomizedUser
 
