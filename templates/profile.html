@@ -7,7 +7,7 @@
   </div>
   <div class="row justify-content-center">
     <div class = "col-md-3">
-      <img src="static/images/profile_img.png" alt="avatar" id="profile_avatar">
+      <img src="{{ user.profile_img.url }}" alt="avatar" id="profile_avatar">
       <div class = "row justify-content-center">Joined since 2021</div>
       <div class ="row justify-content-center">
         <a class="btn btn-primary" href="{% url 'profile_edit' user.id %}" role="button"">Edit profile</a>

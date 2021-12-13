@@ -2,16 +2,37 @@
 
 {% block content %}
 <div class="container content">
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="main_title">Edit Profile</div>
   </div>
-  <div class="row">
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a class="btn btn-primary" href="{% url 'profile' %}" role="button">Cancel</a>
-    </form>
+  <div class="row justify-content-center">
+    <div class = "col-md-5 offset-md-1">
+      <img src="{{ user.profile_img.url }}" alt="avatar" id="profile_avatar">
+    </div>
+    <div class = "col-md-6">
+      <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <!-- <div class="row field">
+          {% for field in form  %}
+            <div class="col-md-2 offset-md-1">
+              {{ field.label_tag }}
+            </div>
+            <div class="col-md-3">
+              {{ field }}
+            </div>
+          {% endfor %}
+          </div> -->
+          <div class="row">
+            <div class="col-2">
+              <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+              <div class="col-9 offset-md-1">
+                <a class="btn btn-primary" href="{% url 'profile' %}" role="button">Cancel</a>
+              </div>
+          </div>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock content %}
