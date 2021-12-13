@@ -70,6 +70,18 @@ body {
   width: 70%;
   margin: auto;
 }
+.long-content{
+  position: absolute;
+  top: 30%;
+  left: -20%;
+  transform: translate(50%, -50%);
+  background-color: rgba(223,228,231,0.75);
+  padding-bottom: 30px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  width: 70%;
+  margin: auto;
+}
 .form_container{
   position: absolute;
   top: 50%;
@@ -96,11 +108,14 @@ body {
   font-size: 20px;
   font-style: bold;
   /* margin: 10px; */
+  margin-bottom: 20px;
 }
 
 .form_entities{
   font-size: 18px;
-  margin: 5px;
+  margin: 15px;
+  padding-bottom: 20px;
+  height: 50px;
 }
 
 .form_title{

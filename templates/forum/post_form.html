@@ -1,16 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container content">
-  <div class="row">
-    <div class="main_title">New Post</div>
-  </div>
-  <div class="row">
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary" type="submit">Save</button>
-    </form>
+<div class="container">
+  <div class = "form_container ">
+    <div class="row justify-content-center">
+      <div class="main_title">New Post</div>
+    </div>
+    <div class="row justify-content-center">
+      <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <!-- {{ form.as_p }} -->
+          <div class="row">
+            <div class="col-2">
+              {{ form.title.label_tag }}
+            </div>
+            <div class="col-10">
+              {{ form.title }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              {{ form.content.label_tag }}
+            </div>
+            <div class="col-10">
+              {{ form.content }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              {{ form.status.label_tag }}
+            </div>
+            <div class="col-6">
+              {{ form.status }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+            <div class="col-2">
+              <a class="btn btn-primary" href="{% url 'forum:post_list' %}" role="button">Go back</a>
+            </div>
+          </div>
+      </form>
+    </div>
   </div>
 </div>
 

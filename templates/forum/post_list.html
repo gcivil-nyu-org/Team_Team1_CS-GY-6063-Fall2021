@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container content">
-  <div class="row align-items-center">
+<div class="container long-content">
+  <div class="row align-items-baseline">
     <div class = "col-9">
       <div class="main_title">Discussion Forum</div>
     </div>
@@ -10,16 +10,15 @@
       <a class="btn btn-primary" href="{% url 'forum:post_create' %}" role="button">Create New Post</a>
     </div>
   </div>
-  <div class="row align-items-center form_attribute">
-      <div class="col-6">Title</div>
+  <div class="row justify-content-center form_attribute">
+      <div class="col-5">Title</div>
       <div class="col-2">Status</div>
       <div class="col-2">Author</div>
-      <div class="col-2">Created_at</div>
+      <div class="col-3">Created_at</div>
   </div>
-
-  <div class="row align-items-center form_entities">
+  <div class="row justify-content-center form_entities">
     {% for post in object_list %}
-      <div class="col-6">
+      <div class="col-5">
         <a href="{% url 'forum:post_detail' post.slug %}">{{ post.title }}</a>
       </div>
       <div class="col-2">
@@ -28,12 +27,10 @@
       <div class="col-2">
         {{ post.author }}
       </div>
-      <div class="col-2">
+      <div class="col-3">
         {{ post.created_at }}
       </div>
     {% endfor %}
   </div>
 </div>
-
-
 {% endblock content %}
