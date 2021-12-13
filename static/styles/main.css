@@ -39,15 +39,23 @@ body {
     background-size: cover;
     height: 100vh;
     width: auto;
+    opacity: 0.4;
   }
 
-  .brand{
+  .brand_container{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+  .brand_container{
     font-size: 60px;
-    color: #5f788a;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    color:#5f788a;
+    font-weight: 600;
+  }
+  .sub_title{
+  font-size: 20px;
+  font-weight: 200;
 }
 
 .content{
