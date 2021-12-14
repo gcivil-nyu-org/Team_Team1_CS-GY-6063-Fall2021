@@ -48,4 +48,5 @@ wcwidth==0.2.5
 whitenoise==5.3.0
 psycopg2
 gunicorn
-phonenumber_field
+#phonenumber_field==1.6.0
+django-phonenumber-field==2.0.0
