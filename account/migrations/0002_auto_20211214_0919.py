@@ -8,18 +8,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('account', '0001_initial'),
+        ("account", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customizeduser',
-            name='date_of_birth',
-            field=models.DateField(null=True, validators=[django.core.validators.MaxValueValidator(limit_value=datetime.date(2021, 12, 14))]),
+            model_name="customizeduser",
+            name="date_of_birth",
+            field=models.DateField(
+                null=True,
+                validators=[
+                    django.core.validators.MaxValueValidator(
+                        limit_value=datetime.date(2021, 12, 14)
+                    )
+                ],
+            ),
         ),
         migrations.AlterField(
-            model_name='customizeduser',
-            name='gender',
-            field=models.CharField(blank=True, choices=[('F', 'Female'), ('M', 'Male')], max_length=1),
+            model_name="customizeduser",
+            name="gender",
+            field=models.CharField(
+                blank=True, choices=[("F", "Female"), ("M", "Male")], max_length=1
+            ),
         ),
     ]

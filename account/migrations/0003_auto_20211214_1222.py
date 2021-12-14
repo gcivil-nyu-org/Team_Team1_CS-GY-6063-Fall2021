@@ -6,17 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('account', '0002_auto_20211214_0919'),
+        ("account", "0002_auto_20211214_0919"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='customizeduser',
-            name='phone_number',
+            model_name="customizeduser",
+            name="phone_number",
         ),
         migrations.AlterField(
-            model_name='customizeduser',
-            name='gender',
-            field=models.CharField(blank=True, choices=[('M', 'Male'), ('F', 'Female')], max_length=1),
+            model_name="customizeduser",
+            name="gender",
+            field=models.CharField(
+                blank=True, choices=[("M", "Male"), ("F", "Female")], max_length=1
+            ),
         ),
     ]
