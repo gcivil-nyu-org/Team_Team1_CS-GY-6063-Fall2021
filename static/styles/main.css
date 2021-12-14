@@ -1,5 +1,7 @@
 body {
-    background: #fafafa;
+    /* background: #fafafa; */
+    background:url(../images/home_page_img.jpg) no-repeat center center fixed;
+    background-size: cover;
     color: #333333;
     font-family: 'Nunito Sans', sans-serif;
   }
@@ -106,20 +108,20 @@ body {
 }
 
 .form_attribute{
-  font-size: 20px;
+  font-size: 16px;
   font-style: bold;
   /* margin: 10px; */
   margin-bottom: 20px;
 }
 
 .form_entities{
-  font-size: 18px;
+  font-size: 12px;
   margin: 15px;
   padding-bottom: 20px;
   height: 50px;
 }
 
 .form_title{
-  font-size: 20px;
+  font-size: 16px;
   margin: 5px;
 }
