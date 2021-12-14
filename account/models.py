@@ -1,5 +1,5 @@
 import datetime
-
+from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator
 from django.db.models.fields import BooleanField, CharField, DateField, EmailField
@@ -17,7 +17,7 @@ class CustomizedUser(AbstractUser):
     }
     gender = CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
     is_provider = BooleanField(default=False)
-    phone_number = CharField(max_length=10, blank=True)
+    phone_number = PhoneNumberField(max_length=12)
     profile_img = ProcessedImageField(
         upload_to="static/images/patient/profile_img",
         format="JPEG",
