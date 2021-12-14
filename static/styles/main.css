@@ -106,6 +106,10 @@ body {
   font-size: 24px;
   margin-top: 20px;
 }
+.small_title{
+  font-size: 16px;
+  margin-top: 18px;
+}
 
 .form_attribute{
   font-size: 16px;
