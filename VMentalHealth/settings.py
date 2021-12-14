@@ -64,7 +64,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "VMentalHealth.urls"
-
+PHONENUMBER_DEFAULT_REGION = 'US'
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
