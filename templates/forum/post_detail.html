@@ -1,44 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container content post_detail">
+<div class="container forum_content">
   <div class="row align-items-center">
-    <div class = "col-6 main_title">
+    <div class = "col-4 main_title">
         {{ post.title }}
     </div>
-    <div class="col-6">
-      <a class = "col-2 btn btn-lg" href="{% url 'forum:post_list' %}">Back to Forum</a>
+    <div class="col-2 offset-2">
+      <a class = "" href="{% url 'forum:post_list' %}">Back to Forum</a>
     </div>
   </div>
   <div class="post_content">
       {{ post.content }}
   </div>
   <div class="row align-items-center">
-      <p class="col-4 lead">
+      <p class="col-6 lead">
         Created by <small class="text-muted">{{ post.author }}</small> at <small class="text-muted">{{ post.created_at }}</small>
       </p>
-      {% if request.user.is_authenticated and request.user.id == post.author.id %}
-      <a class = "col-1 offset-2 btn btn-sm"href="{% url 'forum:post_update' post.slug %}">Edit post</a>
-      <a class = "col-1 btn btn-sm"href="{% url 'forum:post_delete' post.slug %}">Delete post</a>
-      {% endif %}
+
   </div>
+  {% if request.user.is_authenticated and request.user.id == post.author.id %}
+  <div class="row">
+    <div class="col-3">
+      <a class = "offset-1"href="{% url 'forum:post_update' post.slug %}">Edit post</a>
+    </div>
+    <div class="col-3">
+      <a class = "offset-1"href="{% url 'forum:post_delete' post.slug %}">Delete post</a>
+    </div>
+  </div>
+  {% endif %}
   <div class="container">
     <div class="row align-items-center comments-title">
-      <div class="col-6 main_title">Comments</div>
+      <div class="col-6 secondary_title">Comments</div>
     </div>
     {% load mptt_tags %}
     <div class = "row">
       <div class = "col-6">
       {% recursetree comments %}
-      <div class="my-2 p-2" style="border: 1px solid grey">
-        <div class="row align-items-center comments-info">
-          <small class="col-3">{{ node.author }}</small>
-          <small class="col-4">{{ node.created_at }}</small>
-        </div>
+      <div class="my-2 p-2">
         <div class="row align-items-center comments-content" id="{{ node.id }}">
           <div class="col-9">{{ node.content }}</div>
+          <div class="col-3">
+            <button class="btn btn-primary btn-sm" onclick="replyFunction({{ node.id }})">Reply</button>
+          </div>
         </div>
-        <button class="btn btn-primary btn-sm" onclick="replyFunction({{ node.id }})">Reply</button>
+        <div class="row align-items-center comments-info">
+          <small class="col-6">{{ node.author }}</small>
+          <small class="col-6">{{ node.created_at }}</small>
+        </div>
+
       </div>
       {% if not node.is_leaf_node %}
         <div class="children pl-2 pl-md-5">

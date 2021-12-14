@@ -41,6 +41,7 @@ body {
   height: 100vh;
   width: auto;
   opacity: 0.5;
+  background-repeat: repeat;
 }
 
 .brand_container{
