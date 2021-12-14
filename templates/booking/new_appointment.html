@@ -2,14 +2,16 @@
 
 {% block content %}
 <div class="container content">
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="main_title">New Appointment</div>
   </div>
-  <div class="row">
+  <div class="row justify-content-center">
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-primary" type="submit">Save</button>
+        <div class="row justify-content-center">
+          <button class="btn btn-primary" type="submit">Save</button>
+        </div>
     </form>
   </div>
 </div>

@@ -1,17 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container content">
-  <div class="row">
-    <div class="main_title">Log In</div>
-  </div>
-  <div class="row">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <a class="nav-item nav-link" href="{% url 'password_reset' %}">Reset Password</a>
-        <button class="btn btn-primary" type="submit">Log in</button>
-    </form>
+<div class="container">
+  <div class = "form_container ">
+    <div class="row justify-content-center">
+      <div class="main_title">Log In</div>
+    </div>
+    <div class="row justify-content-center">
+      <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <button class="btn btn-block" type="submit">Log in</button>
+            </div>
+            <div class = "col-6">
+              <a class="btn" href="{% url 'password_reset' %}">Reset Password</a>
+            </div>
+          </div>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %}

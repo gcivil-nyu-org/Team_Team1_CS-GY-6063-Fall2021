@@ -1,23 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container content">
-  <div class="row">
-    <div class="main_title">Reserve Appointment</div>
-  </div>
-  <div class="row">
-    <div class = "secondary_title">Please confirm the information below to reserve this appoint:</div>
-  </div>
-  <div class="row card">
-    <div class="card-body col-6">
-      <div class = "form_entities">Date: {{ appointment.date }}</div>
-      <br>
-      <div class = "form_entities">Start time: {{ appointment.start_time }}</div>
-      <br>
-      <div class = "form_entities">End time: {{ appointment.end_time }}</div>
-      <br>
-      <div class = "form_entities">Provider: {{ appointment.doctor }}</div>
-      <br>
+<div class="container">
+  <div class="form_container">
+    <div class="row justify-content-center">
+      <div class="main_title">Reserve Appointment</div>
+    </div>
+    <div class="row justify-content-center">
+      <div class = "secondary_title">Please confirm the information below to reserve this appoint:</div>
+    </div>
+    <div class = "row justify-content-center">Date: {{ appointment.date }}</div>
+    <div class = "row justify-content-center">Start time: {{ appointment.start_time }}</div>
+    <div class = "row justify-content-center">End time: {{ appointment.end_time }}</div>
+    <div class = "row justify-content-center">Provider: {{ appointment.doctor }}</div>
+    <div class = "row justify-content-center">
       <form action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form.patient.as_hidden}}
@@ -26,6 +22,5 @@
       </form>
     </div>
   </div>
-
 </div>
 {% endblock content %}

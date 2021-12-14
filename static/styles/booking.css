@@ -1,3 +1,19 @@
 .card{
-  width: 40%;
+  /* width: 40%; */
+}
+.booking-content{
+  background-color: rgba(223,228,231,0.75);
+  padding-bottom: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  width: 70%;
+  margin-top: 100px;
+}
+.booking-container{
+  background-color: rgba(255,255,255,0.7);
+  padding-bottom: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 90%;
 }

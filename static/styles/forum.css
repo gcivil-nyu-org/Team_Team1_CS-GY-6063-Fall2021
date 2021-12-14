@@ -1,3 +1,15 @@
+.forum_content{
+  position: absolute;
+  /* top: 70%;
+  left: -20%; */
+  transform: translate(22%, -50%);
+  background-color: rgba(223,228,231,0.75);
+  padding-bottom: 30px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  width: 70%;
+  margin: auto;
+}
 .post_detail_title{
   font-size: 36px;
 }
@@ -17,6 +29,12 @@
 .comments-list{
   font-size: 20px;
 }
+.comments-wrapper{
+  border: 1px solid #444;
+  border-radius: 5px;
+  padding-bottom: 30px;
+}
 .reply-content{
   margin-left: auto;
+  transform: translate(10px);
 }

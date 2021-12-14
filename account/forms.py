@@ -14,13 +14,13 @@ class UserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = CustomizedUser
         fields = (
-            "email",
             "username",
-            "profile_img",
+            "email",
             "first_name",
             "last_name",
-            "gender",
+            "profile_img",
             "is_provider",
+            "gender",
             "date_of_birth",
             "phone_number",
         )

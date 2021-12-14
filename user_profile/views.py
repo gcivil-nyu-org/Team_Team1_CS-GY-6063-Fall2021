@@ -6,8 +6,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from account.models import CustomizedUser
 
+# from booking.models import Appointment
+# from forum.models import Post
 
-class ProfileView(TemplateView, LoginRequiredMixin):
+
+class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = "profile.html"
     model = CustomizedUser
 
@@ -15,7 +18,7 @@ class ProfileView(TemplateView, LoginRequiredMixin):
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = CustomizedUser
     template_name = "profile_edit.html"
-    fields = ["first_name", "last_name", "date_of_birth", "phone_number"]
+    fields = ["first_name", "last_name", "date_of_birth", "phone_number", "profile_img"]
     success_url = reverse_lazy("profile")
     widgets = {
         "date_of_birth": DateField(

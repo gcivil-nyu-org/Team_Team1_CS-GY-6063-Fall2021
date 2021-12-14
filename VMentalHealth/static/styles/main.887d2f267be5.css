@@ -1,0 +1,79 @@
+body {
+    background: #fafafa;
+    color: #333333;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+
+  .bg-steel {
+    background-color: #5f788a;
+  }
+
+  .site-header .navbar-nav .nav-link {
+    /* color: #cbd5db; */
+    color: #fff;
+  }
+
+  .site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+  }
+
+  .site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+
+  .content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+
+  .main_content{
+    position: static;
+
+  }
+  .home_img{
+    background:url("../images/home_page_img.f9b2d08b5927.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: auto;
+  }
+
+  .brand{
+    font-size: 60px;
+    color: #5f788a;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.content{
+  margin-top: 55px;
+}
+.main_title{
+  font-size: 36px;
+  margin-top: 20px;
+}
+.secondary_title{
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.form_attribute{
+  font-size: 20px;
+  font-style: bold;
+  /* margin: 10px; */
+}
+
+.form_entities{
+  font-size: 18px;
+  margin: 5px;
+}
+
+.form_title{
+  font-size: 20px;
+  margin: 5px;
+}
