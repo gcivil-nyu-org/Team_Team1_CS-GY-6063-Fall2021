@@ -11,9 +11,10 @@ class Appointment(models.Model):
     date = models.DateField(
         validators=[MinValueValidator(limit_value=(datetime.date.today()))]
     )
-    start_time = models.TimeField(
-        validators=[MinValueValidator(limit_value=datetime.datetime.now().time())]
-    )
+    # start_time = models.TimeField(
+    #     validators=[MinValueValidator(limit_value=datetime.datetime.now().time())]
+    # )
+    start_time = models.TimeField()
     end_time = models.TimeField()
     doctor = models.ForeignKey(
         CustomizedUser, on_delete=models.CASCADE, related_name="doctor"
