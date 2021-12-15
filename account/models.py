@@ -1,7 +1,7 @@
 import datetime
-from phonenumber_field.modelfields import PhoneNumberField
+
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator, RegexValidator
 from django.db.models.fields import BooleanField, CharField, DateField, EmailField
 from imagekit.models import ProcessedImageField
 
@@ -17,9 +17,12 @@ class CustomizedUser(AbstractUser):
         ("M", "Male"),
         ("F", "Female"),
     }
-    gender = CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
+    gender = CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     is_provider = BooleanField(default=False)
-    phone_number = PhoneNumberField(max_length=12, null=True, blank=True)
+    phone_number_regex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
+    phone_number = CharField(
+        validators=[phone_number_regex], max_length=16, null=True, blank=True
+    )
     profile_img = ProcessedImageField(
         upload_to="static/images/patient/profile_img",
         format="JPEG",
