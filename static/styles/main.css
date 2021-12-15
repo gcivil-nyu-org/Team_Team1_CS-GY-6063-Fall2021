@@ -119,9 +119,9 @@ body {
 }
 
 .form_entities{
-  font-size: 12px;
+  font-size: 14px;
   margin: 15px;
-  padding-top: 20px;
+  padding-top: 10px;
   /* padding-bottom: 20px; */
   height: 50px;
 }
