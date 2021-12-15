@@ -17,10 +17,10 @@ class UserCreationForm(UserCreationForm):
             "email",
             "first_name",
             "last_name",
-            "profile_img",
-            "is_provider",
             "gender",
             "date_of_birth",
+            "profile_img",
+            "is_provider",
             "phone_number",
         )
         widgets = {
