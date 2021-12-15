@@ -1,8 +1,16 @@
 .helptext{
   font-size: 12px;
   /* position: absolute; */
-  margin-left: 20px;
+  /* margin-left: 20px; */
   width: auto;
+}
+.error-container{
+  width: 60%;
+  left:20%;
+}
+.error-msg{
+  color:red;
+  font-size: 12px;
 }
 a {
   text-decoration: none;

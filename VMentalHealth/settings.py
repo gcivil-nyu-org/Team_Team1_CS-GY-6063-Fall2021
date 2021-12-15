@@ -168,6 +168,7 @@ EMAIL_USE_SSL = False
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_CACHE_BACKEND = "django-cache"
 
+
 CELERY_IMPORTS = ["booking.tasks"]
 CELERY_BROKER_URL = "amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn"
 CELERY_BROKER_POOL_LIMIT = 1

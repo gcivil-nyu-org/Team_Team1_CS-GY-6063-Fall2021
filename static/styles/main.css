@@ -86,7 +86,7 @@ body {
   margin: auto;
 }
 .form_container{
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -106,6 +106,10 @@ body {
   font-size: 24px;
   margin-top: 20px;
 }
+.small_title{
+  font-size: 16px;
+  margin-top: 18px;
+}
 
 .form_attribute{
   font-size: 16px;
@@ -115,9 +119,9 @@ body {
 }
 
 .form_entities{
-  font-size: 12px;
+  font-size: 14px;
   margin: 15px;
-  padding-top: 20px;
+  padding-top: 10px;
   /* padding-bottom: 20px; */
   height: 50px;
 }

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container content">
+<div class="container profile_content">
   <div class="row">
     <div class="col-6 main_title">Welcome back, {{user.username}}!</div>
   </div>
@@ -34,7 +34,13 @@
             <div class="col">Stat Time</div>
             <div class="col">End Time</div>
         </div>
-
+        {% for item in data.upcoming_appointment %}
+        <div class="row align-items-center form_attribute profile_form">
+            <div class="col">{{item.date}}</div>
+            <div class="col">{{item.start_time}}</div>
+            <div class="col">{{item.end_time}}</div>
+        </div>
+        {% endfor %}
       </div>
       <div class = "container dash">
         <div class = "row secondary_title" id="upcoming">
@@ -44,8 +50,17 @@
           </div>
         </div>
         <div class="row align-items-center form_attribute profile_form">
-            <div class="col">Newest topic in forum........</div>
+            <div class="col">Title</div>
+            <div class="col">Author</div>
+            <div class="col">Create At</div>
         </div>
+        {% for item in data.newest_post %}
+        <div class="row align-items-center form_attribute profile_form">
+            <div class="col">{{item.title}}</div>
+            <div class="col">{{item.author}}</div>
+            <div class="col">{{item.created_at}}</div>
+        </div>
+        {% endfor %}      
       </div>
     </div>
   </div>

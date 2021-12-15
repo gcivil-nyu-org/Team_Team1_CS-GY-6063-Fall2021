@@ -1,9 +1,7 @@
 .row{
   margin-top: 10px;
 }
-/* #upcoming{
-  font-size: 20px;
-} */
+
 #profile_avatar{
   width: 90%;
 }
@@ -13,4 +11,12 @@
   border: 1px solid #dddddd;
   border-radius: 5px;
   margin-bottom: 20px;
+}
+.profile_content{
+  background-color: rgba(223,228,231,0.75);
+  padding-bottom: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  width: 70%;
+  margin-top: 100px;
 }
