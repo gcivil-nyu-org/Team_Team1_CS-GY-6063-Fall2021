@@ -22,7 +22,7 @@ class ProfileView(LoginRequiredMixin, ListView):
                     doctor=self.request.user.id,
                     status="active",
                     patient__isnull=False,
-                ).order_by("-date")[:3],
+                ).order_by("date")[:3],
                 "newest_post": Post.objects.filter(
                     status="published", author=self.request.user.id
                 ).order_by("-created_at")[:3],
@@ -33,7 +33,7 @@ class ProfileView(LoginRequiredMixin, ListView):
                 "upcoming_appointment": Appointment.objects.filter(
                     patient=self.request.user.id,
                     status="active",
-                ).order_by("-date")[:3],
+                ).order_by("date")[:3],
                 "newest_post": Post.objects.filter(
                     status="published", author=self.request.user.id
                 ).order_by("-created_at")[:3],

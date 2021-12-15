@@ -14,7 +14,7 @@ class ProviderAppointmentListView(UserPassesTestMixin, ListView):
     template_name = "booking/provider_appointment_list.html"
 
     def get_queryset(self):
-        return Appointment.objects.filter(doctor=self.request.user.id).order_by("-date")
+        return Appointment.objects.filter(doctor=self.request.user.id).order_by("date")
 
     def test_func(self):
         return self.request.user.is_provider
