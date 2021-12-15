@@ -34,3 +34,6 @@
   margin-left: auto;
   transform: translate(10px);
 }
+.post_list_title{
+  padding-left: 30px;
+}

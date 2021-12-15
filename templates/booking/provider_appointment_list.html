@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container booking-content">
     <div class="row align-items-center">
-      <div class="col-6">
+      <div class="col-5 offset-1">
         <div class="main_title">Provider Dashboard</div>
       </div>
       <div class="col-6">
@@ -12,9 +12,9 @@
     </div>
     <div class="container booking-container">
       <div class="row">
-          <div class="col secondary_title">Upcoming Sessions</div>
+          <div class="post_list_title secondary_title">Upcoming Sessions</div>
       </div>
-      <div class="row form_title">
+      <div class="row align-items-center form_title">
           <div class="col-2">Date</div>
           <div class="col-2">Start Time</div>
           <div class="col-2">End Time</div>
@@ -23,7 +23,7 @@
       </div>
       {% for appointment in object_list %}
         {% if appointment.status == "active" and appointment.patient %}
-        <div class="row form_entities">
+        <div class="row align-items-center form_entities">
           <div class="col-2">
               {{ appointment.date }}
           </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="container booking-container">
       <div class="row">
-          <div class="col secondary_title">Unbooked Sessions</div>
+          <div class="post_list_title secondary_title">Unbooked Sessions</div>
       </div>
       <div class="row align-items-center form_title">
           <div class="col-2">Date</div>
@@ -79,7 +79,7 @@
     </div>
     <div class="container booking-container">
       <div class="row">
-          <div class="col secondary_title">Cancelled Sessions</div>
+          <div class="post_list_title secondary_title">Cancelled Sessions</div>
       </div>
       <div class="row align-items-center form_title">
           <div class="col-2">Date</div>
