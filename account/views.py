@@ -18,13 +18,13 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
 
-class SignUpView(CreateView):
+class SignUp(CreateView):
     form_class = UserCreationForm
     template_name = "signup.html"
     success_url = reverse_lazy("login")
 
 
-class SignUp(CreateView):
+class SignUpView(CreateView):
     form_class = UserCreationForm
     template_name = "signup.html"
 
