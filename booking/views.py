@@ -51,7 +51,7 @@ class PatientAppointmentListView(UserPassesTestMixin, ListView):
             "upcoming_appointment": Appointment.objects.filter(
                 patient=self.request.user.id,
                 status="active",
-            ).order_by("-date"),
+            ).order_by("date"),
             "available_appointment": Appointment.objects.filter(
                 patient__isnull=True,
                 status="active",
