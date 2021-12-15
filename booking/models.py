@@ -35,8 +35,12 @@ class Appointment(models.Model):
 
     def clean(self):
         if (
-            self.date <= datetime.date.today()
-            or self.start_time <= datetime.datetime.now().time()
+            self.date < datetime.date.today()
+            or (
+                self.date == datetime.date.today()
+                and self.start_time <= datetime.datetime.now().time()
+            )
+            # or self.start_time <= datetime.datetime.now().time()
             or self.end_time <= self.start_time
         ):
             raise ValidationError("Invalid appointment time")

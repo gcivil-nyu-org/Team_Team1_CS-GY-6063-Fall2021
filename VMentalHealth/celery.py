@@ -10,13 +10,13 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "VMentalHealth.settings")
 
 celery_app = Celery(
     "VMentalHealth",
-    broker="amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv",
-    result_backend="amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv",
+    broker="amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn",
+    result_backend="amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn",
 )
 celery_app.config_from_object(settings, namespace="CELERY")
 celery_app.conf.update(
-    BROKER_URL="amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv",
-    CELERY_RESULT_BACKEND="amqps://fgmleaxv:TsAnfCqlAeSAjRHbYXmWKrKe8RfoI5R-@fox.rmq.cloudamqp.com/fgmleaxv",
+    BROKER_URL="amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn",
+    CELERY_RESULT_BACKEND="amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn",
 )
 celery_app.conf.beat_schedule = {
     "appointments_update_task": {
@@ -25,7 +25,7 @@ celery_app.conf.beat_schedule = {
     },
 }
 
-celery_app.autodiscover_tasks()
+celery_app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 
 @celery_app.task(bind=True)

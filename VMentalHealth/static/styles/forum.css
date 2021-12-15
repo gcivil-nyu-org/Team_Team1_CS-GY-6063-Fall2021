@@ -1,14 +1,11 @@
-.form_attribute{
-  font-size: 20px;
-  font-style: bold;
-  /* margin: 10px; */
+.forum_content{
+  background-color: rgba(223,228,231,0.75);
+  padding-bottom: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  width: 70%;
+  margin-top: 100px;
 }
-
-.form_entities{
-  font-size: 20px;
-  margin: 5px;
-}
-
 .post_detail_title{
   font-size: 36px;
 }
@@ -28,6 +25,12 @@
 .comments-list{
   font-size: 20px;
 }
+.comments-wrapper{
+  border: 1px solid #444;
+  border-radius: 5px;
+  padding-bottom: 30px;
+}
 .reply-content{
   margin-left: auto;
+  transform: translate(10px);
 }

@@ -226,6 +226,13 @@ class AppointmentCreateViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    def test_get_context_data(self):
+        request = self.factory.get(path="booking:new_appointment")
+        request.user = self.prov
+        response = AppointmentCreateView.as_view()(request)
+        self.assertIsInstance(response.context_data, dict)
+        self.assertEqual(len(response.context_data), 2)
+
 
 class PatientReserveViewTest(TestCase):
     def setUp(self) -> None:

@@ -1,17 +1,32 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="container content">
-  <div class="row">
+<div class="container profile_content">
+  <div class="row justify-content-center">
     <div class="main_title">Edit Profile</div>
   </div>
-  <div class="row">
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a class="btn btn-primary" href="{% url 'profile' %}" role="button">Cancel</a>
-    </form>
+  <div class="row justify-content-center">
+    <div class = "col-md-3 offset-md-1">
+      {% if user.profile_img %}
+      <img src="{{ user.profile_img.url }}" alt="avatar" id="profile_avatar">
+      {% else %}
+      <img src="{% static 'images/profile_img.png' %}" id="profile_avatar">
+      {% endif %}
+    </div>
+    <div class = "col-md-8">
+      <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="row">
+            <div class="col-2">
+              <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+              <div class="col-9 offset-md-1">
+                <a class="btn btn-primary" href="{% url 'profile' %}" role="button">Cancel</a>
+              </div>
+          </div>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock content %}

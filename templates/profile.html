@@ -1,31 +1,68 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container content">
+<div class="container profile_content">
   <div class="row">
-    <div class="main_title">Welcome back, {{user.username}}!</div>
+    <div class="col-6 main_title">Welcome back, {{user.username}}!</div>
   </div>
-  <div class="row" >
-    <div class = "col-3">
-      <div class="profile_detail">
-        <img src="static/images/profile_img.png" alt="avatar" id="profile_avatar">
-        <div>Joined since 2021</div>
-        <a class="btn btn-primary" href="{% url 'profile_edit' user.id %}" role="button" style="margin-top: 1rem;">Edit profile</a>
+  <div class="row justify-content-center">
+    <div class = "col-md-3">
+      {% if user.profile_img %}
+      <img src="{{ user.profile_img.url }}" alt="avatar" id="profile_avatar">
+      {% else %}
+      <img src="static/images/profile_img.png" alt="avatar" id="profile_avatar">
+      {% endif %}
+      <div class = "row justify-content-center">Joined since 2021</div>
+      <div class ="row justify-content-center">
+        <a class="btn btn-primary" href="{% url 'profile_edit' user.id %}" role="button"">Edit profile</a>
       </div>
     </div>
-    <div class = "col-9">
-      <div class = "row" id="upcoming">Upcoming appointments...</div>
-      <div class="row align-items-center form_entities profile_form">
-          <div class="col-3">Time</div>
-          <div class="col-3">Provider</div>
-          <div class="col-3">Meeting Link</div>
+    <div class = "col-md-9">
+      <div class = "container dash">
+        <div class = "row secondary_title">
+          <div class = "col-6">Upcoming appointments...</div>
+          <div class = "col offset-4">
+            {% if request.user.is_provider %}
+            <a class="btn" href="{% url 'booking:provider_appointment_list' %}">Details</a>
+            {% elif not request.user.is_provider %}
+            <a class="btn" href="{% url 'booking:patient_appointment_list' %}">Details</a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="row align-items-center form_attribute profile_form">
+            <div class="col">Date</div>
+            <div class="col">Stat Time</div>
+            <div class="col">End Time</div>
+        </div>
+        {% for item in data.upcoming_appointment %}
+        <div class="row align-items-center form_attribute profile_form">
+            <div class="col">{{item.date}}</div>
+            <div class="col">{{item.start_time}}</div>
+            <div class="col">{{item.end_time}}</div>
+        </div>
+        {% endfor %}
       </div>
-      <div class="row align-items-center form_entities profile_form">
-          <div class="col-3">11/12/2021 15:00 EST</div>
-          <div class="col-3">Dr. Tandon</div>
-          <a class="col-3">https://nyu.zoom.us/z/1234567890 </a>
+      <div class = "container dash">
+        <div class = "row secondary_title" id="upcoming">
+          <div class = "col-6">Forum Snapshot</div>
+          <div class = "col offset-4">
+            <a class="btn" href="{% url 'forum:post_list' %}">Details</a>
+          </div>
+        </div>
+        <div class="row align-items-center form_attribute profile_form">
+            <div class="col">Title</div>
+            <div class="col">Author</div>
+            <div class="col">Create At</div>
+        </div>
+        {% for item in data.newest_post %}
+        <div class="row align-items-center form_attribute profile_form">
+            <div class="col">{{item.title}}</div>
+            <div class="col">{{item.author}}</div>
+            <div class="col">{{item.created_at}}</div>
+        </div>
+        {% endfor %}      
       </div>
     </div>
+  </div>
 </div>
-
 {% endblock %}

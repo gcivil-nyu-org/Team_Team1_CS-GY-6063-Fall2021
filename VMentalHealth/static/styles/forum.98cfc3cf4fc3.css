@@ -1,0 +1,22 @@
+.post_detail_title{
+  font-size: 36px;
+}
+
+.lead{
+  font-size: 16px;
+}
+
+.post_content{
+  font-size: 20px;
+  margin: 20px;
+  height:30vh;
+}
+.comments-title{
+  font-size: 20px;
+}
+.comments-list{
+  font-size: 20px;
+}
+.reply-content{
+  margin-left: auto;
+}
