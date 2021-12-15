@@ -44,7 +44,14 @@ class ProfileView(LoginRequiredMixin, ListView):
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = CustomizedUser
     template_name = "profile_edit.html"
-    fields = ["first_name", "last_name", "date_of_birth", "phone_number", "profile_img"]
+    fields = [
+        "username",
+        "first_name",
+        "last_name",
+        "date_of_birth",
+        "phone_number",
+        "profile_img",
+    ]
     success_url = reverse_lazy("profile")
     widgets = {
         "date_of_birth": DateField(
