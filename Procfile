@@ -1,3 +1,4 @@
 web: gunicorn VMentalHealth.wsgi
 
-worker: celery worker -B -E -l info
+worker: celery worker -B -l info
+
