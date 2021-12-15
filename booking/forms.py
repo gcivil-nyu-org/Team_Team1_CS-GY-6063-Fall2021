@@ -52,10 +52,7 @@ class BookForm(forms.ModelForm):
 
         if (
             date < datetime.date.today()
-            or (
-                date == datetime.date.today()
-                and start_time <= datetime.now().time()
-            )
+            or (date == datetime.date.today() and start_time <= datetime.now().time())
             # or self.start_time <= datetime.datetime.now().time()
             or end_time <= start_time
         ):
