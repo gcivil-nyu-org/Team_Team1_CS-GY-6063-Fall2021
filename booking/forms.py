@@ -51,8 +51,12 @@ class BookForm(forms.ModelForm):
         end_datetime = datetime.datetime.combine(date, end_time)
 
         if (
-            date <= datetime.date.today()
-            or start_datetime <= datetime.datetime.now()
-            or end_datetime <= start_datetime
+            date < datetime.date.today()
+            or (
+                date == datetime.date.today()
+                and start_time <= datetime.now().time()
+            )
+            # or self.start_time <= datetime.datetime.now().time()
+            or end_time <= start_time
         ):
             raise ValidationError("Invalid appointment time")
