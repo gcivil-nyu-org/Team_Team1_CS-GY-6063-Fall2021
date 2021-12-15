@@ -33,7 +33,6 @@ class test_signup_view(TestCase):
         }
         request = self.factory.post(path="signup.html", data=post_data)
         response = SignUp.as_view()(request)
-        print(response.content)
         self.assertEqual(response.status_code, 200)
 
 
