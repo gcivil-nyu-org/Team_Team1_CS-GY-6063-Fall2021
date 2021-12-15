@@ -17,6 +17,7 @@ celery_app.config_from_object(settings, namespace="CELERY")
 celery_app.conf.update(
     BROKER_URL="amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn",
     CELERY_RESULT_BACKEND="amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn",
+    BROKER_POOL_LIMIT=1
 )
 celery_app.conf.beat_schedule = {
     "appointments_update_task": {
