@@ -25,7 +25,7 @@ celery_app.conf.beat_schedule = {
     },
 }
 
-celery_app.autodiscover_tasks()
+celery_app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 
 @celery_app.task(bind=True)
