@@ -46,9 +46,9 @@ class BookForm(forms.ModelForm):
         cleaned_data = super().clean()
         date = cleaned_data.get("date")
         start_time = cleaned_data.get("start_time")
-        start_datetime = datetime.datetime.combine(date, start_time)
+        # start_datetime = datetime.datetime.combine(date, start_time)
         end_time = self.cleaned_data.get("end_time")
-        end_datetime = datetime.datetime.combine(date, end_time)
+        # end_datetime = datetime.datetime.combine(date, end_time)
 
         if (
             date < datetime.date.today()
