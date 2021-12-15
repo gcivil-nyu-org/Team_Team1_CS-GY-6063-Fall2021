@@ -22,15 +22,14 @@
       <div class="col-2 offset-2">
         <a class = "offset-1"href="{% url 'forum:post_update' post.slug %}">Edit post</a>
       </div>
+      {% if request.user.is_authenticated and request.user.id == post.author.id %}
       <div class="col-2 ">
         <a class = "offset-1"href="{% url 'forum:post_delete' post.slug %}">Delete post</a>
       </div>
+      {% endif %}
   </div>
-  {% if request.user.is_authenticated and request.user.id == post.author.id %}
   <div class="row">
-
   </div>
-  {% endif %}
   <div class="container comments-wrapper">
     <div class="row align-items-center comments-title">
       <div class="col-6 secondary_title">Comments</div>
