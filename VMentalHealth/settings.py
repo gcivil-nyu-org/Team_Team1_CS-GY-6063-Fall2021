@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-m&1k@b4lpnnec+i7v3es!#wo6@uk_m70mkra#omlbxfl3tl$w0"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Application definition
 
@@ -133,7 +133,6 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -151,7 +150,6 @@ AUTH_USER_MODEL = "account.CustomizedUser"
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
-# STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = "/static/"
 
 # for password reset function
@@ -168,12 +166,9 @@ EMAIL_USE_SSL = False
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_CACHE_BACKEND = "django-cache"
 
-CELERY_IMPORTS = ("booking.tasks",)
 CELERY_BROKER_URL = "amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn"
-CELERY_BROKER_POOL_LIMIT = 1
 
-BROKER_URL = "amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn"
-BROKER_POOL_LIMIT = 1
+broker_url = "amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn"
 
 # must place in the last line
 if "/app" in os.environ["HOME"]:

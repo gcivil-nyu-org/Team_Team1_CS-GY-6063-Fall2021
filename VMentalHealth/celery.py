@@ -12,10 +12,12 @@ celery_app = Celery(
     "VMentalHealth",
     broker="amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn",
     result_backend="amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn",
-    imports=("booking.tasks",),
 )
 celery_app.config_from_object(settings, namespace="CELERY")
-
+celery_app.conf.update(
+    BROKER_URL="amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn",
+    CELERY_RESULT_BACKEND="amqps://wektanqn:Q60ljnGlnbbJJN8IDSiAfjoUvI9B-qF5@chimpanzee.rmq.cloudamqp.com/wektanqn",
+)
 celery_app.conf.beat_schedule = {
     "appointments_update_task": {
         "task": "booking.tasks.appointments_update",
